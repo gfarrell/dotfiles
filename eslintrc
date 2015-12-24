@@ -1,0 +1,41 @@
+{
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "rules": {
+        "no-multi-spaces": 0,
+        "key-spacing": [1, { "align": "value" }],
+        "no-underscore-dangle": 0,
+        "no-mixed-spaces-and-tabs": 2,
+        "block-scoped-var": 2,
+        "no-inner-declarations": 2,
+        "valid-jsdoc": 1,
+        "no-irregular-whitespace": 2,
+        "spaced-comment": [1, "always"]
+    },
+    "ecmaFeatures": {
+        "arrowFunctions": true,
+        "binaryLiterals": true,
+        "blockBindings": true,
+        "classes": true,
+        "defaultParams": true,
+        "destructuring": true,
+        "forOf": true,
+        "generators": true,
+        "modules": false,
+        "objectLiteralComputedProperties": true,
+        "objectLiteralDuplicateProperties": true,
+        "objectLiteralShorthandMethods": true,
+        "objectLiteralShorthandProperties": true,
+        "octalLiterals": true,
+        "regexUFlag": true,
+        "regexYFlag": true,
+        "spread": true,
+        "superInFunctions": false,
+        "templateStrings": true,
+        "unicodeCodePointEscapes": true,
+        "globalReturn": true,
+        "jsx": false
+    }
+}

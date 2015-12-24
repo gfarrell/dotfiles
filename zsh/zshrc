@@ -1,22 +1,50 @@
-# Uncomment the following line to display red dots whilst waiting for completion.
+zsh_dotfile_path=$(dirname $(readlink $HOME/.zshrc))
+fpath=($zsh_dotfile_path/zsh/completion $fpath)
+
+# waiting dots
 COMPLETION_WAITING_DOTS="true"
+
+# iTerm2
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+
+# autocompletes
+autoload -U compinit
+compinit
+
+# Glob-like autocomplete
+setopt glob_complete
+setopt no_case_glob
+
+# history
+setopt append_history
+setopt share_history
+setopt hist_ignore_dups
 
 # Change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
 
-# User configuration
-for file in ~/.{extra,exports,aliases,functions}; do
-	[ -r "$file" ] && source "$file"
-done
-unset file
+HISTFILE=$HOME/.zhistory
+HISTSIZE=20000
+SAVEHIST=20000
+setopt HIST_IGNORE_SPACE
+HOSTNAME="`hostname`"
 
-# Init z
-source ~/.bin/z
+# allow VIM to use C-s as a mapping
+stty -ixon
 
-# Initialise nvm
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+# source other things
+source $zsh_dotfile_path/aliases
+source $zsh_dotfile_path/exports
+source $zsh_dotfile_path/functions
+source $zsh_dotfile_path/agnoster-theme
+source $zsh_dotfile_path/secrets
 
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+# Make "z" work (https://github.com/rupa/z/)
+if which brew >/dev/null; then
+  [ -f `brew --prefix`/etc/profile/z.sh ] && source `brew --prefix`/etc/profile.d/z.sh
+fi
+
+# Use fzf for shell things too
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

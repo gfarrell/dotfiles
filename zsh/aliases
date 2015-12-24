@@ -22,19 +22,12 @@ alias l="ls -l ${colorflag}"
 # List all files colorized in long format, including dot files
 alias la="ls -la ${colorflag}"
 
-# List only directories
-alias lsd='ls -l | grep "^d"'
-
 # Always use color output for `ls`
 if [[ "$OSTYPE" =~ ^darwin ]]; then
 	alias ls="command ls -G"
 else
 	alias ls="command ls --color"
 fi
-
-# `cat` with beautiful colors. requires Pygments installed.
-#  > sudo easy_install Pygments
-alias c='pygmentize -O style=monokai -f console256 -g'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -47,12 +40,42 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 # Shortcuts
 alias v="vim"
 
+# NPM stuff
+alias n="npm"
+alias nt="npm test"
+alias ni="npm install"
+alias npmls="npm ls --depth=0"
+
 # File size
 alias filesize="stat -f \"%z bytes\""
 
-#npm list function
-alias npmls="npm ls --depth=0"
-
-# Some audio output switcher stuff
-alias SwitchAudioOutputBuiltIn="SwitchAudioSource -t output -s \"Built-in Output\""
-alias SwitchAudioOutputHDMI="SwitchAudioSource -t output -s \"Soundflower (2ch)\""
+# GIT aliases
+alias g="git"
+alias ga="git add"
+alias gaa="git add --all"
+alias gb="git branch"
+alias gc="git commit -v"
+alias gca="git commit -v -a"
+alias gcb="git checkout -b"
+alias gcl="git clone --recursive"
+alias gcm="git checkout master"
+alias gco="git checkout"
+alias gd="git diff"
+alias gf="git fetch"
+alias gl="git pull"
+alias glg="git log --stat --color"
+alias glgg="git log --graph --color"
+alias glgga="git log --graph --decorate --all"
+alias glgm="git log --graph --max-count=10"
+alias gm="git merge"
+alias gp="git push"
+alias gpd="git push --dry-run"
+alias gpoat="git push origin --all && git push origin --tags"
+alias gpristine="git reset --hard && git clean -dfx"
+alias grb="git rebase"
+alias grh="git reset HEAD"
+alias grhh="git reset --hard HEAD"
+alias gsb="git status -sb"
+alias gss="git status -s"
+alias gst="git status"
+alias gup="git pull --rebase"

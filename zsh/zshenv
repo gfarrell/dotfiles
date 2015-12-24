@@ -1,0 +1,10 @@
+#
+# export paths
+#
+# Executables from node modules
+export PATH="./node_modules/.bin:$PATH"
+# Compose executables
+export PATH="~/.composer/vendor/bin:$PATH"
+# Homebrew on the path
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+
