@@ -1,0 +1,35 @@
+snippet func
+var $1 = function($2) {
+	$0
+}
+endsnippet
+
+snippet cl
+console.log($1);$0
+endsnippet
+
+snippet clogargs
+console.log.apply(console, arguments);
+$0
+endsnippet
+
+snippet nreq
+var ${1} = require('${2:$1}');
+$0
+endsnippet
+
+snippet desc
+describe('$1', function() {
+	$0
+});
+endsnippet
+
+snippet it
+it('$1', function() {
+	$0
+});
+endsnippet
+
+snippet exp
+expect($1).$0
+endsnippet
