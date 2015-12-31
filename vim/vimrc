@@ -171,6 +171,12 @@ noremap H ^
 noremap L $
 vnoremap L g_
 
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " Uppercase word mapping.
 "
 " This mapping allows you to press <c-u> in insert mode to convert the current
