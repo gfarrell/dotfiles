@@ -16,7 +16,8 @@ Plug 'JulesWang/css.vim' | Plug 'genoma/vim-less' " LESS requires CSS runtimes
 
 " Theming
 Plug 'bling/vim-airline'
-Plug 'jordwalke/flatlandia'
+Plug 'jdkanani/vim-material-theme'
+Plug 'chriskempson/base16-vim'
 
 " Other plugins
 Plug 'tpope/vim-endwise' " helps with ending of structures
@@ -29,7 +30,7 @@ Plug 'editorconfig/editorconfig-vim' " editorconfig
 Plug 'tpope/vim-commentary' " for commenting things out
 Plug 'tpope/vim-fugitive' " Git things
 Plug 'kana/vim-textobj-user' " Helps with defining custom text blocks
-Plug 'poetic/vim-textobj-javascript' " Javascript closure with ac,ic 
+Plug 'poetic/vim-textobj-javascript' " Javascript closure with ac,ic
 Plug 'wellle/targets.vim' " useful text blocks
 Plug 'ahw/vim-pbcopy' " Sends stuff to OS X clipboard via 'cy'
 Plug 'AndrewRadev/splitjoin.vim' " Split (gS) and join (gJ) blocks
@@ -120,7 +121,7 @@ set relativenumber " show line numbers relative to the current one
 
 " colours
 set background=dark
-colorscheme flatlandia
+colorscheme base16-flat
 
 set colorcolumn=90 " set a line at 90
 
@@ -146,7 +147,7 @@ map <leader>v :vsplit<CR> " ,v for vsplit
 map <leader>s :split<CR>  " ,s for split
 
 " in visual mode, let '.' return to normal mode
-vnoremap . :norm.<CR> 
+vnoremap . :norm.<CR>
 " in normal mode, carriage-return removes search highlighting
 nnoremap <CR> :noh<CR><CR>
 
@@ -172,8 +173,7 @@ vnoremap L g_
 
 " Uppercase word mapping.
 "
-" This mapping allows you to press <c-u> in insert mode to convert the
-current
+" This mapping allows you to press <c-u> in insert mode to convert the current
 " word to uppercase.  It's handy when you're writing names of constants and
 " don't want to use Capslock.
 "
