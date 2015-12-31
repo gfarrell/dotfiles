@@ -38,6 +38,8 @@ Plug 'jlanzarotta/bufexplorer' " Buffer explorer
 Plug 'kien/rainbow_parentheses.vim' " Colour matching parentheses
 Plug 'tmux-plugins/vim-tmux-focus-events' " make vim listen to tmux focus events
 Plug 'junegunn/vim-easy-align' " easy alignment of all the things
+Plug 'junegunn/goyo.vim' " distraction-free writing in VIM
+Plug 'junegunn/limelight.vim' " focussed writing in VIM
 
 call plug#end()
 
