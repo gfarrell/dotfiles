@@ -16,8 +16,9 @@ symlinks:
 
 brew:
 	command -v brew > /dev/null 2>&1 || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	@brew tap homebrew/bundle || echo ''
-	brew bundle
+    @brew tap homebrew/bundle || echo ''
+    @brew upgrade
+    brew bundle
 
 LATEST_NODE="5"
 nvm:
