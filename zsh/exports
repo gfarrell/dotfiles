@@ -19,9 +19,6 @@ TZ="Europe/London"
 # Language
 LC_ALL="en_GB.UTF-8"
 
-
-# Node
-export NVM_DIR="${HOME}/.nvm"
-[ -d $NVM_DIR ] &&. $"NVM_DIR/nvm.sh"
-
-
+# NVM
+export NVM_DIR=~/.nvm
+. $(brew --prefix nvm)/nvm.sh
