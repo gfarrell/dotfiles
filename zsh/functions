@@ -46,3 +46,8 @@ get_suspended_jobs() {
 function new-tmux-from-dir-name {
   tmux new-session -As `basename $PWD`
 }
+
+# Create a new directory and enter it
+function md() {
+    mkdir -p "$@" && cd "$@"
+}
