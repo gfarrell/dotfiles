@@ -1,40 +1,56 @@
 [alias]
-	c = commit -am
-	up = pull
-	p = push
-	s = status -s
-	df = diff --color --color-words --abbrev
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-	mu = !git ls-files -v | grep "^[[:lower:]]"
+    c = commit -am
+    up = pull
+    p = push
+    s = status -s
+    df = diff --color --color-words --abbrev
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+    mu = !git ls-files -v | grep "^[[:lower:]]"
+
 [color]
-	ui = true
+    ui = true
+
 [apply]
-	whitespace = fix
+    whitespace = fix
+
 [core]
-	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
-	whitespace = fix,space-before-tab,tab-in-indent,trailing-space
+    excludesfile = ~/.gitignore
+    attributesfile = ~/.gitattributes
+    whitespace = fix,space-before-tab,tab-in-indent,trailing-space
+
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+    current = yellow reverse
+    local = yellow
+    remote = green
+
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+    added = yellow
+    changed = green
+    untracked = cyan
 [merge]
-	log = true
+    log = true
+
 [push]
-	default = current
+    default = simple
 
 [branch]
-  autosetuprebase = always
+    autosetuprebase = always
 
 [user]
-      name = Gideon Farrell
-      email = gideon@converge.io 
+    name = Gideon Farrell
+    email = gideon@converge.io
+
+[diff]
+    tool = vimdiff
+
+[help]
+    autocorrect = 1
+
+[url "git@github.com:"]
+    insteadOf = https://github.com/
