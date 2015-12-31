@@ -41,10 +41,8 @@ source $zsh_dotfile_path/functions
 source $zsh_dotfile_path/agnoster-theme
 source $zsh_dotfile_path/secrets
 
-# Make "z" work (https://github.com/rupa/z/)
-if which brew >/dev/null; then
-  [ -f `brew --prefix`/etc/profile/z.sh ] && source `brew --prefix`/etc/profile.d/z.sh
-fi
+# Z
+. `brew --prefix`/etc/profile.d/z.sh
 
 # Use fzf for shell things too
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

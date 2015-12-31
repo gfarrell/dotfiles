@@ -23,7 +23,7 @@ brew:
 
 LATEST_NODE="5"
 nvm:
-	[ -d ~/.nvm ] || git clone git@github.com:creationix/nvm ~/.nvm
+	[ -d ~/.nvm ] || git clone git@github.com:creationix/nvm.git ~/.nvm
 	cd ~/.nvm && git pull
 	NVM_DIR=~/.nvm source ~/.nvm/nvm.sh && nvm install $(LATEST_NODE) && nvm alias default $(LATEST_NODE)
 
