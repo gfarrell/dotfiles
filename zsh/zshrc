@@ -47,3 +47,6 @@ source $zsh_dotfile_path/secrets
 
 # Use fzf for shell things too
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Grep anywhere with ^G
+bindkey -s '^G' ' | grep '
