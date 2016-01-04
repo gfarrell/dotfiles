@@ -1,6 +1,7 @@
 brew "beanstalk"
 brew "brew-cask"
 brew "composer"
+brew "ctags"
 brew "dnsmasq"
 brew "docker"
 brew "docker-compose"
