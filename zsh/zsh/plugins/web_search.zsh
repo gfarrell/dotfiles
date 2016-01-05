@@ -9,7 +9,7 @@ function web_search() {
         duckduckgo  "https://www.duckduckgo.com/?q="
         github      "https://github.com/search?q="
         npm         "https://www.npmjs.com/search?q="
-        mdnjs       "https://developer.mozilla.org/en-US/search?topic=js&q=array"
+        mdnjs       "https://developer.mozilla.org/en-US/search?topic=js&q="
     )
 
     # check the search engine is supported
