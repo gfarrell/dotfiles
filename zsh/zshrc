@@ -5,7 +5,7 @@ fpath=($zsh_dotfile_path/zsh/completion $fpath)
 COMPLETION_WAITING_DOTS="true"
 
 # iTerm2
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+test -e $zsh_dotfile_path/.iterm2_shell_integration.zsh && source $zsh_dotfile_path/.iterm2_shell_integration.zsh
 
 # autocompletes
 autoload -U compinit
@@ -50,3 +50,6 @@ source $zsh_dotfile_path/secrets
 
 # Grep anywhere with ^G
 bindkey -s '^G' ' | grep '
+
+# Plugins
+source $zsh_dotfile_path/zsh/plugins/web_search.zsh
