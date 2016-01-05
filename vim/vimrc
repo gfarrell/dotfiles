@@ -103,9 +103,9 @@ set history=100
 
 set textwidth=90
 set expandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set autoindent
 
 " only case-insensitive searching when search includes upper case
