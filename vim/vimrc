@@ -13,6 +13,7 @@ Plug 'leshill/vim-json'
 Plug 'tpope/vim-markdown'
 Plug 'andersoncustodio/vim-tmux'
 Plug 'JulesWang/css.vim' | Plug 'genoma/vim-less' " LESS requires CSS runtimes
+Plug 'scrooloose/syntastic' " external syntax checkers
 
 " Theming
 Plug 'bling/vim-airline'
@@ -20,7 +21,8 @@ Plug 'jdkanani/vim-material-theme'
 Plug 'chriskempson/base16-vim'
 
 " Other plugins
-Plug 'Valloric/YouCompleteMe' " autocompleter
+" Plug 'Valloric/YouCompleteMe' " autocompleter
+Plug 'tpope/vim-dispatch' " async command dispatch
 Plug 'SirVer/ultisnips' " snippet support
 Plug 'tpope/vim-endwise' " helps with ending of structures
 Plug 'tpope/vim-surround' " change+add surrounding things
@@ -61,13 +63,25 @@ let g:airline_section_warning = ''
 let g:airline#extensions#tabline#enabled = 0
 
 " snippet stuff
-let g:UltiSnipsExpandTrigger="<c-.>"
+" let g:UltiSnipsExpandTrigger="<c-.>"
 
 " we use react,lodash for javascript
 let g:used_javascript_libs = 'react,lodash'
 
 " assume jsx for js files
 let g:jsx_ext_required = 0
+
+" use eslint syntax checker
+let g:syntastic_javascript_checkers = ['eslint']
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " assume the /g flag on :s substitutions to replace all matches in a line
 set gdefault
@@ -152,6 +166,7 @@ map <Leader>nf :e <C-R>=expand("%:p:h") . "/" <CR>
 map <leader>t :FZF!<cr>   " ,t for FZF
 map <leader>v :vsplit<CR> " ,v for vsplit
 map <leader>s :split<CR>  " ,s for split
+map <leader>esl :Dispatch eslint %<CR> " ,esl for eslinting the current file
 
 " in visual mode, let '.' return to normal mode
 vnoremap . :norm.<CR>
@@ -194,3 +209,18 @@ nmap ga <Plug>(EasyAlign)
 " cursor is at the end of the word, press <c-u> to uppercase it, and then
 " continue happily on your way:
 inoremap <C-u> <esc>mzgUiw`za
+
+" automatically create directories on save if necessary
+" http://stackoverflow.com/a/4294176/907981
+function s:MkNonExDir(file, buf)
+      if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
+        let dir=fnamemodify(a:file, ':h')
+          if !isdirectory(dir)
+            call mkdir(dir, 'p')
+          endif
+      endif
+endfunction
+augroup BWCCreateDir
+  autocmd!
+  autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
+augroup END
