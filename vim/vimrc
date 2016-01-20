@@ -45,6 +45,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events' " make vim listen to tmux focus events
 Plug 'junegunn/vim-easy-align' " easy alignment of all the things
 Plug 'junegunn/goyo.vim' " distraction-free writing in VIM
 Plug 'junegunn/limelight.vim' " focussed writing in VIM
+Plug 'rking/ag.vim' " plugin for using :Ag to ag through files
 
 call plug#end()
 
@@ -146,6 +147,8 @@ set relativenumber " show line numbers relative to the current one
 " colours
 set background=dark
 colorscheme base16-flat
+" better search highlighting
+hi Search cterm=None ctermfg=White ctermbg=DarkYellow
 
 set colorcolumn=90 " set a line at 90
 
