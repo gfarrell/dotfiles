@@ -46,6 +46,7 @@ Plug 'junegunn/vim-easy-align' " easy alignment of all the things
 Plug 'junegunn/goyo.vim' " distraction-free writing in VIM
 Plug 'junegunn/limelight.vim' " focussed writing in VIM
 Plug 'rking/ag.vim' " plugin for using :Ag to ag through files
+Plug 'airblade/vim-gitgutter' " git status gutter + hunk staging
 
 call plug#end()
 
