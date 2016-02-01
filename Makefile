@@ -1,4 +1,7 @@
+# vim: set noexpandtab
 DIR=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+
+init: osx symlinks brew nvm npm tpm
 
 symlinks:
 	@ln -nsf $(DIR)/zsh/zsh ~/.zsh
@@ -20,6 +23,9 @@ brew:
 	@brew tap homebrew/bundle || echo ''
 	@brew upgrade
 	brew bundle
+
+osx:
+	@sh $(DIR)/init/osx
 
 LATEST_NODE="5"
 nvm:
