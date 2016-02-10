@@ -67,7 +67,7 @@ let g:airline#extensions#tabline#enabled = 0
 
 " snippet stuff
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpForwardTrigger="<c-a>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " we use react,lodash for javascript
