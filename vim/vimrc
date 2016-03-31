@@ -29,6 +29,7 @@ Plug 'tpope/vim-endwise' " helps with ending of structures
 Plug 'tpope/vim-surround' " change+add surrounding things
 Plug 'tpope/vim-repeat' " add . repeating to plugins
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' } " Fuzzy finding
+Plug 'junegunn/fzf.vim' " Fuzzy finding for things within vim
 Plug 'christoomey/vim-tmux-navigator' " Navigation across vim and tmux splits
 Plug 'tpope/vim-eunuch' " file manipulation
 Plug 'editorconfig/editorconfig-vim' " editorconfig
@@ -45,8 +46,8 @@ Plug 'tmux-plugins/vim-tmux-focus-events' " make vim listen to tmux focus events
 Plug 'junegunn/vim-easy-align' " easy alignment of all the things
 Plug 'junegunn/goyo.vim' " distraction-free writing in VIM
 Plug 'junegunn/limelight.vim' " focussed writing in VIM
-Plug 'rking/ag.vim' " plugin for using :Ag to ag through files
 Plug 'airblade/vim-gitgutter' " git status gutter + hunk staging
+Plug 'sjl/gundo.vim' " graphical undo tree
 
 call plug#end()
 
@@ -172,10 +173,17 @@ let g:jsdoc_enable_es6=1
 " no accidental ex-mode presses
 map Q <Nop>
 
-
 map <Leader>nf :e <C-R>=expand("%:p:h") . "/" <CR>
 
+" FZF stuff
+let g:fzf_layout = {}
 map <leader>t :FZF!<cr>   " ,t for FZF
+map <leader>b :Buffers<cr> ",b for FZF buffers
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
 map <leader>v :vsplit<CR> " ,v for vsplit
 map <leader>s :split<CR>  " ,s for split
 map <leader>esl :Dispatch eslint %<CR> " ,esl for eslinting the current file
@@ -236,3 +244,6 @@ augroup BWCCreateDir
   autocmd!
   autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
+
+" Gundo shortcut
+nnoremap <leader>g :GundoToggle<CR>
