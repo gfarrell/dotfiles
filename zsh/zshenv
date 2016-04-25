@@ -7,4 +7,6 @@ export PATH="./node_modules/.bin:$PATH"
 export PATH="~/.composer/vendor/bin:$PATH"
 # Homebrew on the path
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+# rbenv
+export PATH="~/.rbenv/shims:$PATH"
 
