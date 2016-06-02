@@ -51,8 +51,6 @@ Plug 'sjl/gundo.vim' " graphical undo tree
 
 call plug#end()
 
-filetype plugin indent on
-
 " Make the % matching more powerful
 runtime macros/matchit.vim
 
@@ -110,12 +108,13 @@ nnoremap <Space> za
 
 set history=100
 
-set textwidth=90
+set textwidth=80
 set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set autoindent
+set formatprg=par\ -w80
 
 " only case-insensitive searching when search includes upper case
 set ignorecase smartcase
@@ -124,8 +123,16 @@ set ignorecase smartcase
 set spelllang=en_gb
 syntax spell toplevel
 
+" enable filetype detection:
+filetype on
+filetype plugin on
+filetype indent on " file type based indentationfiletype plugin indent on
+
 autocmd FileType markdown setlocal shiftwidth=4 softtabstop=4 tabstop=4 wrap linebreak nolist wrap lbr colorcolumn=0
-autocmd Filetype yaml setlocal tabstop=4
+autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+" in makefiles, don't expand tabs to spaces, since actual tab characters are
+" needed, and have indentation at 8 chars to be sure that all indents are tabs
+autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
 set linebreak " insert linebreak characters when pressing enter for wrapping
 
