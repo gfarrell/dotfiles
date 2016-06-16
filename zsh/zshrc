@@ -4,6 +4,10 @@ fpath=($zsh_dotfile_path/zsh/completion $fpath)
 # waiting dots
 COMPLETION_WAITING_DOTS="true"
 
+# VI-mode
+bindkey -v
+export KEYTIMEOUT=1 # nb can cause problems with other scripts
+
 # iTerm2
 test -e $zsh_dotfile_path/iterm2_shell_integration.zsh && source $zsh_dotfile_path/iterm2_shell_integration.zsh
 
