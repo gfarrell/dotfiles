@@ -47,7 +47,10 @@ Plug 'junegunn/vim-easy-align' " easy alignment of all the things
 Plug 'junegunn/goyo.vim' " distraction-free writing in VIM
 Plug 'junegunn/limelight.vim' " focussed writing in VIM
 Plug 'airblade/vim-gitgutter' " git status gutter + hunk staging
+Plug 'neilagabriel/vim-geeknote' " geeknote (evernote cmdline)
 Plug 'sjl/gundo.vim' " graphical undo tree
+Plug 'scrooloose/nerdtree' " file tree view
+Plug 'Xuyuanp/nerdtree-git-plugin' " plugin for git flags in nerdtree
 
 call plug#end()
 
@@ -126,7 +129,7 @@ syntax spell toplevel
 " enable filetype detection:
 filetype on
 filetype plugin on
-filetype indent on " file type based indentationfiletype plugin indent on
+filetype indent on " file type based indentation
 
 autocmd FileType markdown setlocal shiftwidth=4 softtabstop=4 tabstop=4 wrap linebreak nolist wrap lbr colorcolumn=0
 autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
