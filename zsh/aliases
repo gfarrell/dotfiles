@@ -49,6 +49,10 @@ alias nt="npm test"
 alias ni="npm install"
 alias npmls="npm ls --depth=0"
 
+# Other javascript stuff
+alias mt="NODE_ENV=test mocha"
+alias mtw="NODE_ENV=test mocha --reporter min --watch"
+
 # File size
 alias filesize="stat -f \"%z bytes\""
 
