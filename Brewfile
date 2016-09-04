@@ -1,12 +1,11 @@
 # Prerequisites
 tap "homebrew/dupes"
 tap "homebrew/php"
-brew "caskroom/cask/brew-cask"
+tap "caskroom/cask"
 
 # Brew install
 brew "awscli"
 brew "beanstalkd"
-brew "brew-cask"
 brew "composer"
 brew "coreutils"
 brew "ctags"
