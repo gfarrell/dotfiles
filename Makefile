@@ -17,6 +17,7 @@ symlinks:
 	@ln -sf $(DIR)/editorconfig ~/.editorconfig
 	@ln -sf $(DIR)/eslintrc ~/.eslintrc
 	@ln -sf $(DIR)/task/taskrc ~/.taskrc
+	@ln -sf $(DIR)/karabiner ~/.karabiner.d
 
 brew:
 	command -v brew > /dev/null 2>&1 || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
