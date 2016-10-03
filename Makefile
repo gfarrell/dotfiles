@@ -29,7 +29,7 @@ brew:
 osx:
 	@sh $(DIR)/init/osx
 
-LATEST_NODE="5"
+LATEST_NODE="6"
 nvm:
 	[ -d ~/.nvm ] || git clone git@github.com:creationix/nvm.git ~/.nvm
 	cd ~/.nvm && git pull
