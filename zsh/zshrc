@@ -47,7 +47,7 @@ source $zsh_dotfile_path/agnoster-theme
 source $zsh_dotfile_path/secrets
 
 # Z
-. `brew --prefix`/etc/profile.d/z.sh
+(command -v brew >/dev/null) && (brew info z >/dev/null 2&>1) && . `brew --prefix`/etc/profile.d/z.sh
 
 # Use fzf for shell things too
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
