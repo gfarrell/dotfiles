@@ -42,8 +42,8 @@ stty -ixon
 source $zsh_dotfile_path/aliases
 source $zsh_dotfile_path/exports
 source $zsh_dotfile_path/functions
-source $zsh_dotfile_path/agnoster-theme
-# source $zsh_dotfile_path/prompt
+# source $zsh_dotfile_path/agnoster-theme
+source $zsh_dotfile_path/prompt
 source $zsh_dotfile_path/secrets
 
 # Z
