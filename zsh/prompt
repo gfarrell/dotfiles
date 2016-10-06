@@ -111,6 +111,16 @@ function RPR_AT() {
 }
 
 # Build the rhs prompt
+function get_suspended_jobs() {
+  # thanks to @mheap for his help
+  NUM_JOBS="`jobs | wc -l`"
+  if test $NUM_JOBS -lt 1 ; then
+    echo ""
+  else
+    echo "⚙"
+  fi
+}
+
 function RPR_INFO() {
     echo "$(get_suspended_jobs)$(RPR_USER)$(RPR_AT)$(RPR_HOST)"
 }

@@ -32,17 +32,6 @@ function extract() {
 	fi
 }
 
-# from isaacseymour
-get_suspended_jobs() {
-  # thanks to @mheap for his help
-  NUM_JOBS="`jobs | wc -l`"
-  if test $NUM_JOBS -lt 1 ; then
-    echo ""
-  else
-    echo "("`jobs | gsed -r 's/ .*suspended (\(signal\))?//' | tr -s ' ' | gsed 's/\[\([^]]*\)\]/\1:/g' | gsed 's/\: /\:/g'`")"
-  fi
-}
-
 function new-tmux-from-dir-name {
   tmux new-session -As `basename $PWD`
 }
