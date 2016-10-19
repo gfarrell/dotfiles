@@ -220,8 +220,17 @@ function tog() {
     fi
 }
 
+# virtualenv detection
+function VENV_PROMPT() {
+    env=$VIRTUAL_ENV
+    if [ "$env" != "" ]; then
+        echo "🐍 "
+    fi
+}
+
 # Prompt
 function PCMD() {
+    echo -n "$(VENV_PROMPT)"
     if [[ "${PROMPT_MODE}" == 0 ]]; then
         echo "$(PR_DIR) $(PR_ARROW) " # space at the end
     elif [[ "${PROMPT_MODE}" == 1 ]]; then

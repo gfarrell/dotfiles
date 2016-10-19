@@ -7,3 +7,6 @@ export PATH="./node_modules/.bin:$PATH"
 export PATH="~/.composer/vendor/bin:$PATH"
 # Homebrew on the path
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+
+# Stop pyenv adding things to the prompt
+export VIRTUAL_ENV_DISABLE_PROMPT="yes"
