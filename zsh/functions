@@ -53,3 +53,10 @@ function slack() {
 
     (test "$http_status" -lt 400) && echo "sent message to $channel 😎" || echo "failed to send message to $channel 😞";
 }
+
+function pywork() {
+    env=$1
+    if [ "$env" -eq "" ]; then env="env"; fi
+    source "$env/bin/activate"
+    PATH="$VIRTUAL_ENV/bin:$PATH"
+}
