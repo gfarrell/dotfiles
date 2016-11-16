@@ -58,5 +58,11 @@ eval "$(rbenv init -)"
 # Grep anywhere with ^G
 bindkey -s '^G' ' | grep '
 
+# Allow opening of command in $EDITOR
+# see http://unix.stackexchange.com/a/6622
+bindkey -M vicmd v edit-command-line
+autoload edit-command-line
+zle -N edit-command-line
+
 # Plugins
 source $zsh_dotfile_path/zsh/plugins/web_search.zsh
