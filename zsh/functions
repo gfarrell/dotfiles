@@ -68,7 +68,7 @@ function converge() {
     fi
 
     HTTP_METHOD=${(U)1};
-    API_AUTH="AUthorization: $CONVERGE_AUTH";
+    API_AUTH="Authorization: $CONVERGE_AUTH";
     HTTP_MIME="Content-Type: application/json";
     if [[ $HTTP_METHOD == "GET" || $HTTP_METHOD == "PUT" || $HTTP_METHOD == "POST" || $HTTP_METHOD == "DELETE" ]]; then
         CONVERGE_PATH="$2";

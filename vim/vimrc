@@ -209,6 +209,14 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 nnoremap <leader>v :vsplit<CR>
 " ,s for split
 nnoremap <leader>s :split<CR>
+" ,[ for make split narrower
+nnoremap <leader>[ :vertical resize -5<CR>
+" ,] for make split wider
+nnoremap <leader>] :vertical resize +5<CR>
+" ,- for make split shorter
+nnoremap <leader>- :resize -5<CR>
+" ,= for make split taller
+nnoremap <leader>= :resize +5<CR>
 
 " in visual mode, let '.' return to normal mode
 vnoremap . :norm.<CR>
