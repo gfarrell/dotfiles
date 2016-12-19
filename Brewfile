@@ -92,5 +92,7 @@ cask "the-unarchiver"
 cask "torbrowser"
 cask "tunnelblick"
 cask "ubersicht"
+cask "virtualbox"
+cask "virtualbox-extension-pack"
 cask "vlc"
 
