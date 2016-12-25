@@ -1,27 +1,31 @@
+" Gideon's .vimrc
+" ===============
+
+" Plugins (must be first) {{{
 call plug#begin('~/.vim/plugged')
 
-" Syntax Plugins
+" Plugins: syntax {{{
 Plug 'JulesWang/css.vim' | Plug 'genoma/vim-less' " LESS requires CSS runtimes
-Plug 'andersoncustodio/vim-tmux'
-Plug 'chrisbra/csv.vim'
-Plug 'heavenshell/vim-jsdoc'
-Plug 'leshill/vim-json'
-Plug 'moll/vim-node'
-Plug 'mxw/vim-jsx'
-Plug 'othree/html5.vim'
+Plug 'andersoncustodio/vim-tmux' " tmux config syntax
+Plug 'chrisbra/csv.vim' " csv syntax
+Plug 'heavenshell/vim-jsdoc' " jsdoc generator
+Plug 'leshill/vim-json' " json syntax
+Plug 'moll/vim-node' " node.js syntax
+Plug 'mxw/vim-jsx' " jsx syntas
+Plug 'othree/html5.vim' " html5 syntas
 Plug 'othree/javascript-libraries-syntax.vim' " various JS libraries
-Plug 'othree/yajs.vim' " javascript
+" Plug 'othree/yajs.vim' " javascript (not sure we need all so many)
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/syntastic' " external syntax checkers
 Plug 'tpope/vim-git' " git files
-Plug 'tpope/vim-markdown'
-
-" Theming
+Plug 'tpope/vim-markdown' " markdown support
+" }}}
+" Plugins: theming {{{
 Plug 'bling/vim-airline'
 Plug 'jdkanani/vim-material-theme'
 Plug 'chriskempson/base16-vim'
-
-" Other plugins
+" }}}
+" Plugins: other {{{
 " Plug 'Valloric/YouCompleteMe' " autocompleter
 Plug 'AndrewRadev/splitjoin.vim' " Split (gS) and join (gJ) blocks
 Plug 'SirVer/ultisnips' " snippet support
@@ -54,16 +58,20 @@ Plug 'tpope/vim-repeat' " add . repeating to plugins
 Plug 'tpope/vim-surround' " change+add surrounding things
 Plug 'wellle/targets.vim' " useful text blocks
 Plug 'wesQ3/vim-windowswap' " good for swapping windows around
+" }}}
 
 call plug#end()
-
-" Make the % matching more powerful
-runtime macros/matchit.vim
-
-" mouse suppose
-set mouse=a
-
-" status bar stuff
+" }}}
+" Theming {{{
+" Theming: setting the theme {{{
+set background=dark
+colorscheme base16-flat
+" }}}
+" Theming: highlights {{{
+" better search highlighting (white on dark yellow)
+highlight Search ctermfg=White ctermbg=DarkYellow
+" }}}
+" Theming: status bar (airline) {{{
 set laststatus=2                        " Always show a statusline
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
@@ -72,24 +80,22 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_section_warning = ''
 let g:airline#extensions#tabline#enabled = 0
-
-" snippet stuff
+" }}}
+" Theming: misc {{{
+" set a line at 100 chars
+set colorcolumn=100
+" }}}
+" }}}
+" Leader shortcuts {{{
+let mapleader="," " http://usevim.com/2012/07/20/vim101-leader/
+noremap \ ,
+map <Leader>nf :e <C-R>=expand("%:p:h") . "/" <CR>
+" }}}
+" Plugin config {{{
+" Plugin: UltiSnips {{{
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-a>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" we use react,lodash for javascript
-let g:used_javascript_libs = 'react,lodash'
-
-" assume jsx for js files
-let g:jsx_ext_required = 0
-
-" insert syntastic warnings into the status line
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-" syntastic settings
+" }}}
+" Plugin: Syntastic {{{
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -98,24 +104,48 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_python_checkers = ['pylint']
 
+" insert syntastic warnings into the status line
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+" }}}
+" Plugin: FZF {{{
+let g:fzf_layout = {}
+" ,t for FZF
+map <leader>t :FZF!<cr>
+",b for FZF buffers
+map <leader>b :Buffers<cr>
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+" }}}
+" Plugin: EasyAlign {{{
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+" }}}
+" Plugin: Gundo {{{
+nnoremap <leader>g :GundoToggle<CR>
+" }}}
+" }}}
+" Searching {{{
 " assume the /g flag on :s substitutions to replace all matches in a line
 set gdefault
-
-" auto-read files when switching back into VIM
-set autoread
-
-" fix slight delay after pressing ESC then O
-" http://ksjoberg.com/vim-esckeys.html
-" set noesckeys
-set timeout timeoutlen=500 ttimeoutlen=100
-
-" fold with space, but don't autofold when opening
-set foldmethod=indent
-set foldlevelstart=999
-nnoremap <Space> za
-
-set history=100
-
+" only case-insensitive searching when search includes upper case
+set ignorecase smartcase
+" move the cursor to the matched string, while typing the search pattern
+set incsearch
+" highlight all pattern matches
+set hlsearch
+" Keep search matches in the middle of the window.
+" stolen from https://bitbucket.org/sjl/dotfiles/src/tip/vim/vimrc
+nnoremap n nzzzv
+nnoremap N Nzzzv
+" }}}
+" Lang {{{
+" Lang: defaults {{{
 set textwidth=0
 set expandtab
 set tabstop=4
@@ -123,14 +153,25 @@ set shiftwidth=4
 set softtabstop=4
 set autoindent
 set formatprg=par\ -w80
-
-" only case-insensitive searching when search includes upper case
-set ignorecase smartcase
-
+" }}}
+" Lang: spelling etc. {{{
 " spelling and syntax
 set spelllang=en_gb
 syntax spell toplevel
+" }}}
+" Lang: javascript {{{
+" we use react,lodash for javascript
+let g:used_javascript_libs = 'react,lodash'
 
+" assume jsx for js files
+let g:jsx_ext_required = 0
+" }}}
+" Lang: jsdoc {{{
+let g:jsdoc_allow_input_prompt=1
+let g:jsdoc_input_description=1
+let g:jsdoc_enable_es6=1
+" }}}
+" Lang: FileType {{{
 " enable filetype detection:
 filetype on
 filetype plugin on
@@ -142,69 +183,23 @@ autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 " needed, and have indentation at 8 chars to be sure that all indents are tabs
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
-set linebreak " insert linebreak characters when pressing enter for wrapping
-
-set incsearch " move the cursor to the matched string, while typing the search pattern
-set hlsearch " highlight all pattern matches
-
-set scrolloff=10 " min 10 lines around cursor (stops things being at the edge of the screen)
-
-set nobackup
-set nowritebackup
-set noswapfile
-
-set backspace=indent,eol,start
-
-set wildmode=full " Complete first full match, next match, etc.
-set wildmenu " command-line completion operates in an enhanced mode
-set wildignore+=*.o,*.obj,.git,node_modules,_site,*.class,*.zip,*.aux
-
-let mapleader="," " http://usevim.com/2012/07/20/vim101-leader/
-noremap \ ,
-
-set number " show line numbers
-set relativenumber " show line numbers relative to the current one
-
-" colours
-set background=dark
-colorscheme base16-flat
-" better search highlighting
-hi Search cterm=None ctermfg=White ctermbg=DarkYellow
-
-set colorcolumn=90 " set a line at 90
-
-set list listchars=tab:»·,trail:· " highlight certain chars
-
-command! Q q " make Q = q!
-
-" slightly more natural splitting
+" Don't add the comment prefix when I hit enter or o/O on a comment line.
+autocmd FileType * setlocal formatoptions-=r formatoptions-=o
+" }}}
+" }}}
+" Folding {{{
+" fold based on indentation
+set foldmethod=indent
+" unfold to a reasonable extent when opening a file
+set foldlevelstart=10
+" use space rather than za to fold/unfold
+nnoremap <Space> za
+" }}}
+" UI {{{
+" UI: splits {{{
+" make splits a bit more natural (bottom right rather than top left)
 set splitbelow
 set splitright
-
-set lazyredraw " apparently this speeds things up sometimes
-
-" jsdoc settings
-let g:jsdoc_allow_input_prompt=1
-let g:jsdoc_input_description=1
-let g:jsdoc_enable_es6=1
-
-" --- Mappings ---
-" no accidental ex-mode presses
-map Q <Nop>
-
-map <Leader>nf :e <C-R>=expand("%:p:h") . "/" <CR>
-
-" FZF stuff
-let g:fzf_layout = {}
-" ,t for FZF
-map <leader>t :FZF!<cr>
-",b for FZF buffers
-map <leader>b :Buffers<cr>
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-
 " ,v for vsplit
 nnoremap <leader>v :vsplit<CR>
 " ,s for split
@@ -217,50 +212,30 @@ nnoremap <leader>] :vertical resize +5<CR>
 nnoremap <leader>- :resize -5<CR>
 " ,= for make split taller
 nnoremap <leader>= :resize +5<CR>
+" }}}
+" UI: command line completions {{{
+set wildmode=full " Complete first full match, next match, etc.
+set wildmenu " command-line completion operates in an enhanced mode
+set wildignore+=*.o,*.obj,.git,node_modules,_site,*.class,*.zip,*.aux
+" }}}
+" UI: misc {{{
+set lazyredraw " apparently this speeds things up sometimes
+set number " show line numbers
+set relativenumber " show line numbers relative to the current one
+set scrolloff=10 " min 10 lines around cursor (stops things being at the edge of the screen)
+" }}}
+" }}}
+" Moving {{{
+" allow backspacing over autoindents, line breaks and the start of inserts
+set backspace=indent,eol,start
 
-" in visual mode, let '.' return to normal mode
-vnoremap . :norm.<CR>
-" in normal mode, carriage-return removes search highlighting
-nnoremap <CR> :noh<CR><CR>
-
-" Don't add the comment prefix when I hit enter or o/O on a comment line.
-autocmd FileType * setlocal formatoptions-=r formatoptions-=o
-
-" http://robots.thoughtbot.com/faster-grepping-in-vim/
-set grepprg=ag\ --nogroup\ --nocolor
-
-" Prevent Vim from clobbering the scrollback buffer. See
-" http://www.shallowsky.com/linux/noaltscreen.html
-set t_ti= t_te=
-
-" stolen from https://bitbucket.org/sjl/dotfiles/src/tip/vim/vimrc
-" Keep search matches in the middle of the window.
-nnoremap n nzzzv
-nnoremap N Nzzzv
-
-" useful things
+" H and L are easier than ^ and $
 noremap H ^
 noremap L $
 vnoremap L g_
-
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
-" Uppercase word mapping.
-"
-" This mapping allows you to press <c-u> in insert mode to convert the current
-" word to uppercase.  It's handy when you're writing names of constants and
-" don't want to use Capslock.
-"
-" To use it you type the name of the constant in lowercase.  While your
-" cursor is at the end of the word, press <c-u> to uppercase it, and then
-" continue happily on your way:
-inoremap <C-u> <esc>mzgUiw`za
-
-" automatically create directories on save if necessary
+" }}}
+" Functions {{{
+" Functions: automatically create directories on save if necessary {{{
 " http://stackoverflow.com/a/4294176/907981
 function! s:MkNonExDir(file, buf)
       if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
@@ -274,6 +249,59 @@ augroup BWCCreateDir
   autocmd!
   autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
+" }}}
+" }}}
+" Backups {{{
+set nobackup
+set nowritebackup
+set noswapfile
+" }}}
+" Misc {{{
+set modelines=1 " allows specific vim config in file footers
 
-" Gundo shortcut
-nnoremap <leader>g :GundoToggle<CR>
+" Make the % matching more powerful
+" See http://www.catonmat.net/blog/vim-plugins-matchit-vim/
+runtime macros/matchit.vim
+
+" mouse support
+set mouse=a
+
+" auto-read files when switching back into VIM
+set autoread
+
+" fix slight delay after pressing ESC then O
+" http://ksjoberg.com/vim-esckeys.html
+set timeout timeoutlen=500 ttimeoutlen=100
+
+" make history 100 long
+set history=100
+
+" Uppercase word mapping.
+"
+" This mapping allows you to press <c-u> in insert mode to convert the current
+" word to uppercase.  It's handy when you're writing names of constants and
+" don't want to use Capslock.
+"
+" To use it you type the name of the constant in lowercase.  While your
+" cursor is at the end of the word, press <c-u> to uppercase it, and then
+" continue happily on your way:
+inoremap <C-u> <esc>mzgUiw`za
+
+set linebreak " insert linebreak characters when pressing enter for wrapping
+
+" no accidental ex-mode presses
+map Q <Nop>
+
+" in normal mode, carriage-return removes search highlighting
+nnoremap <CR> :noh<CR><CR>
+
+" http://robots.thoughtbot.com/faster-grepping-in-vim/
+set grepprg=ag\ --nogroup\ --nocolor
+
+" Prevent Vim from clobbering the scrollback buffer. See
+" http://www.shallowsky.com/linux/noaltscreen.html
+set t_ti= t_te=
+" }}}
+
+" Footer: modeline
+" vim:foldmethod=marker:foldlevel=0
