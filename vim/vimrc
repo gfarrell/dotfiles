@@ -22,8 +22,8 @@ Plug 'tpope/vim-markdown' " markdown support
 " }}}
 " Plugins: theming {{{
 Plug 'bling/vim-airline'
-Plug 'jdkanani/vim-material-theme'
 Plug 'chriskempson/base16-vim'
+Plug 'vim-airline/vim-airline-themes'
 " }}}
 " Plugins: other {{{
 " Plug 'Valloric/YouCompleteMe' " autocompleter
@@ -64,7 +64,6 @@ call plug#end()
 " }}}
 " Theming {{{
 " Theming: setting the theme {{{
-set background=dark
 colorscheme base16-flat
 " }}}
 " Theming: highlights {{{
@@ -90,6 +89,8 @@ set colorcolumn=100
 let mapleader="," " http://usevim.com/2012/07/20/vim101-leader/
 noremap \ ,
 map <Leader>nf :e <C-R>=expand("%:p:h") . "/" <CR>
+" ,u for opening Gundo
+nnoremap <Leader>u :GundoToggle<CR>
 " }}}
 " Plugin config {{{
 " Plugin: UltiSnips {{{
@@ -174,14 +175,14 @@ let g:jsdoc_enable_es6=1
 " Lang: FileType {{{
 " enable filetype detection:
 filetype on
-filetype plugin on
+filetype plugin on " load filetype plugins
 filetype indent on " file type based indentation
 
 autocmd FileType markdown setlocal textwidth=80 shiftwidth=4 softtabstop=4 tabstop=4 wrap linebreak nolist wrap lbr colorcolumn=0
 autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 " in makefiles, don't expand tabs to spaces, since actual tab characters are
 " needed, and have indentation at 8 chars to be sure that all indents are tabs
-autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+autocmd BufEnter Makefile setlocal noexpandtab
 
 " Don't add the comment prefix when I hit enter or o/O on a comment line.
 autocmd FileType * setlocal formatoptions-=r formatoptions-=o
@@ -215,14 +216,17 @@ nnoremap <leader>= :resize +5<CR>
 " }}}
 " UI: command line completions {{{
 set wildmode=full " Complete first full match, next match, etc.
-set wildmenu " command-line completion operates in an enhanced mode
+set wildmenu " visual autocomplete for the command menu
 set wildignore+=*.o,*.obj,.git,node_modules,_site,*.class,*.zip,*.aux
 " }}}
 " UI: misc {{{
+syntax enable " enable syntax highlighting
+set cursorline " highlight current line
 set lazyredraw " apparently this speeds things up sometimes
 set number " show line numbers
 set relativenumber " show line numbers relative to the current one
 set scrolloff=10 " min 10 lines around cursor (stops things being at the edge of the screen)
+set showmatch " highlight matching [{()}]
 " }}}
 " }}}
 " Moving {{{
@@ -233,6 +237,9 @@ set backspace=indent,eol,start
 noremap H ^
 noremap L $
 vnoremap L g_
+
+" select last-inserted text
+nnoremap gV `[v`]
 " }}}
 " Functions {{{
 " Functions: automatically create directories on save if necessary {{{
@@ -304,4 +311,4 @@ set t_ti= t_te=
 " }}}
 
 " Footer: modeline
-" vim:foldmethod=marker:foldlevel=0
+" vim:foldmethod=marker:foldlevelstart=0
