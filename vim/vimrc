@@ -48,6 +48,7 @@ Plug 'neilagabriel/vim-geeknote' " geeknote (evernote cmdline)
 Plug 'poetic/vim-textobj-javascript' " Javascript closure with ac,ic
 Plug 'scrooloose/nerdtree' " file tree view
 Plug 'sjl/gundo.vim' " graphical undo tree
+Plug 'terryma/vim-multiple-cursors' " multi-cursor support
 Plug 'tmux-plugins/vim-tmux-focus-events' " make vim listen to tmux focus events
 Plug 'tpope/vim-commentary' " for commenting things out
 Plug 'tpope/vim-dispatch' " async command dispatch
