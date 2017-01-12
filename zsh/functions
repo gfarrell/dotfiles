@@ -80,3 +80,7 @@ function converge() {
     shift;
     curl -X $HTTP_METHOD -H "$API_AUTH" -H "$HTTP_MIME" "https://api.converge.io/$CONVERGE_PATH" $@
 }
+
+function urlencode() {
+    echo "$1" | python -c 'import sys,urllib; print urllib.quote(sys.stdin.read().strip())';
+}
