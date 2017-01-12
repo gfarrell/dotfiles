@@ -14,8 +14,8 @@ Plug 'moll/vim-node' " node.js syntax
 Plug 'mxw/vim-jsx' " jsx syntas
 Plug 'othree/html5.vim' " html5 syntas
 Plug 'othree/javascript-libraries-syntax.vim' " various JS libraries
-" Plug 'othree/yajs.vim' " javascript (not sure we need all so many)
 Plug 'pangloss/vim-javascript'
+Plug 'rust-lang/rust.vim' " rust support (official)
 Plug 'scrooloose/syntastic' " external syntax checkers
 Plug 'tpope/vim-git' " git files
 Plug 'tpope/vim-markdown' " markdown support
