@@ -87,6 +87,7 @@ alias gsb="git status -sb"
 alias gss="git status -s"
 alias gst="git status"
 alias gup="git pull --rebase"
+alias gcurrbr="git status | head -n 1 | cut -d ' ' -f 3"
 
 # Taskwarrior stuff
 alias tl="task list"
