@@ -44,7 +44,6 @@ Plug 'junegunn/vim-easy-align' " easy alignment of all the things
 Plug 'junegunn/vim-peekaboo' " view registers using \" and @ (or C-R in insert mode)
 Plug 'kana/vim-textobj-user' " Helps with defining custom text blocks
 Plug 'kien/rainbow_parentheses.vim' " Colour matching parentheses
-Plug 'neilagabriel/vim-geeknote' " geeknote (evernote cmdline)
 Plug 'poetic/vim-textobj-javascript' " Javascript closure with ac,ic
 Plug 'scrooloose/nerdtree' " file tree view
 Plug 'sjl/gundo.vim' " graphical undo tree
@@ -92,6 +91,8 @@ noremap \ ,
 map <Leader>nf :e <C-R>=expand("%:p:h") . "/" <CR>
 " ,u for opening Gundo
 nnoremap <Leader>u :GundoToggle<CR>
+" ,cs for copying path to file to clipboard
+nmap <Leader>cs :let @*=expand("%")<CR>
 " }}}
 " Plugin config {{{
 " Plugin: UltiSnips {{{
@@ -154,7 +155,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set autoindent
-set formatprg=par\ r80j
+set formatprg=par\ r80
 " }}}
 " Lang: spelling etc. {{{
 " spelling and syntax
