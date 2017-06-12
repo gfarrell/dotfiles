@@ -84,3 +84,11 @@ function converge() {
 function urlencode() {
     echo "$1" | python -c 'import sys,urllib; print urllib.quote(sys.stdin.read().strip())';
 }
+
+function md_to_pdf() {
+    input=$1
+    output=$2
+    if [ "$input" == "" ]; then echo "usage md_to_pdf INPUT [OUTPUT]"; return; fi;
+    if [ "$output" == "" ]; then output="$input.pdf"; fi;
+    pandoc --from=markdown --latex-engine=xelatex -o "$output" "$input"
+}
