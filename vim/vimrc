@@ -259,6 +259,11 @@ augroup BWCCreateDir
   autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
 " }}}
+" Functions: export current markdown document as pdf {{{
+function! ExportMarkdownToPdf(destination)
+    call system("pandoc --from=markdown --latex-engine=xelatex -o " . shellescape(a:destination) . " " . shellescape(expand("%")))
+endfunction
+" }}}
 " }}}
 " Backups {{{
 set nobackup
