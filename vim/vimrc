@@ -9,6 +9,7 @@ Plug 'JulesWang/css.vim' | Plug 'genoma/vim-less' " LESS requires CSS runtimes
 Plug 'andersoncustodio/vim-tmux' " tmux config syntax
 Plug 'chrisbra/csv.vim' " csv syntax
 Plug 'heavenshell/vim-jsdoc' " jsdoc generator
+Plug 'keith/swift.vim' " swift support
 Plug 'leshill/vim-json' " json syntax
 Plug 'moll/vim-node' " node.js syntax
 Plug 'mxw/vim-jsx' " jsx syntas
