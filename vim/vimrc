@@ -27,6 +27,8 @@ Plug 'tpope/vim-markdown' " markdown support
 Plug 'bling/vim-airline'
 Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'flazz/vim-colorschemes' " moar colour schemes!
+Plug 'morhetz/gruvbox' " gruvbox theme
 " }}}
 " Plugins: other {{{
 " Plug 'Valloric/YouCompleteMe' " autocompleter
@@ -69,7 +71,8 @@ call plug#end()
 " }}}
 " Theming {{{
 " Theming: setting the theme {{{
-colorscheme base16-flat
+colorscheme gruvbox
+set termguicolors
 " }}}
 " Theming: highlights {{{
 " better search highlighting (white on dark yellow)
@@ -78,10 +81,6 @@ highlight Search ctermfg=White ctermbg=DarkYellow
 " Theming: status bar (airline) {{{
 set laststatus=2                        " Always show a statusline
 let g:airline_powerline_fonts = 1
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
 let g:airline_section_warning = ''
 let g:airline#extensions#tabline#enabled = 0
 " }}}
@@ -232,7 +231,7 @@ set cursorline " highlight current line
 set lazyredraw " apparently this speeds things up sometimes
 set number " show line numbers
 set relativenumber " show line numbers relative to the current one
-set scrolloff=10 " min 10 lines around cursor (stops things being at the edge of the screen)
+set scrolloff=5 " min lines around cursor (stops things being at the edge of the screen)
 set showmatch " highlight matching [{()}]
 " }}}
 " }}}
