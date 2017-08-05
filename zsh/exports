@@ -1,4 +1,4 @@
-# Make atom the editor
+# Make vim the editor
 export EDITOR="vim"
 
 export PAGER="less"
@@ -21,7 +21,6 @@ LC_ALL="en_GB.UTF-8"
 
 # NVM
 export NVM_DIR=~/.nvm
-. $(brew --prefix nvm)/nvm.sh
 
 # GO
 export GOPATH=~/Code/go

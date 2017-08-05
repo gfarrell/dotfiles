@@ -47,13 +47,11 @@ source $zsh_dotfile_path/prompt
 source $zsh_dotfile_path/secrets
 
 # Z
-(command -v brew >/dev/null) && (brew info z >/dev/null 2>&1) && . `brew --prefix`/etc/profile.d/z.sh
+ZSH_PATH=`brew --prefix`/etc/profile.d/z.sh
+[ -e $ZSH_PATH ] && . $ZSH_PATH
 
 # Use fzf for shell things too
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# rbenv
-eval "$(rbenv init -)"
 
 # Grep anywhere with ^G
 bindkey -s '^G' ' | grep '

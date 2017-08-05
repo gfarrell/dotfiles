@@ -9,6 +9,11 @@ function json() {
 	fi
 }
 
+# NVM is really slow to load, so let's only get it when we need it
+function load_nvm() {
+    (command -v nvm >/dev/null) || . $(brew --prefix nvm)/nvm.sh
+}
+
 # Extract archives - use: extract <file>
 # Credits to http://dotfiles.org/~pseup/.bashrc
 function extract() {
