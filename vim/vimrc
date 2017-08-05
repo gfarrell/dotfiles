@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'JulesWang/css.vim' | Plug 'genoma/vim-less' " LESS requires CSS runtimes
 Plug 'andersoncustodio/vim-tmux' " tmux config syntax
 Plug 'chrisbra/csv.vim' " csv syntax
+Plug 'guns/vim-clojure-static' " clojure syntax highlighting
 Plug 'heavenshell/vim-jsdoc' " jsdoc generator
 Plug 'keith/swift.vim' " swift support
 Plug 'leshill/vim-json' " json syntax
@@ -18,6 +19,7 @@ Plug 'othree/javascript-libraries-syntax.vim' " various JS libraries
 Plug 'pangloss/vim-javascript'
 Plug 'rust-lang/rust.vim' " rust support (official)
 Plug 'scrooloose/syntastic' " external syntax checkers
+Plug 'tpope/vim-fireplace' | Plug 'guns/vim-clojure-highlight' " advanced clojure highlighting requires fireplace.vim
 Plug 'tpope/vim-git' " git files
 Plug 'tpope/vim-markdown' " markdown support
 " }}}
