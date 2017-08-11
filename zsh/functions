@@ -11,7 +11,7 @@ function json() {
 
 # NVM is really slow to load, so let's only get it when we need it
 function nvm() {
-    (command -v nvm >/dev/null) || . `brew --prefix nvm`/nvm.sh;
+    . `brew --prefix nvm`/nvm.sh;
     nvm "$@";
 }
 
