@@ -24,3 +24,6 @@ export NVM_DIR=~/.nvm
 
 # GO
 export GOPATH=~/Code/go
+
+# Scratchpad
+export NOTES_SP_DIR=~/Dropbox/Notes/scratchpad
