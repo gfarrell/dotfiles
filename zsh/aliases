@@ -44,7 +44,7 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 alias v="vim"
 
 # Scratchpad editor
-alias sp='vim $NOTES_SP_DIR/scratchpad-$(date +"%Y-%m-%d")'
+alias sp='vim $NOTES_SP_DIR/scratchpad-$(date +"%Y-%m-%d").md'
 
 # NPM stuff
 alias n="npm"
