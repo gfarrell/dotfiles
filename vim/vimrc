@@ -13,8 +13,8 @@ Plug 'heavenshell/vim-jsdoc' " jsdoc generator
 Plug 'keith/swift.vim' " swift support
 Plug 'leshill/vim-json' " json syntax
 Plug 'moll/vim-node' " node.js syntax
-Plug 'mxw/vim-jsx' " jsx syntas
-Plug 'othree/html5.vim' " html5 syntas
+Plug 'mxw/vim-jsx' " jsx syntax
+Plug 'othree/html5.vim' " html5 syntax
 Plug 'othree/javascript-libraries-syntax.vim' " various JS libraries
 Plug 'pangloss/vim-javascript'
 Plug 'rust-lang/rust.vim' " rust support (official)
@@ -44,9 +44,7 @@ Plug 'guns/vim-sexp' " provides text objects for s-expressions in a LISP
 Plug 'jlanzarotta/bufexplorer' " Buffer explorer
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' } " Fuzzy finding
 Plug 'junegunn/fzf.vim' " Fuzzy finding for things within vim
-Plug 'junegunn/goyo.vim' " distraction-free writing in VIM
 Plug 'junegunn/gv.vim' " nice git-history browsing
-Plug 'junegunn/limelight.vim' " focussed writing in VIM
 Plug 'junegunn/vim-easy-align' " easy alignment of all the things
 Plug 'junegunn/vim-peekaboo' " view registers using \" and @ (or C-R in insert mode)
 Plug 'kana/vim-textobj-user' " Helps with defining custom text blocks
@@ -326,7 +324,12 @@ map Q <Nop>
 nnoremap <CR> :noh<CR><CR>
 
 " http://robots.thoughtbot.com/faster-grepping-in-vim/
-set grepprg=ag\ --nogroup\ --nocolor
+if executable('ag')
+    " use ag instead of grep
+    set grepprg=ag\ --nogroup\ --nocolor
+endif
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR><CR>
 
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
