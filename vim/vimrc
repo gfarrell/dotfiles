@@ -39,11 +39,13 @@ Plug 'Xuyuanp/nerdtree-git-plugin' " plugin for git flags in nerdtree
 Plug 'ahw/vim-pbcopy' " Sends stuff to OS X clipboard via 'cy'
 Plug 'airblade/vim-gitgutter' " git status gutter + hunk staging
 Plug 'christoomey/vim-tmux-navigator' " Navigation across vim and tmux splits
+Plug 'easymotion/vim-easymotion' " vim motions ++
 Plug 'editorconfig/editorconfig-vim' " editorconfig
 Plug 'guns/vim-sexp' " provides text objects for s-expressions in a LISP
 Plug 'jlanzarotta/bufexplorer' " Buffer explorer
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' } " Fuzzy finding
 Plug 'junegunn/fzf.vim' " Fuzzy finding for things within vim
+Plug 'junegunn/goyo.vim' " distraction-free writing
 Plug 'junegunn/gv.vim' " nice git-history browsing
 Plug 'junegunn/vim-easy-align' " easy alignment of all the things
 Plug 'junegunn/vim-peekaboo' " view registers using \" and @ (or C-R in insert mode)
