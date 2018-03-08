@@ -72,6 +72,7 @@ call plug#end()
 " Theming: setting the theme {{{
 colorscheme gruvbox
 set termguicolors
+set background=dark
 " }}}
 " Theming: highlights {{{
 " better search highlighting (white on dark yellow)
