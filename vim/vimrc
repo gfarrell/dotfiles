@@ -39,6 +39,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin' " plugin for git flags in nerdtree
 Plug 'ahw/vim-pbcopy' " Sends stuff to OS X clipboard via 'cy'
 Plug 'airblade/vim-gitgutter' " git status gutter + hunk staging
 Plug 'christoomey/vim-tmux-navigator' " Navigation across vim and tmux splits
+Plug 'ctrlpvim/ctrlp.vim' " Fuzzy finder
 Plug 'easymotion/vim-easymotion' " vim motions ++
 Plug 'editorconfig/editorconfig-vim' " editorconfig
 Plug 'guns/vim-sexp' " provides text objects for s-expressions in a LISP
