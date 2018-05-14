@@ -1,4 +1,3 @@
-# Syntax-highlight JSON strings or files
 function json() {
 	if [ -p /dev/stdin ]; then
 		# piping, e.g. `echo '{"foo":42}' | json`
@@ -97,4 +96,51 @@ function md_to_pdf() {
     if [ "$input" == "" ]; then echo "usage md_to_pdf INPUT [OUTPUT]"; return; fi;
     if [ "$output" == "" ]; then output="$input.pdf"; fi;
     pandoc --from=markdown --latex-engine=xelatex -o "$output" "$input"
+}
+
+function note() {
+    # TODO: make "project" optional, make esc cancel the opening process
+    if [[ $1 == "" || $1 == "-h" ]]; then
+        echo "USAGE: note command [args]"
+        echo "Commands: add search list"
+        echo "note add project [title] : add a new note to a project"
+        echo "note search project terms : search notes for terms"
+        echo "note open project : list all notes in a project (or just all notes)"
+        return
+    fi
+
+    ROOT="$HOME/notes"
+    cmd=$1
+    project=$2
+
+    if [[ ($project != "") && (! -d "$ROOT/$project") ]]; then
+        echo "\"$project\" is not a project I know about!"
+        return 101
+    fi
+
+    if [[ $project == "" ]]; then
+        echo "Need a project to be specified!"
+        return 102
+    fi
+
+    if [[ $cmd == "add" ]]; then
+        title=$3
+        fname="$(date +"%Y-%m-%d")"
+        if [[ $title != "" ]]; then
+            fname="$fname $title"
+        fi
+        vim "$ROOT/$project/$fname.md"
+        return 0
+    fi
+
+    if [[ $cmd == "search" ]]; then
+        term=$3
+        (cd "$ROOT/$project" && vim $(ag --noheading --nonumbers --nobreak $term | fzf | cut -d : -f 1))
+        return 0
+    fi
+
+    if [[ $cmd == "open" ]]; then
+        (cd "$ROOT/$project" && vim $(fzf))
+        return 0
+    fi
 }
