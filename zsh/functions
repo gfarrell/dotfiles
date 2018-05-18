@@ -135,12 +135,12 @@ function note() {
 
     if [[ $cmd == "search" ]]; then
         term=$3
-        (cd "$ROOT/$project" && vim $(ag --noheading --nonumbers --nobreak $term | fzf | cut -d : -f 1))
+        (cd "$ROOT/$project" && vim "$(ag --noheading --nonumbers --nobreak $term | fzf | cut -d : -f 1)")
         return 0
     fi
 
     if [[ $cmd == "open" ]]; then
-        (cd "$ROOT/$project" && vim $(fzf))
+        (cd "$ROOT/$project" && vim "$(fzf)")
         return 0
     fi
 }
