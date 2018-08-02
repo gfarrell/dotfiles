@@ -5,56 +5,32 @@
 call plug#begin('~/.vim/plugged')
 
 " Plugins: syntax {{{
-Plug 'JulesWang/css.vim' | Plug 'genoma/vim-less' " LESS requires CSS runtimes
-Plug 'andersoncustodio/vim-tmux' " tmux config syntax
+Plug 'cespare/vim-toml' " toml support
 Plug 'chrisbra/csv.vim' " csv syntax
 Plug 'guns/vim-clojure-static' " clojure syntax highlighting
-Plug 'heavenshell/vim-jsdoc' " jsdoc generator
-Plug 'keith/swift.vim' " swift support
 Plug 'leshill/vim-json' " json syntax
-Plug 'moll/vim-node' " node.js syntax
 Plug 'mxw/vim-jsx' " jsx syntax
-Plug 'othree/html5.vim' " html5 syntax
-Plug 'othree/javascript-libraries-syntax.vim' " various JS libraries
 Plug 'pangloss/vim-javascript'
 Plug 'rust-lang/rust.vim' " rust support (official)
-" Plug 'scrooloose/syntastic' " external syntax checkers
-Plug 'w0rp/ale' " [EXPERIMENTING] hopefully faster, async, linter
-Plug 'tpope/vim-fireplace' | Plug 'guns/vim-clojure-highlight' " advanced clojure highlighting requires fireplace.vim
-Plug 'tpope/vim-git' " git files
 Plug 'tpope/vim-markdown' " markdown support
+Plug 'w0rp/ale' " async syntax checking
 " }}}
 " Plugins: theming {{{
-Plug 'bling/vim-airline'
-Plug 'chriskempson/base16-vim'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'flazz/vim-colorschemes' " moar colour schemes!
 Plug 'morhetz/gruvbox' " gruvbox theme
+Plug 'vim-airline/vim-airline' " status bar for showing useful things
 " }}}
 " Plugins: other {{{
-" Plug 'Valloric/YouCompleteMe' " autocompleter
 Plug 'AndrewRadev/splitjoin.vim' " Split (gS) and join (gJ) blocks
 Plug 'SirVer/ultisnips' " snippet support
 Plug 'Xuyuanp/nerdtree-git-plugin' " plugin for git flags in nerdtree
-Plug 'ahw/vim-pbcopy' " Sends stuff to OS X clipboard via 'cy'
 Plug 'airblade/vim-gitgutter' " git status gutter + hunk staging
 Plug 'christoomey/vim-tmux-navigator' " Navigation across vim and tmux splits
 Plug 'ctrlpvim/ctrlp.vim' " Fuzzy finder
-Plug 'easymotion/vim-easymotion' " vim motions ++
-Plug 'editorconfig/editorconfig-vim' " editorconfig
-Plug 'guns/vim-sexp' " provides text objects for s-expressions in a LISP
-Plug 'jlanzarotta/bufexplorer' " Buffer explorer
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' } " Fuzzy finding
 Plug 'junegunn/fzf.vim' " Fuzzy finding for things within vim
-Plug 'junegunn/goyo.vim' " distraction-free writing
 Plug 'junegunn/gv.vim' " nice git-history browsing
-Plug 'junegunn/vim-easy-align' " easy alignment of all the things
 Plug 'junegunn/vim-peekaboo' " view registers using \" and @ (or C-R in insert mode)
-Plug 'kana/vim-textobj-user' " Helps with defining custom text blocks
-Plug 'kien/rainbow_parentheses.vim' " Colour matching parentheses
-Plug 'poetic/vim-textobj-javascript' " Javascript closure with ac,ic
 Plug 'scrooloose/nerdtree' " file tree view
-Plug 'sjl/gundo.vim' " graphical undo tree
 Plug 'terryma/vim-multiple-cursors' " multi-cursor support
 Plug 'tmux-plugins/vim-tmux-focus-events' " make vim listen to tmux focus events
 Plug 'tpope/vim-commentary' " for commenting things out
@@ -63,95 +39,44 @@ Plug 'tpope/vim-endwise' " helps with ending of structures
 Plug 'tpope/vim-eunuch' " file manipulation
 Plug 'tpope/vim-fugitive' " Git things
 Plug 'tpope/vim-repeat' " add . repeating to plugins
-Plug 'tpope/vim-sexp-mappings-for-regular-people' " sane sexp mappings
 Plug 'tpope/vim-surround' " change+add surrounding things
 Plug 'wellle/targets.vim' " useful text blocks
-Plug 'wesQ3/vim-windowswap' " good for swapping windows around
 " }}}
 
 call plug#end()
 " }}}
 " Theming {{{
-" Theming: setting the theme {{{
+" colour scheme
 colorscheme gruvbox
 set termguicolors
 set background=dark
-" }}}
-" Theming: highlights {{{
-" better search highlighting (white on dark yellow)
-highlight Search ctermfg=White ctermbg=DarkYellow
-" }}}
-" Theming: status bar (airline) {{{
-set laststatus=2                        " Always show a statusline
-let g:airline_powerline_fonts = 1
-let g:airline_section_warning = ''
-let g:airline#extensions#tabline#enabled = 0
-" }}}
-" Theming: misc {{{
-" set a line at 100 chars
-set colorcolumn=100
-" }}}
+" airline config
+let g:airline_section_z = ''
+" enable airline ALE support
+let g:airline#extensions#ale#enabled = 1
 " }}}
 " Leader shortcuts {{{
 let mapleader="," " http://usevim.com/2012/07/20/vim101-leader/
 noremap \ ,
-map <Leader>nf :e <C-R>=expand("%:p:h") . "/" <CR>
-" ,u for opening Gundo
-nnoremap <Leader>u :GundoToggle<CR>
-" ,cs for copying path to file to clipboard
-nmap <Leader>cs :let @*=expand("%")<CR>
 " }}}
 " Plugin config {{{
 " Plugin: UltiSnips {{{
 let g:UltiSnipsExpandTrigger="<tab>"
 " }}}
 " Plugin: ALE {{{
-let g:airline#extensions#ale#enabled = 1
-" use loclist not quickfix
-let g:ale_set_loclist = 1
-let g:ale_set_quickfix = 0
 " don't open list automatically, I'll do it when I want to
 let g:ale_open_list = 0
 nmap <leader>ak <Plug>(ale_previous_wrap)
 nmap <leader>aj <Plug>(ale_next_wrap)
 " }}}
-" Plugin: Syntastic {{{
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_check_on_wq = 0
-" use eslint checker for javascript
-" let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_python_checkers = ['pylint']
-
-" insert syntastic warnings into the status line
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" }}}
 " Plugin: FZF {{{
 let g:fzf_layout = {}
 " ,t for FZF
 map <leader>t :FZF!<cr>
-",b for FZF buffers
-map <leader>b :Buffers<cr>
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
 " }}}
 " Plugin: CtrlP {{{
 " only show files that are not ignored by git
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-" }}}
-" Plugin: EasyAlign {{{
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-" }}}
-" Plugin: Gundo {{{
-nnoremap <leader>g :GundoToggle<CR>
 " }}}
 " }}}
 " Searching {{{
@@ -170,48 +95,40 @@ nnoremap N Nzzzv
 " }}}
 " Lang {{{
 " Lang: defaults {{{
-set textwidth=0
+" default wrap width
+set textwidth=80
+" formatting with comments, gq and numbered lists
+set fo=cqnj
+" uses spaces instead of tabs
 set expandtab
+" like four spaces per tab
 set tabstop=4
+" and the same for auto-indentation
 set shiftwidth=4
+" and this handles inserting \t chars in insert mode
 set softtabstop=4
+" keep my indentation on new lines
 set autoindent
+" par gives nicer paragraph wrapping
 set formatprg=par\ r80
-if v:version > 703 || v:version == 703 && has('patch541')
-    set formatoptions+=j
-endif
-" }}}
-" Lang: spelling etc. {{{
-" spelling and syntax
-set spelllang=en_gb
-syntax spell toplevel
 " }}}
 " Lang: javascript {{{
-" we use react,lodash for javascript
-let g:used_javascript_libs = 'react,lodash'
-
+" allow syntax highlighting for jsdocs
+let g:javascript_plugin_jsdoc = 1
 " assume jsx for js files
 let g:jsx_ext_required = 0
-" }}}
-" Lang: jsdoc {{{
-let g:jsdoc_allow_input_prompt=1
-let g:jsdoc_input_description=1
-let g:jsdoc_enable_es6=1
 " }}}
 " Lang: FileType {{{
 " enable filetype detection:
 filetype on
 filetype plugin on " load filetype plugins
 filetype indent on " file type based indentation
-
-autocmd FileType markdown setlocal textwidth=80 shiftwidth=4 softtabstop=4 tabstop=4 wrap linebreak nolist wrap lbr colorcolumn=0
+" markdown: set automatic text wrapping
+autocmd FileType markdown setlocal fo+=t
+" yaml: set tab width to 2
 autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2
-" in makefiles, don't expand tabs to spaces, since actual tab characters are
-" needed, and have indentation at 8 chars to be sure that all indents are tabs
+" make: don't expand tabs into spaces
 autocmd BufEnter Makefile setlocal noexpandtab
-
-" Don't add the comment prefix when I hit enter or o/O on a comment line.
-autocmd FileType * setlocal formatoptions-=r formatoptions-=o
 " }}}
 " }}}
 " Folding {{{
@@ -231,14 +148,6 @@ set splitright
 nnoremap <leader>v :vsplit<CR>
 " ,s for split
 nnoremap <leader>s :split<CR>
-" ,[ for make split narrower
-nnoremap <leader>[ :vertical resize -5<CR>
-" ,] for make split wider
-nnoremap <leader>] :vertical resize +5<CR>
-" ,- for make split shorter
-nnoremap <leader>- :resize -5<CR>
-" ,= for make split taller
-nnoremap <leader>= :resize +5<CR>
 " }}}
 " UI: command line completions {{{
 set wildmode=full " Complete first full match, next match, etc.
@@ -248,24 +157,11 @@ set wildignore+=*.o,*.obj,.git,node_modules,_site,*.class,*.zip,*.aux
 " UI: misc {{{
 syntax enable " enable syntax highlighting
 set cursorline " highlight current line
-set lazyredraw " apparently this speeds things up sometimes
 set number " show line numbers
 set relativenumber " show line numbers relative to the current one
 set scrolloff=5 " min lines around cursor (stops things being at the edge of the screen)
 set showmatch " highlight matching [{()}]
 " }}}
-" }}}
-" Moving {{{
-" allow backspacing over autoindents, line breaks and the start of inserts
-set backspace=indent,eol,start
-
-" H and L are easier than ^ and $
-noremap H ^
-noremap L $
-vnoremap L g_
-
-" select last-inserted text
-nnoremap gV `[v`]
 " }}}
 " Functions {{{
 " Functions: automatically create directories on save if necessary {{{
@@ -314,24 +210,7 @@ set timeout timeoutlen=500 ttimeoutlen=100
 " make history 100 long
 set history=100
 
-" Uppercase word mapping.
-"
-" This mapping allows you to press <c-u> in insert mode to convert the current
-" word to uppercase.  It's handy when you're writing names of constants and
-" don't want to use Capslock.
-"
-" To use it you type the name of the constant in lowercase.  While your
-" cursor is at the end of the word, press <c-u> to uppercase it, and then
-" continue happily on your way:
-inoremap <C-u> <esc>mzgUiw`za
-
 set linebreak " insert linebreak characters when pressing enter for wrapping
-
-" no accidental ex-mode presses
-map Q <Nop>
-
-" in normal mode, carriage-return removes search highlighting
-nnoremap <CR> :noh<CR><CR>
 
 " http://robots.thoughtbot.com/faster-grepping-in-vim/
 if executable('ag')
