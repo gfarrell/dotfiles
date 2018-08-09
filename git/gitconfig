@@ -6,6 +6,8 @@
     df = diff --color --color-words --abbrev
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
     mu = !git ls-files -v | grep "^[[:lower:]]"
+    rbc = rebase --continue
+    rba = rebase --abort
 
 [color]
     ui = true
