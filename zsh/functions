@@ -129,18 +129,18 @@ function note() {
         if [[ $title != "" ]]; then
             fname="$fname $title"
         fi
-        vim "$ROOT/$project/$fname.md"
+        nvim "$ROOT/$project/$fname.md"
         return 0
     fi
 
     if [[ $cmd == "search" ]]; then
         term=$3
-        (cd "$ROOT/$project" && vim "$(ag --noheading --nonumbers --nobreak $term | fzf | cut -d : -f 1)")
+        (cd "$ROOT/$project" && nvim "$(ag --noheading --nonumbers --nobreak $term | fzf | cut -d : -f 1)")
         return 0
     fi
 
     if [[ $cmd == "open" ]]; then
-        (cd "$ROOT/$project" && vim "$(fzf)")
+        (cd "$ROOT/$project" && nvim "$(fzf)")
         return 0
     fi
 }
