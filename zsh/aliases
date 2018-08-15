@@ -41,10 +41,10 @@ alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Shortcuts
-alias v="vim"
+alias v="nvim"
 
 # Scratchpad editor
-alias sp='vim $NOTES_SP_DIR/scratchpad-$(date +"%Y-%m-%d").md'
+alias sp='nvim $NOTES_SP_DIR/scratchpad-$(date +"%Y-%m-%d").md'
 
 # NPM stuff
 alias n="npm"

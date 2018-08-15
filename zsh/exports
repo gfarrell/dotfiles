@@ -1,5 +1,5 @@
 # Make vim the editor
-export EDITOR="vim"
+export EDITOR="nvim"
 
 export PAGER="less"
 
