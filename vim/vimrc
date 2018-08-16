@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'cespare/vim-toml' " toml support
 Plug 'chrisbra/csv.vim' " csv syntax
 Plug 'guns/vim-clojure-static' " clojure syntax highlighting
+Plug 'lervag/vimtex' " latex support with txt-objs and autocomplete
 Plug 'leshill/vim-json' " json syntax
 Plug 'mxw/vim-jsx' " jsx syntax
 Plug 'pangloss/vim-javascript'
