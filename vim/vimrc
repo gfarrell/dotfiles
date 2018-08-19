@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 " Plugins: syntax {{{
 Plug 'cespare/vim-toml' " toml support
 Plug 'chrisbra/csv.vim' " csv syntax
+Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'} " parinfer for clojure
 Plug 'guns/vim-clojure-static' " clojure syntax highlighting
 Plug 'lervag/vimtex' " latex support with txt-objs and autocomplete
 Plug 'leshill/vim-json' " json syntax
