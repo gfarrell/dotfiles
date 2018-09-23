@@ -31,6 +31,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' } " Fuzzy findi
 Plug 'junegunn/fzf.vim' " Fuzzy finding for things within vim
 Plug 'junegunn/gv.vim' " nice git-history browsing
 Plug 'junegunn/vim-peekaboo' " view registers using \" and @ (or C-R in insert mode)
+Plug 'ludovicchabant/vim-gutentags' " Manage ctags files nicely
 Plug 'majutsushi/tagbar' " for displaying ctags
 Plug 'scrooloose/nerdtree' " file tree view
 Plug 'terryma/vim-multiple-cursors' " multi-cursor support
