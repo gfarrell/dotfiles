@@ -1,0 +1,6 @@
+{
+    "journals": {
+        "default": "~/notes/journal.txt"
+    },
+    "editor": "nvim"
+}

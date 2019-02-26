@@ -18,6 +18,7 @@ symlinks:
 	@ln -sf $(DIR)/eslintrc ~/.eslintrc
 	@ln -sf $(DIR)/task/taskrc ~/.taskrc
 	@ln -sf $(DIR)/karabiner ~/.config/karabiner
+	@ln -sf $(DIR)/jrnl/jrnl_config ~/.jrnl_config
 
 brew:
 	command -v brew > /dev/null 2>&1 || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
