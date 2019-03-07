@@ -1,6 +1,13 @@
 {
-    "journals": {
-        "default": "~/notes/journal.txt"
-    },
-    "editor": "nvim"
+  "journals": {
+    "default": "~/notes/journal.txt"
+  },
+  "editor": "nvim",
+  "default_minute": 0,
+  "highlight": true,
+  "linewrap": 79,
+  "encrypt": false,
+  "timeformat": "%Y-%m-%d %H:%M",
+  "tagsymbols": "@",
+  "default_hour": 9
 }
