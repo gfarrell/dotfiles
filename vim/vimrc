@@ -8,6 +8,7 @@ Plug 'cespare/vim-toml' " toml support
 Plug 'chrisbra/csv.vim' " csv syntax
 Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'} " parinfer for clojure
 Plug 'guns/vim-clojure-static' " clojure syntax highlighting
+Plug 'leafgarland/typescript-vim' " typescript syntax
 Plug 'lervag/vimtex' " latex support with txt-objs and autocomplete
 Plug 'leshill/vim-json' " json syntax
 Plug 'mxw/vim-jsx' " jsx syntax
@@ -23,6 +24,7 @@ Plug 'vim-airline/vim-airline' " status bar for showing useful things
 " Plugins: other {{{
 Plug 'AndrewRadev/splitjoin.vim' " Split (gS) and join (gJ) blocks
 Plug 'SirVer/ultisnips' " snippet support
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' } " semantic completion
 Plug 'Xuyuanp/nerdtree-git-plugin' " plugin for git flags in nerdtree
 Plug 'airblade/vim-gitgutter' " git status gutter + hunk staging
 Plug 'christoomey/vim-tmux-navigator' " Navigation across vim and tmux splits
@@ -78,7 +80,19 @@ map <leader>t :FZF!<cr>
 " }}}
 " Plugin: CtrlP {{{
 " only show files that are not ignored by git
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_user_command = ['git ls-files -oc --exclude-standard']
+" use the cwd as the working dir not the git root
+let g:ctrlp_working_path_mode = ''
+" }}}
+" Plugin: YouCompleteMe {{{
+" do not want automatic suggestions, only on request
+let ycm_trigger_key = '<C-n>'
+let g:ycm_auto_trigger = 0
+let g:ycm_key_invoke_completion = ycm_trigger_key
+" cycle through suggestions with trigger key
+" see http://vim.wikia.com/wiki/Improve_completion_popup_menu
+let g:ycm_key_list_select_completion = ['<TAB>', '<C-j>']
+inoremap <expr> ycm_trigger_key pumvisible() ? "<C-j>" : ycm_trigger_key;
 " }}}
 " }}}
 " Searching {{{
