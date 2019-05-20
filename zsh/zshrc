@@ -23,6 +23,16 @@ setopt no_case_glob
 setopt append_history
 setopt share_history
 setopt hist_ignore_dups
+function zshaddhistory() {
+    emulate -L zsh
+    # don't store journal entries in history
+    if ! [[ "$1" =~ "^jrnl" ]]; then
+        print -sr -- "${1%%$'\n'}"
+        fc -p
+    else
+        return 1
+    fi
+}
 
 # Change the command execution time
 # stamp shown in the history command output.
