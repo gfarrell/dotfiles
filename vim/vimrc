@@ -79,20 +79,27 @@ let g:fzf_layout = {}
 map <leader>t :FZF!<cr>
 " }}}
 " Plugin: CtrlP {{{
-" only show files that are not ignored by git
-let g:ctrlp_user_command = ['git ls-files -oc --exclude-standard']
+" use AG
+if executable('ag')
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ctrlp_use_caching = 0
+else
+    let g:ctrlp_user_command = ['.git', 'git ls-files -oc --exclude-standard --others']
+endif
 " use the cwd as the working dir not the git root
 let g:ctrlp_working_path_mode = ''
+" show hidden files pls (e.g. .eslintrc)
+let g:ctrlp_show_hidden = 1
 " }}}
 " Plugin: YouCompleteMe {{{
 " do not want automatic suggestions, only on request
-let ycm_trigger_key = '<C-n>'
-let g:ycm_auto_trigger = 0
-let g:ycm_key_invoke_completion = ycm_trigger_key
+" let ycm_trigger_key = '<C-n>'
+" let g:ycm_auto_trigger = 0
+" let g:ycm_key_invoke_completion = ycm_trigger_key
 " cycle through suggestions with trigger key
 " see http://vim.wikia.com/wiki/Improve_completion_popup_menu
-let g:ycm_key_list_select_completion = ['<TAB>', '<C-j>']
-inoremap <expr> ycm_trigger_key pumvisible() ? "<C-j>" : ycm_trigger_key;
+" let g:ycm_key_list_select_completion = ['<TAB>', '<C-j>']
+" inoremap <expr> ycm_trigger_key pumvisible() ? "<C-j>" : ycm_trigger_key;
 " }}}
 " }}}
 " Searching {{{
