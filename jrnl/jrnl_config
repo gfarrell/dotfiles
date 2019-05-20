@@ -1,6 +1,10 @@
 {
   "journals": {
-    "default": "~/notes/journal.txt"
+    "default": "~/notes/journal.txt",
+    "dreams": {
+        "journal": "~/notes/dreams.txt",
+        "default_hour": 8
+    }
   },
   "editor": "nvim",
   "default_minute": 0,
@@ -9,5 +13,5 @@
   "encrypt": false,
   "timeformat": "%Y-%m-%d %H:%M",
   "tagsymbols": "@",
-  "default_hour": 9
+  "default_hour": 23
 }
