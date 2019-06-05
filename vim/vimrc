@@ -46,6 +46,7 @@ Plug 'tpope/vim-fugitive' " Git things
 Plug 'tpope/vim-repeat' " add . repeating to plugins
 Plug 'tpope/vim-surround' " change+add surrounding things
 Plug 'wellle/targets.vim' " useful text blocks
+Plug 'editorconfig/editorconfig-vim' " Enable editorconfig
 " }}}
 call plug#end()
 " }}}
