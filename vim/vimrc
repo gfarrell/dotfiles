@@ -6,7 +6,6 @@ call plug#begin('~/.vim/plugged')
 " Plugins: syntax {{{
 Plug 'cespare/vim-toml' " toml support
 Plug 'chrisbra/csv.vim' " csv syntax
-Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'} " parinfer for clojure
 Plug 'guns/vim-clojure-static' " clojure syntax highlighting
 Plug 'leafgarland/typescript-vim' " typescript syntax
 Plug 'lervag/vimtex' " latex support with txt-objs and autocomplete
@@ -24,7 +23,7 @@ Plug 'vim-airline/vim-airline' " status bar for showing useful things
 " Plugins: other {{{
 Plug 'AndrewRadev/splitjoin.vim' " Split (gS) and join (gJ) blocks
 Plug 'SirVer/ultisnips' " snippet support
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' } " semantic completion
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --rust-completer --ts-completer --go-completer' } " semantic completion
 Plug 'Xuyuanp/nerdtree-git-plugin' " plugin for git flags in nerdtree
 Plug 'airblade/vim-gitgutter' " git status gutter + hunk staging
 Plug 'christoomey/vim-tmux-navigator' " Navigation across vim and tmux splits
