@@ -9,6 +9,8 @@ export PATH="~/.composer/vendor/bin:$PATH"
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # Yarn
 export PATH="$HOME/.yarn/bin:$PATH"
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # Stop pyenv adding things to the prompt
 export VIRTUAL_ENV_DISABLE_PROMPT="yes"
