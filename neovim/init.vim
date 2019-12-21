@@ -12,7 +12,6 @@ Plug 'vim-airline/vim-airline' " Lightweight status bar
 Plug 'editorconfig/editorconfig-vim'            " Enable editorconfig
 Plug '/usr/local/opt/fzf'                       " FZF installed via Homebrew
 Plug 'junegunn/fzf.vim'                         " Fuzzy finding via FZF
-Plug 'ludovicchabant/vim-gutentags'             " Manage ctags files nicely
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Autocompletion
 Plug 'neomake/neomake'                          " Asynchronous script runner
 Plug 'scrooloose/nerdtree'                      " File tree view
