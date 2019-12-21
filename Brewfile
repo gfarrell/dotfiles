@@ -76,6 +76,7 @@ brew "z" # jumping to directories instantly
 cask "1password" # password management
 cask "adapter" # Useful video converter GUI
 cask "alfred" # factotum (file finding / actions / etc.)
+cask "backblaze" # cloud backups
 cask "bartender" # collapses menu bar items as there are too many
 cask "bettertouchtool" # gestures and shortcuts (+ window moving)
 cask "blender" # 3d modelling
