@@ -86,6 +86,25 @@ function converge() {
     curl -X $HTTP_METHOD -H "$API_AUTH" -H "$HTTP_MIME" "https://api.converge.io/$CONVERGE_PATH" $@
 }
 
+function converge_db() {
+    if [[ $1 == "store" ]]; then
+        (
+            . ~/converge/secrets/db-ro.production.env && \
+            echo "--- Connecting to $STORE_PORT_5432_TCP_ADDR as $STORE_POSTGRES_USER ---" && \
+            PGPASSWORD=$STORE_POSTGRES_PASSWORD psql -h $STORE_PORT_5432_TCP_ADDR -p $STORE_PORT_5432_TCP_PORT -U $STORE_POSTGRES_USER -d $STORE_POSTGRES_DATABASE
+        )
+    elif [[ $1 == "persist" ]]; then
+        (
+            . ~/converge/secrets/db-ro.production.env && \
+            echo "--- Connecting to $PERSIST_PORT_5432_TCP_ADDR as $PERSIST_POSTGRES_USER ---" && \
+            PGPASSWORD=$PERSIST_POSTGRES_PASSWORD psql -h $PERSIST_PORT_5432_TCP_ADDR -p $PERSIST_PORT_5432_TCP_PORT -U $PERSIST_POSTGRES_USER -d $PERSIST_POSTGRES_DATABASE
+        )
+    else
+        echo "Unknown database $1";
+        return 100;
+    fi
+}
+
 function urlencode() {
     echo "$1" | python -c 'import sys,urllib; print urllib.quote(sys.stdin.read().strip())';
 }
