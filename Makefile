@@ -1,24 +1,27 @@
 # vim: set noexpandtab
 DIR=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
-init: osx symlinks brew nvm npm tpm
+init: osx symlinks brew neovim nvm npm tpm
 
 symlinks:
-	@ln -nsf $(DIR)/zsh/zsh ~/.zsh
-	@ln -sf $(DIR)/zsh/zshenv ~/.zshenv
-	@ln -sf $(DIR)/zsh/zshrc ~/.zshrc
-	@ln -nsf $(DIR)/vim/vim ~/.vim
-	@ln -sf $(DIR)/vim/vimrc ~/.vimrc
-	@ln -nsf $(DIR)/vim/plugin ~/.vim/plugin
-	@ln -sf $(DIR)/tmux/tmux.conf ~/.tmux.conf
-	@ln -sf $(DIR)/git/gitconfig ~/.gitconfig
-	@ln -sf $(DIR)/git/gitignore_globals ~/.gitignore_globals
-	@ln -sf $(DIR)/psql/psqlrc ~/.psqlrc
-	@ln -sf $(DIR)/editorconfig ~/.editorconfig
-	@ln -sf $(DIR)/eslintrc ~/.eslintrc
-	@ln -sf $(DIR)/task/taskrc ~/.taskrc
-	@ln -sf $(DIR)/karabiner ~/.config/karabiner
-	@ln -sf $(DIR)/jrnl/jrnl_config ~/.jrnl_config
+	ln -nsf $(DIR)/zsh/zsh ~/.zsh
+	ln -sf $(DIR)/zsh/zshenv ~/.zshenv
+	ln -sf $(DIR)/zsh/zshrc ~/.zshrc
+	ln -sf $(DIR)/tmux/tmux.conf ~/.tmux.conf
+	ln -sf $(DIR)/git/gitconfig ~/.gitconfig
+	ln -sf $(DIR)/git/gitignore_globals ~/.gitignore_globals
+	ln -sf $(DIR)/psql/psqlrc ~/.psqlrc
+	ln -sf $(DIR)/editorconfig ~/.editorconfig
+	ln -sf $(DIR)/eslintrc ~/.eslintrc
+	ln -sf $(DIR)/task/taskrc ~/.taskrc
+	ln -sf $(DIR)/karabiner ~/.config/karabiner
+	ln -sf $(DIR)/jrnl/jrnl_config ~/.jrnl_config
+
+neovim:
+	mkdir -p ~/.local/share/nvim/site/autoload
+	ln -sf $(DIR)/neovim/init.vim ~/.config/nvim/init.vim
+	ln -sf $(DIR)/neovim/plug.vim ~/.local/share/nvim/site/autoload/plug.vim
+	ln -sf $(DIR)/neovim/coc-settings.json ~/.config/nvim/coc-settings.json
 
 brew:
 	command -v brew > /dev/null 2>&1 || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
