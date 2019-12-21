@@ -1,104 +1,113 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ====================================================
+# Install all utilities and applications with Homebrew
+# ====================================================
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 # Prerequisites
 tap "homebrew/dupes"
 tap "caskroom/cask"
 
-# Brew install
-brew "awscli"
-brew "beanstalkd"
-brew "boost"
+# --------------------------------------------
+# Utilities
+# --------------------------------------------
+
+# Text/file utilities
+# https://www.gnu.org/software/coreutils/manual/coreutils.html#toc-Output-of-entire-files-1
 brew "coreutils"
-brew "ctags"
-brew "dnsmasq"
+
+# Super fast fuzzy finder (fzf and ag)
+brew "fzf"
+brew "the_silver_searcher"
+
+# Image / video / audio processing
+brew "ffmpeg"
+brew "imagemagick"
+brew "lame"
+
+# Programming stacks / languages
+brew "ansible" # deploying servers
 brew "docker"
 brew "docker-compose"
 brew "docker-machine"
-brew "erlang"
-brew "ffmpeg"
-brew "fzf"
 brew "git"
-brew "gnu-sed"
 brew "go"
-brew "httpie"
-brew "imagemagick"
-brew "jq"
-brew "lame"
+brew "haskell-stack"
+brew "leiningen" # clojure
 brew "markdown"
-brew "minicom"
-brew "mongodb"
-brew "ngrep"
 brew "node"
-brew "nvim"
-brew "nvm"
-brew "octave"
-brew "openssl"
-brew "par"
-brew "perl"
-brew "pipeviewer"
-brew "pkgconfig"
+brew "nvm" # node version manager
 brew "postgresql"
-brew "python"
 brew "python3"
-brew "rbenv"
-brew "reattach-to-user-namespace"
-brew "redis"
-brew "sbt"
-brew "scala"
-brew "swiftlint"
-brew "task"
-brew "terminal-notifier"
-brew "the_silver_searcher"
-brew "tmux"
-brew "tree"
-brew "vim"
-brew "wget"
-brew "wifi-password"
-brew "wireshark"
-brew "x264"
-brew "z"
-brew "zlib"
-brew "zsh"
+brew "yarn" # alternative to npm (and better)
 
-# Casks
-cask "1password"
-cask "alfred"
-cask "balsamiq-mockups"
-cask "bartender"
-cask "bettertouchtool"
-cask "brave"
-cask "chitchat"
-cask "clamxav"
-cask "cloak"
-cask "crashplan"
-cask "crossover"
-cask "cyberduck"
-cask "dropbox"
-cask "firefox"
-cask "flash"
-cask "franz"
-cask "google-chrome"
-cask "google-drive"
-cask "hyperterm"
-cask "iterm2"
-cask "java"
-cask "karabiner-elements"
-cask "libreoffice"
-cask "mactex"
-cask "moom"
-cask "mou"
-cask "mpeg-streamclip"
-cask "nvalt"
-cask "onyx"
-cask "osxfuse"
-cask "rocket"
-cask "skype"
-cask "slack"
-cask "telegram"
-cask "texstudio"
-cask "the-unarchiver"
-cask "torbrowser"
-cask "tunnelblick"
-cask "ubersicht"
-cask "virtualbox"
-cask "virtualbox-extension-pack"
-cask "vlc"
+# Hacker toolkit
+brew "bat" # nicer than cat
+brew "jq" # json processing / querying / display
+brew "nvim" # editor
+brew "reattach-to-user-namespace" # for tmux
+brew "tmux" # terminal multiplexer
+brew "universal-ctags" # for code navigation
+brew "wireshark" # network analysis / packet sniffing
+brew "zsh" # #shellbae
 
+# Text processing
+brew "pandoc" # compiling markdown / latex
+brew "par" # formatting
+
+# Misc
+brew "clamav" # antivirus
+brew "cowsay" # say things with cows
+brew "curl" # for HTTP interactions
+brew "hugo" # for static site generation
+brew "jrnl" # for my journals / diaries
+brew "minicom" # serial port interface
+brew "openssl" # override system openssl
+brew "rsync" # file transfer
+brew "tree" # show folder trees
+brew "w3m" # terminal-based web browser
+brew "wget" # useful for file downloads vs curl
+brew "wifi-password" # get the wifi password for current network
+brew "z" # jumping to directories instantly
+
+#
+# Applications
+#
+
+cask "1password" # password management
+cask "adapter" # Useful video converter GUI
+cask "alfred" # factotum (file finding / actions / etc.)
+cask "bartender" # collapses menu bar items as there are too many
+cask "bettertouchtool" # gestures and shortcuts (+ window moving)
+cask "blender" # 3d modelling
+cask "daisydisk" # find out what's using all my space
+cask "dropbox" # file sync
+cask "evernote" # note taking
+cask "firefox" # preferred browser
+cask "gifox" # recording gifs (for screencasts)
+cask "gimp" # image editor
+cask "karabiner-elements" # modify keyboard mapping
+cask "kitty" # GPU-based terminal emulator
+cask "libreoffice" # openoffice alternative
+cask "little-snitch" # network monitoring
+cask "mactex" # latex for mac
+cask "micro-snitch" # cam / mic usage monitoring
+cask "microsoft-office" # M$ office
+cask "moom" # window snapping / tiling
+cask "mullvadvpn" # My VPN provider
+cask "osxfuse" # FUSE for mounting filesystems
+cask "postbox" # mail client
+cask "remember-the-milk" # Task list app
+cask "sip" # colour picker
+cask "skype" # videocalls
+cask "slack" # instant messaging
+cask "spotify" # music streaming
+cask "the-unarchiver" # useful archive extractor
+cask "torbrowser" # for when you're in a dodgy country
+cask "transmission" # torrent client
+cask "tunnelblick" # VPN config
+cask "virtualbox" # VMs
+cask "virtualbox-extension-pack" # VM extensions
+cask "vlc" # Media player
+cask "whatsapp" # Whatsapp desktop client
+cask "zoomus" # great videoconf software
