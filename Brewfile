@@ -5,8 +5,7 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Prerequisites
-tap "homebrew/dupes"
-tap "caskroom/cask"
+tap "homebrew/cask-cask"
 
 # --------------------------------------------
 # Utilities
