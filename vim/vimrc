@@ -72,6 +72,10 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:ale_open_list = 0
 nmap <leader>ak <Plug>(ale_previous_wrap)
 nmap <leader>aj <Plug>(ale_next_wrap)
+" use RLS for rust linting
+let g:ale_linters = { 'rust': ['rls'], 'python': ['flake8'] }
+" and use clippy via RLS
+let g:ale_rust_rls_config = {'rust': {'clippy_preference': 'on'}}
 " }}}
 " Plugin: FZF {{{
 let g:fzf_layout = {}
@@ -90,16 +94,6 @@ endif
 let g:ctrlp_working_path_mode = ''
 " show hidden files pls (e.g. .eslintrc)
 let g:ctrlp_show_hidden = 1
-" }}}
-" Plugin: YouCompleteMe {{{
-" do not want automatic suggestions, only on request
-" let ycm_trigger_key = '<C-n>'
-" let g:ycm_auto_trigger = 0
-" let g:ycm_key_invoke_completion = ycm_trigger_key
-" cycle through suggestions with trigger key
-" see http://vim.wikia.com/wiki/Improve_completion_popup_menu
-" let g:ycm_key_list_select_completion = ['<TAB>', '<C-j>']
-" inoremap <expr> ycm_trigger_key pumvisible() ? "<C-j>" : ycm_trigger_key;
 " }}}
 " }}}
 " Searching {{{
@@ -124,12 +118,12 @@ set textwidth=80
 set fo=cqnj
 " uses spaces instead of tabs
 set expandtab
-" like four spaces per tab
-set tabstop=4
+" like two spaces per tab
+set tabstop=2
 " and the same for auto-indentation
-set shiftwidth=4
+set shiftwidth=2
 " and this handles inserting \t chars in insert mode
-set softtabstop=4
+set softtabstop=2
 " keep my indentation on new lines
 set autoindent
 " par gives nicer paragraph wrapping
@@ -205,6 +199,9 @@ augroup END
 " Functions: export current markdown document as pdf {{{
 function! ExportMarkdownToPdf(destination)
     call system("pandoc --from=markdown --latex-engine=xelatex -o " . shellescape(a:destination) . " " . shellescape(expand("%")))
+endfunction
+function! JoinLinesInParagraphs()
+    execute '%s/\(\S\)\n\(\S\)/\1 \2/'
 endfunction
 " }}}
 " }}}
