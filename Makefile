@@ -1,7 +1,7 @@
 # vim: set noexpandtab
 DIR=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
-init: osx symlinks brew neovim nvm npm tpm
+init: osx symlinks brew nvm npm tpm
 
 symlinks:
 	ln -nsf $(DIR)/zsh/zsh ~/.zsh
@@ -16,12 +16,8 @@ symlinks:
 	ln -sf $(DIR)/task/taskrc ~/.taskrc
 	ln -sf $(DIR)/karabiner ~/.config/karabiner
 	ln -sf $(DIR)/jrnl/jrnl_config ~/.jrnl_config
-
-neovim:
-	mkdir -p ~/.local/share/nvim/site/autoload
-	ln -sf $(DIR)/neovim/init.vim ~/.config/nvim/init.vim
-	ln -sf $(DIR)/neovim/plug.vim ~/.local/share/nvim/site/autoload/plug.vim
-	ln -sf $(DIR)/neovim/coc-settings.json ~/.config/nvim/coc-settings.json
+	ln -sf $(DIR)/kitty ~/.config/kitty
+	ln -sf $(DIR)/neovim ~/.config/nvim
 
 brew:
 	command -v brew > /dev/null 2>&1 || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
