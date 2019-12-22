@@ -12,7 +12,7 @@ tap "homebrew/cask-cask"
 # --------------------------------------------
 
 # Text/file utilities
-# https://www.gnu.org/software/coreutils/manual/coreutils.html#toc-Output-of-entire-files-1
+# https://www.gnu.org/software/coreutils/manual/coreutils.html
 brew "coreutils"
 
 # Super fast fuzzy finder (fzf and ag)
