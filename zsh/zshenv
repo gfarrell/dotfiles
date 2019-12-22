@@ -11,6 +11,8 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
+# Local bin (e.g. haskell)
+export PATH="$HOME/.local/bin:$PATH"
 
 # Stop pyenv adding things to the prompt
 export VIRTUAL_ENV_DISABLE_PROMPT="yes"
