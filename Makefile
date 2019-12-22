@@ -7,7 +7,6 @@ symlinks:
 	ln -nsf $(DIR)/zsh/zsh ~/.zsh
 	ln -sf $(DIR)/zsh/zshenv ~/.zshenv
 	ln -sf $(DIR)/zsh/zshrc ~/.zshrc
-	ln -sf $(DIR)/tmux/tmux.conf ~/.tmux.conf
 	ln -sf $(DIR)/git/gitconfig ~/.gitconfig
 	ln -sf $(DIR)/git/gitignore_globals ~/.gitignore_globals
 	ln -sf $(DIR)/psql/psqlrc ~/.psqlrc
@@ -18,6 +17,8 @@ symlinks:
 	ln -sf $(DIR)/jrnl/jrnl_config ~/.jrnl_config
 	ln -sf $(DIR)/kitty ~/.config/kitty
 	ln -sf $(DIR)/neovim ~/.config/nvim
+	ln -sf $(DIR)/tmux ~/.tmux
+	ln -sf $(DIR)/tmux/tmux.conf ~/.tmux.conf
 
 brew:
 	command -v brew > /dev/null 2>&1 || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -38,7 +39,3 @@ nvm:
 npm: nvm
 	NVM_DIR=~/.nvm source ~/.nvm/nvm.sh && npm install npm --global --silent
 	NVM_DIR=~/.nvm source ~/.nvm/nvm.sh && npm install serve --global --silent
-
-tpm:
-	[ -d ~/.tmux/plugins/tpm ] || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-	cd ~/.tmux/plugins/tpm && git pull
