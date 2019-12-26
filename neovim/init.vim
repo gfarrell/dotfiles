@@ -17,9 +17,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " Autocompletion
 Plug 'neomake/neomake'                          " Asynchronous script runner
 Plug 'scrooloose/nerdtree'                      " File tree view
 Plug 'terryma/vim-multiple-cursors'             " Multi-cursor support
+Plug 'tpope/vim-commentary'                     " Makes commenting things out easier
 Plug 'tpope/vim-fugitive'                       " Git utilities
 Plug 'tpope/vim-surround'                       " change+add surrounding objects
 Plug 'w0rp/ale'                                 " Async linting
+Plug 'wellle/targets.vim'                       " Useful target objects
 
 " Syntax plugins
 Plug 'leafgarland/typescript-vim' " Syntax: typescript
@@ -136,6 +138,7 @@ let g:ale_fix_on_save=1
 
 " Plugin: COC (mostly stolen from lucasfcosta -- must redo)
 " ---------------------------------------------------------
+" TODO: get this working properly with Haskell
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
