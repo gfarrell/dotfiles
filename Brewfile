@@ -44,7 +44,6 @@ brew "nvim" # editor
 brew "reattach-to-user-namespace" # for tmux
 brew "tmux" # terminal multiplexer
 brew "universal-ctags" # for code navigation
-brew "wireshark" # network analysis / packet sniffing
 brew "zsh" # #shellbae
 
 # Text processing
@@ -107,4 +106,5 @@ cask "virtualbox" # VMs
 cask "virtualbox-extension-pack" # VM extensions
 cask "vlc" # Media player
 cask "whatsapp" # Whatsapp desktop client
+cask "wireshark" # Network monitoring
 cask "zoomus" # great videoconf software
