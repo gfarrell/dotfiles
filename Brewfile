@@ -91,6 +91,7 @@ cask "micro-snitch" # cam / mic usage monitoring
 cask "microsoft-office" # M$ office
 cask "moom" # window snapping / tiling
 cask "mullvadvpn" # My VPN provider
+cask "notion" # Mac app for Notion.so
 cask "osxfuse" # FUSE for mounting filesystems
 cask "postbox" # mail client
 cask "remember-the-milk" # Task list app
