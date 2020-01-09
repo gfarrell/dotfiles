@@ -47,7 +47,6 @@ stty -ixon
 
 # source other things
 source $zsh_dotfile_path/aliases
-source $zsh_dotfile_path/exports
 source $zsh_dotfile_path/functions
 source $zsh_dotfile_path/prompt
 source $zsh_dotfile_path/secrets

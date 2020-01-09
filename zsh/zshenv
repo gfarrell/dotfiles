@@ -1,10 +1,12 @@
-#
-# export paths
-#
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ZSH Environment Configuration
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# PATH
+# =============================
+
 # Executables from node modules
 export PATH="./node_modules/.bin:$PATH"
-# Compose executables
-export PATH="~/.composer/vendor/bin:$PATH"
 # Homebrew on the path
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 # Yarn
@@ -14,5 +16,29 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Local bin (e.g. haskell)
 export PATH="$HOME/.local/bin:$PATH"
 
+# Configuration for others
+# ============================
+
+# Configure FZF to ignore .gitignore files
+export FZF_DEFAULT_COMMAND='ag -l -g ""'
+
+# Configure NVM
+export NVM_DIR=~/.nvm
+
+# Scratchpad
+export NOTES_SP_DIR=~/Dropbox/Notes/scratchpad
+
+# Misc.
+# ============================
+
 # Stop pyenv adding things to the prompt
 export VIRTUAL_ENV_DISABLE_PROMPT="yes"
+
+# Use nvim as the default editor
+export EDITOR="nvim"
+
+# Use less as the default pager
+export PAGER="less"
+
+# Keep man pages on screen after quitting
+export MANPAGER="less -X"
