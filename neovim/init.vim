@@ -24,7 +24,7 @@ Plug 'w0rp/ale'                                 " Async linting
 Plug 'wellle/targets.vim'                       " Useful target objects
 
 " Syntax plugins
-Plug 'leafgarland/typescript-vim' " Syntax: typescript
+Plug 'HerringtonDarkholme/yats.vim' " Syntax: typescript
 Plug 'rust-lang/rust.vim'         " Syntax: rust
 
 " Tmux compatibility
