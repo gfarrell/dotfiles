@@ -59,6 +59,7 @@ brew "jrnl" # for my journals / diaries
 brew "minicom" # serial port interface
 brew "openssl" # override system openssl
 brew "rsync" # file transfer
+brew "task" # CLI task manager (taskwarrior)
 brew "tree" # show folder trees
 brew "w3m" # terminal-based web browser
 brew "wget" # useful for file downloads vs curl
