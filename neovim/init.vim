@@ -11,8 +11,8 @@ Plug 'vim-airline/vim-airline' " Lightweight status bar
 " General Plugins
 Plug 'airblade/vim-gitgutter'                   " Show git line status in the gutter
 Plug 'editorconfig/editorconfig-vim'            " Enable editorconfig
-Plug '/usr/local/opt/fzf'                       " FZF installed via Homebrew
-Plug 'junegunn/fzf.vim'                         " Fuzzy finding via FZF
+Plug 'junegunn/fzf'                             " Fuzzy finding via FZF
+Plug 'junegunn/fzf.vim'                         " Actual FZF vim plugin
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Autocompletion
 Plug 'neomake/neomake'                          " Asynchronous script runner
 Plug 'scrooloose/nerdtree'                      " File tree view
