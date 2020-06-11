@@ -52,11 +52,21 @@ source $zsh_dotfile_path/prompt
 source $zsh_dotfile_path/secrets
 
 # Z
-ZSH_PATH=`brew --prefix`/etc/profile.d/z.sh
-[ -e $ZSH_PATH ] && . $ZSH_PATH
+if command -v brew >/dev/null; then
+  ZSH_PATH=`brew --prefix`/etc/profile.d/z.sh;
+else
+  ZSH_PATH="/usr/local/bin/z.sh";
+fi
+[ -e $ZSH_PATH ] && . $ZSH_PATH;
 
 # Use fzf for shell things too
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+case "$(uname -s)" in
+  Linux*)
+    source /usr/share/doc/fzf/examples/key-bindings.zsh;
+    source /usr/share/doc/fzf/examples/completion.zsh;;
+  Darwin*)
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh;;
+esac
 
 # Allow opening of command in $EDITOR
 # see http://unix.stackexchange.com/a/6622
