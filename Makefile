@@ -13,12 +13,13 @@ symlinks:
 	ln -sf $(DIR)/editorconfig ~/.editorconfig
 	ln -sf $(DIR)/eslintrc ~/.eslintrc
 	ln -sf $(DIR)/task/taskrc ~/.taskrc
-	ln -sf $(DIR)/karabiner ~/.config/karabiner
+	ln -nsf $(DIR)/karabiner ~/.config/karabiner
 	ln -sf $(DIR)/jrnl/jrnl_config ~/.jrnl_config
-	ln -sf $(DIR)/kitty ~/.config/kitty
-	ln -sf $(DIR)/neovim ~/.config/nvim
-	ln -sf $(DIR)/tmux ~/.tmux
+	ln -nsf $(DIR)/kitty ~/.config/kitty
+	ln -nsf $(DIR)/neovim ~/.config/nvim
+	ln -nsf $(DIR)/tmux ~/.tmux
 	ln -sf $(DIR)/tmux/tmux.conf ~/.tmux.conf
+	ln -sf $(DIR)/libinput-gestures/libinput-gestures.conf ~/.config/libinput-gestures.conf
 
 brew:
 	command -v brew > /dev/null 2>&1 || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
