@@ -1,0 +1,106 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ==========================================
+# List of packages I install on a new system
+# ==========================================
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# ------------------------------------------
+# Programming stacks / languages
+# ------------------------------------------
+
+# Provisioning servers
+ansible
+
+# Containers / container management
+docker
+docker-compose
+
+# Go Language (I don't use much, maybe time to remove?)
+golang
+
+# Haskell -- stack is easier than cabal
+haskell-stack
+
+# Clojure
+leiningen
+
+# Node + package managers
+nodejs
+npm
+yarn
+
+# PostgreSQL (so I can have psql, dbs are in containers)
+postgresql
+
+# Python 3
+python3
+python3-pip
+python3-setuptools
+pipx
+
+# ------------------------------------------
+# Common tools
+# ------------------------------------------
+
+# Searching for / in files
+fzf
+silversearcher-ag
+tree
+
+# Source control
+git
+
+# Viewing and processing files / text
+bat
+jq
+neovim
+pandoc
+par
+
+# Terminal stuff
+tmux
+zsh
+
+# Misc
+clamav
+taskwarrior
+cowsay
+
+# Networking / file transfer
+curl
+wget
+rsync
+
+# ------------------------------------------
+# Applications
+# ------------------------------------------
+
+# Snaps help us install other applications
+snapd
+
+# Firefox for browsing the web
+firefox
+
+# Media player
+vlc
+
+# Torrent client
+transmission
+
+# VPN client
+mullvad-vpn
+
+# Fave terminal emulator
+kitty
+
+# Photo editing
+darktable
+digikam
+gthumb
+
+# ------------------------------------------
+# Linux specific utilities
+# ------------------------------------------
+
+# Allows GUI access to a bunch of useful gnome settings
+gnome-tweaks

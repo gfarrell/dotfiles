@@ -1,0 +1,12 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ==========================================
+# Snaps for installation using snapd
+# Some apps have to be installed this way
+# ==========================================
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Communication / social
+whatsdesk
+
+# Multimedia
+spotify
