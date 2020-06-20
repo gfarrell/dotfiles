@@ -93,3 +93,16 @@ function install_snaps {
 }
 
 install_snaps
+
+# -------------------------------------------------
+# Install packages that require building etc..
+# -------------------------------------------------
+log "Installing Haskell IDE Engine from source";
+sh $DIR/linux/install-hie-wrapper.sh;
+
+# -------------------------------------------------
+# -------------------------------------------------
+
+echo "";
+echo "[-- DONE --]";
+echo "";
