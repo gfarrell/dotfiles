@@ -1,7 +1,11 @@
-# vim: set noexpandtab
 DIR=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+SYS=$(shell uname -a | cut -d ' ' -f 1)
 
-init: osx symlinks brew nvm npm tpm
+.PHONY: macos linux symlinks brew apt
+
+macos: symlinks brew
+
+linux: symlinks apt
 
 symlinks:
 	ln -nsf $(DIR)/zsh/zsh ~/.zsh
@@ -19,7 +23,10 @@ symlinks:
 	ln -nsf $(DIR)/neovim ~/.config/nvim
 	ln -nsf $(DIR)/tmux ~/.tmux
 	ln -sf $(DIR)/tmux/tmux.conf ~/.tmux.conf
+ifeq ($(SYS), Linux)
 	ln -sf $(DIR)/libinput-gestures/libinput-gestures.conf ~/.config/libinput-gestures.conf
+	ln -sf $(DIR)/xorg/xprofile ~/.xprofile
+endif
 
 brew:
 	command -v brew > /dev/null 2>&1 || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -28,15 +35,5 @@ brew:
 	brew upgrade
 	brew bundle -v
 
-osx:
-	@sh $(DIR)/init/osx
-
-LATEST_NODE="6"
-nvm:
-	[ -d ~/.nvm ] || git clone git@github.com:creationix/nvm.git ~/.nvm
-	cd ~/.nvm && git pull
-	NVM_DIR=~/.nvm source ~/.nvm/nvm.sh && nvm install $(LATEST_NODE) && nvm alias default $(LATEST_NODE)
-
-npm: nvm
-	NVM_DIR=~/.nvm source ~/.nvm/nvm.sh && npm install npm --global --silent
-	NVM_DIR=~/.nvm source ~/.nvm/nvm.sh && npm install serve --global --silent
+apt:
+	sh $(DIR)/init/linux.sh
