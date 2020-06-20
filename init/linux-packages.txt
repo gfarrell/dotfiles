@@ -65,6 +65,7 @@ zsh
 clamav
 taskwarrior
 cowsay
+units
 
 # Networking / file transfer
 curl
