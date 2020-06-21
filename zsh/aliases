@@ -88,3 +88,9 @@ alias ta="task add"
 # Tmux
 alias tma="tmux attach -t"
 alias tmn="tmux new-session -s"
+
+# Add pbcopy and pbpaste on linux
+if ! (command -v pbcopy >/dev/null) && (command -v xclip >/dev/null); then
+  alias pbcopy="xclip -selection clipboard"
+  alias pbpaste="xclip -selection clipboard -o"
+fi
