@@ -163,3 +163,39 @@ function note() {
         return 0
     fi
 }
+
+function 1p_get_session {
+  session_file=$HOME/.tmp/1password/$1.session;
+  if [[ ! -d $(dirname "$session_file") ]]; then mkdir -p $(dirname "$session_file"); fi
+  new_session=1
+  if [[ -f $session_file ]]; then
+    now=$(date +%s)
+    touched=$(stat $session_file | awk '/Modify/{print $2 " " $3}' | xargs -I str_date date -d "str_date" +%s)
+    if $( (($now - $touched < 1600)) ); then
+      new_session=0
+    fi
+  fi
+  if $( (( $new_session > 0 )) ); then
+    op signin $1 > $session_file
+  fi
+  cat $session_file
+}
+
+function 1p {
+  selector="password"
+  if [[ -v 2 ]]; then selector="$2"; fi
+  eval "$(1p_get_session $1)"
+  result=$(op list items | jq '.[] | .uuid + ":" + .overview.title' -- | tr -d '"' | fzf -d ":" --with-nth=2 | cut -d ':' -f 1);
+  case "$selector" in
+    password)
+      op get item $result --fields password
+      ;;
+    totp)
+      op get totp $result
+      ;;
+    *)
+      echo "Invalid selector $selector {password|totp}"
+      exit 1
+      ;;
+  esac
+}
