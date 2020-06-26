@@ -165,7 +165,7 @@ function note() {
 }
 
 function 1p_get_session {
-  session_file=$HOME/.tmp/1password/$1.session;
+  session_file=$HOME/.local/share/1password/$1.session;
   if [[ ! -d $(dirname "$session_file") ]]; then mkdir -p $(dirname "$session_file"); fi
   new_session=1
   if [[ -f $session_file ]]; then
