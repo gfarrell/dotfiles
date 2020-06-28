@@ -26,6 +26,8 @@ symlinks:
 ifeq ($(SYS), Linux)
 	ln -sf $(DIR)/libinput-gestures/libinput-gestures.conf ~/.config/libinput-gestures.conf
 	ln -sf $(DIR)/xorg/xprofile ~/.xprofile
+	ln -nsf $(DIR)/i3 ~/.config/i3
+	ln -nsf $(DIR)/polybar ~/.config/polybar
 endif
 
 brew:
