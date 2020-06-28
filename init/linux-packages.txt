@@ -99,9 +99,19 @@ darktable
 digikam
 gthumb
 
+# making the screen redden
+redshift
+redshift-gtk
+
 # ------------------------------------------
 # Linux specific utilities
 # ------------------------------------------
 
 # Allows GUI access to a bunch of useful gnome settings
 gnome-tweaks
+
+# wm + tools
+i3
+i3-lock
+xss-lock
+autorandr
