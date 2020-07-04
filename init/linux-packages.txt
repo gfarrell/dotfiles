@@ -115,3 +115,4 @@ i3
 i3-lock
 xss-lock
 autorandr
+rofi

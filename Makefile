@@ -28,6 +28,7 @@ ifeq ($(SYS), Linux)
 	ln -sf $(DIR)/xorg/xprofile ~/.xprofile
 	ln -nsf $(DIR)/i3 ~/.config/i3
 	ln -nsf $(DIR)/polybar ~/.config/polybar
+	ln -nsf $(DIR)/rofi ~/.config/rofi
 endif
 
 brew:
