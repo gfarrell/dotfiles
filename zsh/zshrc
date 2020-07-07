@@ -52,7 +52,7 @@ source $zsh_dotfile_path/prompt
 source $zsh_dotfile_path/secrets
 
 # on linux I want snaps to work, so have to source some bash stuff
-if [ `uname -s` = "Linux" ]; then
+if [[ `uname -s` == "Linux" && -f "/etc/profile.d/apps-bin-path.sh" ]]; then
   emulate sh -c 'source /etc/profile.d/apps-bin-path.sh'
 fi
 
@@ -67,8 +67,8 @@ fi
 # Use fzf for shell things too
 case "$(uname -s)" in
   Linux*)
-    source /usr/share/doc/fzf/examples/key-bindings.zsh;
-    source /usr/share/doc/fzf/examples/completion.zsh;;
+    source /usr/share/fzf/key-bindings.zsh;
+    source /usr/share/fzf/completion.zsh;;
   Darwin*)
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh;;
 esac
