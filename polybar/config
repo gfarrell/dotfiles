@@ -21,8 +21,8 @@
 background = #222
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
+foreground = #EEE
+foreground-alt = #CCC
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
@@ -54,12 +54,12 @@ module-margin-right = 2
 font-0 = NotoSans-Regular:size=11;2
 font-1 = Font Awesome 5 Free:style=Regular:size=12;3
 font-2 = Font Awesome 5 Free:style=Solid:size=12;3
-font-3 = Font Awesome 5 Brands:style=Regular:size=12;3
-font-4 = Material Design Icons:size=14;3
+font-3 = JoyPixels:style=Regular:scale=10;2
+font-4 = Siji:style=Regular:size=12;3
 
 modules-left = i3
 modules-center = date
-modules-right = xbacklight pulseaudio cpu memory wlan battery temperature powermenu
+modules-right = backlight pulseaudio cpu memory wlan battery temperature
 
 tray-position = ${env:TRAY_POSITION:right}
 tray-padding = 2
@@ -119,17 +119,25 @@ label-urgent-padding = 2
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
 label = %percentage:2%%
+format = <label> <ramp-load>
+
+ramp-load-0 = ▁
+ramp-load-1 = ▂
+ramp-load-2 = ▃
+ramp-load-3 = ▄
+ramp-load-4 = ▅
+ramp-load-5 = ▆
+ramp-load-6 = ▇
+ramp-load-7 = █
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
 label = %percentage_used%%
 
 [module/wlan]
@@ -137,12 +145,11 @@ type = internal/network
 interface = wlp0s20f3
 interval = 3.0
 
+format-connected-prefix = "📡"
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
 label-connected = %essid%
 
-format-disconnected =
-;format-disconnected = <label-disconnected>
+format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
@@ -185,32 +192,30 @@ format-prefix-foreground = ${colors.foreground-alt}
 
 label = %date% %time%
 
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+
+format = <ramp> <label>
+ramp-0 = 🌑
+ramp-1 = 🌒
+ramp-2 = 🌓
+ramp-3 = 🌔
+ramp-4 = 🌕
+
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
 
-label-muted = 🔇 muted
+label-muted = 
 label-muted-foreground = #666
 
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = -
-bar-volume-fill-font = 2
-bar-volume-empty = -
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
@@ -218,83 +223,33 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
-format-charging-prefix = "󰂄 "
-format-charging = <label-charging>
-format-charging-underline = #ffb52a
+format-charging = <ramp-capacity> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = ""
 
-format-discharging-prefix = "󰁹 "
-format-discharging = <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
-
-format-full-prefix = "󰁹 "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
-
-ramp-capacity-0 = 󰁺
-ramp-capacity-1 = 󰁾
-ramp-capacity-2 = 󰂀
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 =
-animation-charging-1 =
-animation-charging-2 =
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
-
-animation-discharging-0 =
-animation-discharging-1 =
-animation-discharging-2 =
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 60
+base-temperature = 30
+warn-temperature = 70
 
-format-prefix = "󱃃 "
 format = <ramp> <label>
-format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+format-warn-underline = #f50a4d
 
 label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
-ramp-0 =
-ramp-1 =
-ramp-2 =
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
-
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-
-label-open = "󰐥"
-label-open-foreground = ${colors.secondary}
-label-close = 󱋭 cancel
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
 
 [settings]
 screenchange-reload = true
