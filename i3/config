@@ -47,6 +47,9 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+# windows without titlebars pls
+for_window [class=".*"] border pixel 2
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
