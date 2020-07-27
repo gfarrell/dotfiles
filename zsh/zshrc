@@ -60,7 +60,7 @@ fi
 if command -v brew >/dev/null; then
   ZSH_PATH=`brew --prefix`/etc/profile.d/z.sh;
 else
-  ZSH_PATH="/usr/local/bin/z.sh";
+  ZSH_PATH="/usr/share/zsh/plugins/zsh-z/zsh-z.plugin.zsh";
 fi
 [ -e $ZSH_PATH ] && . $ZSH_PATH;
 
