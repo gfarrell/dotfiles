@@ -29,6 +29,7 @@ ifeq ($(SYS), Linux)
 	ln -nsf $(DIR)/i3 ~/.config/i3
 	ln -nsf $(DIR)/polybar ~/.config/polybar
 	ln -nsf $(DIR)/rofi ~/.config/rofi
+	ln -nsf $(DIR)/mutt ~/.config/mutt
 endif
 
 brew:

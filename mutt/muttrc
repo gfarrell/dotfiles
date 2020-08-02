@@ -1,0 +1,161 @@
+###
+# Gideon's neomutt config
+# =======================
+###
+
+# Files and Folders {{{
+# -------
+set header_cache = "~/.cache/mutt/headers"
+set message_cachedir = "~/.cache/mutt/bodies"
+set mailcap_path = "~/.config/mutt/mailcap"
+set tmpdir = "~/.tmp/mutt"
+set folder = "~/mail"
+set mbox_type = Maildir
+# }}}
+
+# Basic Options {{{
+# -------------
+# View HTML when possible (using w3m) but prefer plaintext
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+# Purge deleted messages automatically
+set delete
+# How long mutt will wait (blocking) for input
+set timeout = 5
+# Tell mutt to check for new mail (when open) every 120 seconds
+set mail_check = 120
+# Don't ask to quit
+set quit
+# Decode headers / bodies before searching (otherwise WTF)
+set thorough_search
+# Calculate stats only every 60s not on fetch
+unset mail_check_stats
+set mail_check_stats_interval = 60
+# Don't ask when appending messages to a mailbox
+unset confirmappend
+# Don't move emails from the spoolfile (inbox) when read
+unset move
+# Don't mark new unread messages as old if I don't read them before quitting
+unset mark_old
+# Shurrup -- beeping is annoying as hell
+unset beep_new
+# utf-8 everything
+set send_charset = "utf-8:iso-8859-1:us-ascii"
+set charset = "utf-8"
+# }}}
+
+# Index Setup {{{
+# -----------
+# Sort by threads
+set sort = threads
+# ... with newest first
+set sort_aux = reverse-last-date-received
+# and use a nice date format
+set date_format = "%Y-%m-%d %H:%M"
+# status_chars controls the %r status characters (unchanged, changed, modes)
+# set the status format for each mailbox
+set status_format = "[ Folder: %f ] [%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]%>-%?p? (%p postponed)?"
+# set the format for messages in the index
+set index_format = "[%Z] %?X?📎? %D %-20.20F %s"
+# jump to the next unread message when thread is expanded
+set uncollapse_jump
+# sort mailboxes in the sidebar
+set sort_re
+# }}}
+
+# Pager Setup {{{
+# -----------
+# show 10 lines of a mini-index in the pager view (useful for threads)
+set pager_index_lines = 10
+# show a bit of context for the previous / next pages
+set pager_context = 3
+# don't automatically move to the next message when we reach the end of one
+set pager_stop
+# scroll the menu
+set menu_scroll
+# pad blank lines with ~
+set tilde
+# don't add wrapped-line markers
+unset markers
+# hide headers except the obvious ones
+ignore *
+unignore from: to: cc: bcc: date: subject:
+# sort the headers
+unhdr_order *
+hdr_order from: to: cc: bcc: date: subject:
+# }}}
+
+# Compose Setup {{{
+# -------------
+# Use neovim but disable text wrapping because it is horrid on mobile
+set editor = "nvim +':set textwidth=0'"
+# Set "from" field of the envelope (using the From: field)
+set use_envelope_from
+# show the headers with composing (may want to disable this)
+set edit_headers
+# go straight to compose when replying
+set fast_reply
+# ask for CC before editing the body of a message
+set askcc
+# save attachments as well as messages for outgoing
+set fcc_attach
+# add "Fwd" to forwarded emails' subject line
+set forward_format = "Fwd: %s"
+# decode messages when forwarding them
+set forward_decode
+# the little line when quoting an email
+set attribution = "On %d, %n wrote:"
+# reply to the reply-to field
+set reply_to
+# reply as the person to whom the email was addressed (within alternates)
+set reverse_name
+# quote messages in replies etc..
+set include
+# and quote messages in forwarding, too
+set forward_quote
+# no dashes before the signature
+unset sig_dashes
+# don't forward messages as attachments, but rather in the main body
+unset mime_forward
+# use khard for contact-lookup
+# TODO: integrate mu/notmuch email lookup (i.e. past addresses)
+set query_command = "khard email --parsable %s"
+# }}}
+
+# Sidebar Setup {{{
+# -------------
+# (Mostly self-explanatory)
+set sidebar_visible
+set sidebar_short_path
+set sidebar_folder_indent
+set sidebar_width = 25
+set sidebar_divider_char = " | "
+set sidebar_indent_string = " ╰ "
+# Only show new messages in brackets if there are any
+set sidebar_format = "%B %* %?N?(%N)?"
+# Which mailboxes should we show?
+named-mailboxes "🌟 Personal" "+personal/Inbox"
+mailboxes =personal/Archives =personal/Sent =personal/Drafts =personal/Spam =personal/Trash
+named-mailboxes "🗃 Gmail" "+gmail/Inbox"
+mailboxes "=gmail/[Google Mail]/All Mail" "=gmail/[Google Mail]/Sent Mail" "=gmail/[Google Mail]/Spam" "=gmail/[Google Mail]/Bin"
+# }}}
+
+# Colours and Keybindings {{{
+# -----------------------
+source ~/.config/mutt/colours-gruvbox.muttrc
+source ~/.config/mutt/colours-gruvbox-extended.muttrc
+source ~/.config/mutt/keybindings
+# }}}
+
+# Accounts {{{
+# --------
+set realname = "Gideon Farrell"
+# Use personal account by default
+set spoolfile = "+personal/Inbox"
+source ~/.config/mutt/accounts/personal
+# folder hooks for other mailboxes
+folder-hook personal/* source ~/.config/mutt/accounts/personal
+folder-hook gmail/* source ~/.config/mutt/accounts/gmail
+# }}}
+
+# vim: ft=muttrc:fdm=marker

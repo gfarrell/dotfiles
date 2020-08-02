@@ -1,0 +1,48 @@
+# Basic Keybindings {{{
+# -----------------
+# Navigate like vim
+bind index,pager k previous-entry
+bind index,pager j next-entry
+bind index,pager g noop
+bind index,pager \Cu half-up
+bind index,pager \Cd half-down
+bind pager gg top
+bind index gg first-entry
+bind pager G bottom
+bind index G last-entry
+
+# Sidebar navigation
+bind index,pager <down> sidebar-next
+bind index,pager <up> sidebar-prev
+bind index,pager <right> sidebar-open
+
+# Basic message actions like the gmail interface
+bind index,pager @ compose-to-sender
+bind index,pager c mail
+bind index,pager r reply
+bind index,pager a group-reply
+bind index,pager d delete-message
+
+# Index shortcuts
+bind index \Cs sync-mailbox
+bind index <space> collapse-thread
+
+# Using notmuch to search etc.
+bind index,pager + entire-thread
+bind index,pager / vfolder-from-query
+bind index,pager X sidebar-toggle-virtual
+
+# }}}
+
+# Macros {{{
+# ------
+# Save all attachments
+macro pager \Cs "<pipe-message> ripmime -i - -d ~/Downloads/mutt && rm ~/Downloads/mutt/textfile*" "Save attachments to file"
+# Find and open URLs
+macro pager \Cb "<pipe-message> urlscan<Enter>" "Find URLs with urlscan"
+# Sync mail with remotes
+macro index,pager O "<shell-escape>mbsync -c ~/.config/isync/mbsyncrc -a<enter>"
+
+# }}}
+
+# vim: ft=muttrc:fdm=marker
