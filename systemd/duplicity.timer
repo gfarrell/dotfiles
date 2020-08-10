@@ -1,0 +1,10 @@
+[Unit]
+Description=Duplicity Backup Timer
+
+[Timer]
+OnBootSec=10m
+OnUnitActiveSec=120m
+Unit=duplicity.service
+
+[Install]
+WantedBy=timers.target

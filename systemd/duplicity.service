@@ -1,0 +1,6 @@
+[Unit]
+Description=Duplicity Backup Service
+
+[Service]
+Type=oneshot
+ExecStart=/home/gideon/.local/bin/run-backup

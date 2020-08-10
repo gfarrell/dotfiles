@@ -1,0 +1,10 @@
+[Unit]
+Description=Geoclue Location Updates Timer
+
+[Timer]
+OnBootSec=10m
+OnUnitActiveSec=120m
+Unit=geoclue2.service
+
+[Install]
+WantedBy=timers.target

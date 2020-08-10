@@ -1,0 +1,100 @@
+#!/bin/zsh
+
+set -e
+
+#####################
+### CONFIGURATION ###
+#####################
+
+# Some backup variables
+MAX_AGE="90D" # how old should files get to?
+FULL_FREQ="30D" # how often should we do a full backup
+
+# Get Backblaze B2 credentials and variables
+B2_ACCOUNT=$(secret-tool lookup backblaze app-key-id)
+B2_KEY=$(secret-tool lookup backblaze app-key)
+B2_BUCKET=$(secret-tool lookup backblaze backup-bucket)
+B2_DIR="backups/home"
+
+# Backup my home folder
+BACKUP_DIR="/home/gideon"
+
+# Use an allowlist rather than a blocklist
+# This is because there can be so much accumulated crap that I only want
+# to backup the good stuff.
+FILES=(archives calendars .config contacts converge Desktop documents dotfiles Downloads mail movies notes pictures projects sandbox .ssh)
+
+# GPG Key for Encryption and Signing
+# Public key IDs (last eight characters)
+ENC_KEY_ID=$(secret-tool lookup key backup-encryption-key-id)
+SGN_KEY_ID=$(secret-tool lookup key backup-signing-key-id)
+export PASSPHRASE=$(secret-tool lookup key backup-encryption-key-passphrase)
+export SIGN_PASSPHRASE=$(secret-tool lookup key backup-signing-key-passphrase)
+
+###############
+### SCRIPT  ###
+###############
+
+function log() {
+  echo "[info] $1";
+}
+if [ ! -d "$(dirname $LOG_FILE)" ]; then mkdir -p "$(dirname $LOG_FILE)"; fi
+
+B2_URL="b2://${B2_ACCOUNT}:${B2_KEY}@${B2_BUCKET}/${B2_DIR}"
+INCLUDES_LIST=$(for f in $FILES; do echo -ne " --include \"${HOME}/${f}\""; done)
+
+log "--- BACKING UP ${BACKUP_DIR} ---"
+log "Including ${FILES}"
+log "Encrypting with ${ENC_KEY_ID}"
+log "Signing with ${SGN_KEY_ID}"
+
+# Remove files older than 90 days
+log "Removing files older than ${MAX_AGE}"
+duplicity \
+  --sign-key ${SGN_KEY_ID} --encrypt-key ${ENC_KEY_ID} \
+  remove-older-than ${MAX_AGE} --force \
+  ${B2_URL}
+
+# Backup incrementally, with a full backup every 30 days
+if [[ -v 1 && $1 == "--full" ]]; then
+  log "Performing full backup (--full is set)"
+  eval "duplicity full \
+    --progress \
+    ${INCLUDES_LIST} \
+    --exclude '**' \
+    --sign-key ${SGN_KEY_ID} --encrypt-key ${ENC_KEY_ID} \
+    ${BACKUP_DIR} ${B2_URL}"
+else
+  log "Performing backup (full if older than ${FULL_FREQ})"
+  eval "duplicity \
+    ${INCLUDES_LIST} \
+    --exclude '**' \
+    --sign-key ${SGN_KEY_ID} --encrypt-key ${ENC_KEY_ID} \
+    --full-if-older-than ${FULL_FREQ} \
+    ${BACKUP_DIR} ${B2_URL}"
+fi
+
+# Cleanup failures
+log "Cleaning up failures"
+duplicity \
+  cleanup --force \
+  --sign-key ${SGN_KEY_ID} --encrypt-key ${ENC_KEY_ID} \
+  ${B2_URL}
+
+# Show collection-status
+log "Showing collection status"
+duplicity collection-status \
+  --sign-key ${SGN_KEY_ID} --encrypt-key ${ENC_KEY_ID} \
+  ${B2_URL}
+
+# Cleanup variables
+unset B2_ACCOUNT
+unset B2_KEY
+unset B2_BUCKET
+unset ENC_KEY_ID
+unset SGN_KEY_ID
+unset PASSPHRASE
+unset SIGN_PASSPHRASE
+
+# Done!
+log "--- BACKUP OF ${BACKUP_DIR} COMPLETE ---"

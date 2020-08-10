@@ -1,7 +1,7 @@
 DIR=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 SYS=$(shell uname -a | cut -d ' ' -f 1)
 
-.PHONY: macos linux symlinks brew apt
+.PHONY: macos linux symlinks brew apt linux-scripts systemd
 
 macos: symlinks brew
 
@@ -31,6 +31,23 @@ ifeq ($(SYS), Linux)
 	ln -nsf $(DIR)/rofi ~/.config/rofi
 	ln -nsf $(DIR)/mutt ~/.config/mutt
 endif
+
+linux-scripts:
+	mkdir -p ~/.local/bin
+	ln -nsf $(DIR)/linux-scripts/run-backup ~/.local/bin/run-backup
+
+systemd: linux-scripts
+	ln -nsf $(DIR)/systemd/geoclue2.service ~/.config/systemd/user/geoclue2.service
+	ln -nsf $(DIR)/systemd/geoclue2.timer ~/.config/systemd/user/geoclue2.timer
+	ln -nsf $(DIR)/systemd/mbsync.service ~/.config/systemd/user/mbsync.service
+	ln -nsf $(DIR)/systemd/mbsync.timer ~/.config/systemd/user/mbsync.timer
+	ln -nsf $(DIR)/systemd/vdirsyncer.service ~/.config/systemd/user/vdirsyncer.service
+	ln -nsf $(DIR)/systemd/vdirsyncer.timer ~/.config/systemd/user/vdirsyncer.timer
+	ln -nsf $(DIR)/systemd/duplicity.service ~/.config/systemd/user/duplicity.service
+	ln -nsf $(DIR)/systemd/duplicity.timer ~/.config/systemd/user/duplicity.timer
+	systemctl --user daemon-reload
+	systemctl --user enable mbsync.timer vdirsyncer.timer duplicity.timer geoclue2.timer
+	systemctl --user start mbsync.timer vdirsyncer.timer duplicity.timer geoclue2.timer
 
 brew:
 	command -v brew > /dev/null 2>&1 || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
