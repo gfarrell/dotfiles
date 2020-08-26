@@ -18,7 +18,8 @@ bindsym $mod+Shift+Escape exec --no-startup-id xset s activate
 exec --no-startup-id netctl-tray-auto
 
 # Picom is a compositor for X11
-exec picom -b -o 0 -r 0
+# Using -CG to fix tray issues
+exec picom -bCG -o 0 -r 0 --backend glx
 
 # GeoClue agent
 exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
