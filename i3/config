@@ -10,7 +10,7 @@ font pango:monospace 8
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c 333333 --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i "$(find ~/.wallpaper/ -name '*.png' | shuf -n 1)" --nofork
 # bind mod shift esc to lock the screen
 bindsym $mod+Shift+Escape exec --no-startup-id xset s activate
 
