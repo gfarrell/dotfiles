@@ -168,5 +168,27 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Use polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+bar {
+  font pango:Hasklig, Font Awesome 5 Free
+  position top
+  status_command i3status-rs $HOME/.config/i3/bar.toml
+  tray_padding 5
+  tray_output primary
+
+  colors {
+    # Depends on theme of i3status-rust
+    # https://github.com/greshake/i3status-rust/blob/master/src/themes.rs
+    # Theme: gruvbox-dark
+    # background #282828
+    # Theme: slick
+    # background #424242
+    # Theme: space-villain
+    # background #06060f
+    # Theme: bad-wolf
+    # background #444444
+    # Theme: solarized-dark
+    # background #002b36
+    # Theme: modern
+    background #222D32
+  }
+}

@@ -1,0 +1,38 @@
+theme = "modern"
+icons = "awesome5"
+
+[[block]]
+block = "music"
+buttons = ["play"]
+on_collapsed_click = "spotify"
+
+[[block]]
+block = "backlight"
+device = "intel_backlight"
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "cpu"
+interval = 1
+format = "{utilization}%"
+
+[[block]]
+block = "memory"
+display_type = "memory"
+format_mem = "{Mupi}%"
+clickable = false
+
+[[block]]
+block = "temperature"
+collapsed = true
+
+[[block]]
+block = "battery"
+driver = "upower"
+format = "{percentage}% {time}"
+
+[[block]]
+block = "time"
+format = "%a %e %b %Y %H:%M"
