@@ -38,7 +38,6 @@ export SIGN_PASSPHRASE=$(secret-tool lookup key backup-signing-key-passphrase)
 function log() {
   echo "[info] $1";
 }
-if [ ! -d "$(dirname $LOG_FILE)" ]; then mkdir -p "$(dirname $LOG_FILE)"; fi
 
 B2_URL="b2://${B2_ACCOUNT}:${B2_KEY}@${B2_BUCKET}/${B2_DIR}"
 INCLUDES_LIST=$(for f in $FILES; do echo -ne " --include \"${HOME}/${f}\""; done)
@@ -65,8 +64,13 @@ if [[ -v 1 && $1 == "--full" ]]; then
     --sign-key ${SGN_KEY_ID} --encrypt-key ${ENC_KEY_ID} \
     ${BACKUP_DIR} ${B2_URL}"
 else
+  if [[ -v 1 && $1 == "--progress" ]]; then
+    SHOW_PROGRESS="--progress";
+  else
+    SHOW_PROGRESS="";
+  fi
   log "Performing backup (full if older than ${FULL_FREQ})"
-  eval "duplicity \
+  eval "duplicity ${SHOW_PROGRESS} \
     ${INCLUDES_LIST} \
     --exclude '**' \
     --sign-key ${SGN_KEY_ID} --encrypt-key ${ENC_KEY_ID} \
