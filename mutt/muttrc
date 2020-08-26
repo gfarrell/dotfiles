@@ -115,6 +115,8 @@ set include
 set forward_quote
 # no dashes before the signature
 unset sig_dashes
+# put signature above quoted / forwarded text
+set sig_on_top
 # don't forward messages as attachments, but rather in the main body
 unset mime_forward
 # use khard for contact-lookup
