@@ -130,9 +130,9 @@ set sidebar_short_path
 set sidebar_folder_indent
 set sidebar_width = 25
 set sidebar_divider_char = " | "
-set sidebar_indent_string = " ╰ "
+set sidebar_indent_string = "  "
 # Only show new messages in brackets if there are any
-set sidebar_format = "%B %* %?N?(%N)?"
+set sidebar_format = "%D %* %?N?(%N)?"
 # Which mailboxes should we show?
 named-mailboxes "🌟 Personal" "+personal/Inbox"
 mailboxes =personal/Archives =personal/Sent =personal/Drafts =personal/Spam =personal/Trash
