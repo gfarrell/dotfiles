@@ -10,7 +10,7 @@ font pango:monospace 8
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i "$(find ~/.wallpaper/ -name '*.png' | shuf -n 1)" --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i "$(find ~/pictures/wallpapers/WWF -name "*$(date +"%b%y")*" | head)" --nofork
 # bind mod shift esc to lock the screen
 bindsym $mod+Shift+Escape exec --no-startup-id xset s activate
 
@@ -44,6 +44,12 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 # Need both play and pause because my headphones separate them
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+
+# Use printscr to capture with maim
+bindsym Print exec maim ~/Desktop/screenshot_$(date +%Y-%m-%d_%H%M%S).png
+bindsym Shift+Print exec maim -st 9999999 ~/Desktop/screenshot_$(date +%Y-%m-%d_%H%M%S).png
+bindsym $mod+Print exec maim | xclip -selection clipboard -t image/png
+bindsym $mod+Shift+Print exec maim -st 9999999 | xclip -selection clipboard -t image/png
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
