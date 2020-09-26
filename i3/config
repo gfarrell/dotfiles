@@ -21,8 +21,8 @@ exec --no-startup-id netctl-tray-auto --host 1.1.1.1:80
 exec --no-startup-id mullvad-vpn
 
 # Picom is a compositor for X11
-# Using -CG to fix tray issues
-exec picom -bCG -o 0 -r 0 --backend glx
+# Config file in dotfiles/picom/picom.conf
+exec picom -CG
 
 # GeoClue agent
 exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
