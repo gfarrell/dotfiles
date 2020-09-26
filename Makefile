@@ -30,6 +30,7 @@ ifeq ($(SYS), Linux)
 	ln -nsf $(DIR)/polybar ~/.config/polybar
 	ln -nsf $(DIR)/rofi ~/.config/rofi
 	ln -nsf $(DIR)/mutt ~/.config/mutt
+	ln -nsf $(DIR)/picom ~/.config/picom
 endif
 
 linux-scripts:
