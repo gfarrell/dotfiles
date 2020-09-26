@@ -1,2 +1,3 @@
 text/html; firefox %s
 text/html; w3m -o auto_image=TRUE -I %{charset} -T text/html; nametemplate=%s.html; copiousoutput;
+image/*; gthumb %s
