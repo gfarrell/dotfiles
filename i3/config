@@ -15,7 +15,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i "$(find ~/.wall
 bindsym $mod+Shift+Escape exec --no-startup-id xset s activate
 
 # Little netctl-auto tray icon for easy access to networking
-exec --no-startup-id netctl-tray-auto
+exec --no-startup-id netctl-tray-auto --host 1.1.1.1:80
+
+# MullvadVPN tray icon
+exec --no-startup-id mullvad-vpn
 
 # Picom is a compositor for X11
 # Using -CG to fix tray issues
