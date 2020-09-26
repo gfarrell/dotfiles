@@ -25,7 +25,8 @@ Plug 'wellle/targets.vim'                       " Useful target objects
 
 " Syntax plugins
 Plug 'HerringtonDarkholme/yats.vim' " Syntax: typescript
-Plug 'rust-lang/rust.vim'         " Syntax: rust
+Plug 'rust-lang/rust.vim'           " Syntax: rust
+Plug 'chrisbra/csv.vim'             " Syntax: csv
 
 " Tmux compatibility
 Plug 'christoomey/vim-tmux-navigator'     " Navigation for vim / tmux splits
