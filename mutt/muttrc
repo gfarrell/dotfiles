@@ -122,6 +122,7 @@ unset mime_forward
 # use khard for contact-lookup
 # TODO: integrate mu/notmuch email lookup (i.e. past addresses)
 set query_command = "khard email --parsable %s"
+bind editor <Tab> complete-query
 # }}}
 
 # Sidebar Setup {{{
