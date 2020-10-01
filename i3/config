@@ -67,7 +67,7 @@ new_float normal 0
 bindsym $mod+Shift+q kill
 
 # start rofi (programme launcher / window switcher)
-bindsym $mod+d exec rofi -combi-modi drun#window -modi combi#drun#window#calc#emoji -show combi
+bindsym $mod+d exec rofi -combi-modi drun#window -modi combi#drun#window#calc#emoji#file-browser -show combi
 
 # change focus
 bindsym $mod+h focus left
