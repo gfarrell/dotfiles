@@ -119,10 +119,11 @@ unset sig_dashes
 set sig_on_top
 # don't forward messages as attachments, but rather in the main body
 unset mime_forward
-# use khard for contact-lookup
-# TODO: integrate mu/notmuch email lookup (i.e. past addresses)
-set query_command = "khard email --parsable %s"
+# use khard and notmuch-addrlookup for querying contacts
+set query_command = "khard email --parsable %s; notmuch-addrlookup --mutt '%s' | tail -n +2"
 bind editor <Tab> complete-query
+# preserve original sort order
+set sort_alias = unsorted
 # }}}
 
 # Sidebar Setup {{{
