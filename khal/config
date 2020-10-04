@@ -1,0 +1,24 @@
+[calendars]
+
+[[home]]
+path = "~/calendars/home/"
+color = "light blue"
+priority = 20
+
+[[birthdays]]
+path = "~/contacts/card/"
+color = "light gray"
+priority = 10
+type = "birthdays"
+readonly = True
+
+[default]
+default_calendar = "home"
+show_all_days = True
+
+[locale]
+weeknumbers = "left"
+
+[view]
+theme = dark
+frame = color
