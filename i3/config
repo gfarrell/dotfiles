@@ -60,6 +60,19 @@ bindsym $mod+Return exec i3-sensible-terminal
 # windows without titlebars pls
 for_window [class=".*"] border pixel 2
 
+# Dracula Theme (thanks to github.com/TechieAndroid/arch-dotfiles
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #44475A #44475A #F8F8F2 #44475A   #44475A
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+client.background       #F8F8F2
+
+# gaps
+gaps inner 15
+gaps outer 5
+
 # new floats shouldn't have borders
 new_float normal 0
 
