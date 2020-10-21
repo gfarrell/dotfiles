@@ -7,6 +7,13 @@ buttons = ["play"]
 on_collapsed_click = "spotify"
 
 [[block]]
+block = "custom"
+json = true
+command = "$HOME/.config/i3/scripts/bluetooth_headphones_status.sh"
+on_click = "$HOME/.config/i3/scripts/bluetooth_headphones_status.sh toggle_profile"
+interval = 1
+
+[[block]]
 block = "backlight"
 device = "intel_backlight"
 
