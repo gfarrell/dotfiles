@@ -129,7 +129,7 @@ set sort_alias = unsorted
 # Sidebar Setup {{{
 # -------------
 # (Mostly self-explanatory)
-set sidebar_visible
+unset sidebar_visible
 set sidebar_short_path
 set sidebar_folder_indent
 set sidebar_width = 25
@@ -140,8 +140,8 @@ set sidebar_format = "%D %* %?N?(%N)?"
 # Which mailboxes should we show?
 named-mailboxes "🌟 Personal" "+personal/Inbox"
 mailboxes =personal/Archives =personal/Sent =personal/Drafts =personal/Spam =personal/Trash
-named-mailboxes "🗃 Gmail" "+gmail/Inbox"
-mailboxes "=gmail/[Google Mail]/All Mail" "=gmail/[Google Mail]/Sent Mail" "=gmail/[Google Mail]/Spam" "=gmail/[Google Mail]/Bin"
+named-mailboxes "🗃️ Gmail" "+gmail/Inbox"
+mailboxes "=gmail/Archives" "=gmail/Sent" "=gmail/Spam" "=gmail/Trash"
 # }}}
 
 # Colours and Keybindings {{{

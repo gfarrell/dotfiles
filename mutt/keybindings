@@ -24,13 +24,11 @@ bind index,pager a group-reply
 bind index,pager d delete-message
 
 # Index shortcuts
-bind index \Cs sync-mailbox
 bind index <space> collapse-thread
 
 # Using notmuch to search etc.
 bind index,pager + entire-thread
 bind index,pager / vfolder-from-query
-bind index,pager X sidebar-toggle-virtual
 
 # }}}
 
@@ -42,6 +40,11 @@ macro pager \Cs "<pipe-message> ripmime -i - -d ~/Downloads/mutt && rm ~/Downloa
 macro pager \Cb "<pipe-message> urlscan<Enter>" "Find URLs with urlscan"
 # Sync mail with remotes
 macro index,pager O "<shell-escape>mbsync -c ~/.config/isync/mbsyncrc -a<enter>"
+# Open html versions of emails immediately
+# Overrides `V` as the "version" command
+macro index,pager V "<view-attachments><search>html<enter><view-mailcap><exit>" "Open the HTML version of an email"
+# Change mailbox account
+macro index,pager go '<change-folder>?'
 
 # }}}
 
