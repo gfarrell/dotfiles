@@ -1,34 +1,82 @@
 # i3 config file (v4)
-#
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+# Use super for the mod key
 set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
+# Define Workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# =================== #
+#      APPEARANCE     #
+# =================== #
+
+# Font for window titles. Will also be used by the bar unless a
+# different font is used in the bar {} block below.
 font pango:monospace 8
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i "$(find ~/.wallpaper/ -name '*.png' | shuf -n 1)" --nofork
-# bind mod shift esc to lock the screen
-bindsym $mod+Shift+Escape exec --no-startup-id xset s activate
-
-# Little netctl-auto tray icon for easy access to networking
-exec --no-startup-id netctl-tray-auto --host 1.1.1.1:80
-
-# MullvadVPN tray icon
-exec --no-startup-id mullvad-vpn
-
-# Picom is a compositor for X11
-# Config file in dotfiles/picom/picom.conf
-exec picom -CG
-
-# GeoClue agent
-exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 
 # Use feh to have random background images
 exec --no-startup-id feh --no-fehbg --bg-fill --randomize ~/.wallpaper/*
+
+# windows without titlebars pls
+for_window [class=".*"] border pixel 2
+
+# Dracula Theme (thanks to github.com/TechieAndroid/arch-dotfiles
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #44475A #44475A #F8F8F2 #44475A   #44475A
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+client.background       #F8F8F2
+
+# gaps
+gaps inner 15
+gaps outer 5
+
+# new floats shouldn't have borders
+new_float normal 0
+
+# Configure some window settings
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+
+# =================== #
+#    Startup Utils    #
+# =================== #
+
+# Little netctl-auto tray icon for easy access to networking
+exec --no-startup-id netctl-tray-auto
+# MullvadVPN tray icon
+exec --no-startup-id mullvad-vpn
+# Picom is a compositor for X11
+# Config file in dotfiles/picom/picom.conf
+exec picom -CG
+# GeoClue agent
+# TODO: why is this in my i3 config?? Needs to be a systemd thing
+exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
+
+# bind mod shift esc to lock the screen
+bindsym $mod+Shift+Escape exec --no-startup-id xset s activate
+# use xss-lock and xsecurelock to lock the screen
+exec --no-startup-id xset s 300 5
+exec --no-startup-id xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock
+
+# ===================== #
+#   Keyboard Bindings   #
+# ===================== #
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
@@ -51,36 +99,26 @@ bindsym Shift+Print exec maim -st 9999999 ~/Desktop/screenshot_$(date +%Y-%m-%d_
 bindsym $mod+Print exec maim | xclip -selection clipboard -t image/png
 bindsym $mod+Shift+Print exec maim -st 9999999 | xclip -selection clipboard -t image/png
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
-
-# windows without titlebars pls
-for_window [class=".*"] border pixel 2
-
-# Dracula Theme (thanks to github.com/TechieAndroid/arch-dotfiles
-# class                 border  bground text    indicator child_border
-client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-client.unfocused        #44475A #44475A #F8F8F2 #44475A   #44475A
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-client.background       #F8F8F2
-
-# gaps
-gaps inner 15
-gaps outer 5
-
-# new floats shouldn't have borders
-new_float normal 0
-
-# kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+t exec i3-sensible-terminal
 
 # start rofi (programme launcher / window switcher)
-bindsym $mod+d exec rofi -combi-modi drun#window -modi combi#drun#window#calc#emoji#file-browser -show combi
+bindsym $mod+space exec rofi -combi-modi drun#window -modi combi#drun#window#calc#emoji#file-browser -show combi
+
+# open thunar
+bindsym $mod+n exec --no-startup-id thunar
+
+# open firefox
+bindsym $mod+b exec --no-startup-id firefox
+
+# ======================= #
+#     i3 Key Bindings     #
+# ======================= #
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+# kill focused window
+bindsym $mod+Shift+q kill
 
 # change focus
 bindsym $mod+h focus left
@@ -111,27 +149,11 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
 # focus the parent container
 bindsym $mod+a focus parent
 
 # focus the child container
 bindsym $mod+Shift+a focus child
-
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -187,6 +209,10 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+# ================ #
+#    Bar Config    #
+# ================ #
 
 bar {
   font pango:Hasklig, Font Awesome 5 Free
