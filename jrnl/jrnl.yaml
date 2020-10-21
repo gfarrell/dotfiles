@@ -1,0 +1,22 @@
+colors:
+  body: none
+  date: none
+  tags: none
+  title: none
+default_hour: 9
+default_minute: 0
+editor: nvim
+encrypt: false
+highlight: true
+indent_character: '|'
+journals:
+  default:
+    journal: ~/notes/journal.txt
+  dreams:
+    default_hour: 8
+    journal: ~/notes/dreams.txt
+linewrap: 80
+tagsymbols: '@'
+template: false
+timeformat: '%Y-%m-%d %H:%M'
+version: v2.4.5

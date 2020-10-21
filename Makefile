@@ -18,7 +18,7 @@ symlinks:
 	ln -sf $(DIR)/eslintrc ~/.eslintrc
 	ln -sf $(DIR)/task/taskrc ~/.taskrc
 	ln -nsf $(DIR)/karabiner ~/.config/karabiner
-	ln -sf $(DIR)/jrnl/jrnl_config ~/.jrnl_config
+	ln -nsf $(DIR)/jrnl ~/.config/jrnl
 	ln -nsf $(DIR)/kitty ~/.config/kitty
 	ln -nsf $(DIR)/neovim ~/.config/nvim
 	ln -nsf $(DIR)/tmux ~/.tmux
@@ -48,9 +48,10 @@ systemd: linux-scripts
 	ln -nsf $(DIR)/systemd/vdirsyncer.timer ~/.config/systemd/user/vdirsyncer.timer
 	ln -nsf $(DIR)/systemd/duplicity.service ~/.config/systemd/user/duplicity.service
 	ln -nsf $(DIR)/systemd/duplicity.timer ~/.config/systemd/user/duplicity.timer
+	ln -nsf $(DIR)/systemd/redshift.service ~/.config/systemd/user/redshift.service
 	systemctl --user daemon-reload
-	systemctl --user enable mbsync.timer vdirsyncer.timer duplicity.timer geoclue2.timer
-	systemctl --user start mbsync.timer vdirsyncer.timer duplicity.timer geoclue2.timer
+	systemctl --user enable mbsync.timer vdirsyncer.timer duplicity.timer geoclue2.timer redshift.service
+	systemctl --user start mbsync.timer vdirsyncer.timer duplicity.timer geoclue2.timer redshift.service
 
 brew:
 	command -v brew > /dev/null 2>&1 || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
