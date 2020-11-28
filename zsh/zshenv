@@ -42,13 +42,3 @@ export PAGER="less"
 
 # Keep man pages on screen after quitting
 export MANPAGER="less -X"
-
-# Linux Specific
-# ============================
-if [[ `uname -s` == Linux ]]; then
-  # Register gnome keyring daemon
-  if command -v gnome-keyring-daemon >/dev/null && [[ -n "$DESKTOP_SESSION" ]]; then
-     eval $(gnome-keyring-daemon --start)
-     export SSH_AUTH_SOCK
-  fi
-fi
