@@ -13,11 +13,11 @@ if [ ! -z ${BT_SINK} ]; then
   current_profile=$(echo ${BT_SINK} | cut -d "," -f 4)
   case ${current_profile} in
     "<a2dp_sink>")
-      icon="headphones"
+      icon=""
       next_profile="headset_head_unit"
       ;;
     "<headset_head_unit>")
-      icon="phone"
+      icon=""
       next_profile="a2dp_sink"
       ;;
     *)
@@ -30,7 +30,9 @@ if [ ! -z ${BT_SINK} ]; then
       pacmd set-card-profile ${id} ${next_profile}
       ;;
     *)
-      echo "{ \"icon\": \"${icon}\", \"text\": \" BT\" }";
+      echo "${icon} "
       ;;
   esac
+else
+  echo ""
 fi
