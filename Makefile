@@ -33,6 +33,7 @@ ifeq ($(SYS), Linux)
 	ln -nsf $(DIR)/rofi ~/.config/rofi
 	ln -nsf $(DIR)/mutt ~/.config/mutt
 	ln -nsf $(DIR)/picom ~/.config/picom
+	ln -nsf ${DIR}/firejail ~/.config/firejail
 endif
 
 linux-scripts:
