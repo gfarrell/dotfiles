@@ -15,8 +15,13 @@ readonly = True
 [default]
 default_calendar = "home"
 show_all_days = True
+highlight_event_days = True
+
+[highlight_days]
+multiple = yellow
 
 [locale]
+default_timezone = Europe/London
 weeknumbers = "left"
 
 [view]
