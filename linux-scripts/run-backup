@@ -22,7 +22,7 @@ BACKUP_DIR="/home/gideon"
 # Use an allowlist rather than a blocklist
 # This is because there can be so much accumulated crap that I only want
 # to backup the good stuff.
-FILES=(archives calendars .config contacts converge Desktop Documents dotfiles Downloads mail movies notes pictures projects sandbox .ssh)
+FILES=(archives calendars .config contacts converge Desktop Documents dotfiles Downloads .local/share/fonts mail movies notes pictures projects sandbox .ssh)
 
 # GPG Key for Encryption and Signing
 # Public key IDs (last eight characters)
