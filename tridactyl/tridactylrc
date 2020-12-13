@@ -1,0 +1,70 @@
+" Make this file canonical, if it ain't set here, unset it
+sanitise tridactyllocal tridactylsync
+
+"""
+" UI etc..
+"""
+
+colors shydactyl
+set smoothscroll true
+
+"""
+" Binds
+"""
+
+" For some websites I need an easy way of opening the command line
+bind --mode=normal <C-;> fillcmdline_notrail
+bind --mode=ignore <C-;> fillcmdline_notrail
+bind --mode=insert <C-;> fillcmdline_notrail
+
+" Make it easy to detach tabs for multi-window working
+bind gd tabdetach
+bind gD composite tabduplicate; tabdetach
+
+" Make finding faster
+bind / fillcmdline find
+bind n findnext +1
+bind N findnext -1
+
+" I don't need some of these to be bound
+unbind <C-i>
+
+"""
+" URL specific
+"""
+
+" Only hint search results on DDG (rather than everything)
+bindurl ^https://duckduckgo.com f hint -Jc [class=result__a]
+bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
+
+" Default to ignore-mode on gmail, gcal, Notion, and Asana
+autocmd DocLoad mail.google.com mode ignore
+autocmd DocLoad calendar.google.com mode ignore
+autocmd DocLoad notion.so mode ignore
+autocmd DocLoad app.asana.com mode ignore
+
+" Sadly this doesn't work for things like gi so I'm generally ignoring gmail
+" above
+" Specific gmail keys
+" unbindurl ^https://mail.google.com/mail j
+" unbindurl ^https://mail.google.com/mail k
+" unbindurl ^https://mail.google.com/mail c
+" unbindurl ^https://mail.google.com/mail x
+" unbindurl ^https://mail.google.com/mail e
+" unbindurl ^https://mail.google.com/mail u
+" unbindurl ^https://mail.google.com/mail d
+" unbindurl ^https://mail.google.com/mail ;
+" unbindurl ^https://mail.google.com/mail /
+" unbindurl ^https://mail.google.com/mail gi
+" unbindurl ^https://mail.google.com/mail gt
+" unbindurl ^https://mail.google.com/mail gs
+" unbindurl ^https://mail.google.com/mail gd
+" unbindurl ^https://mail.google.com/mail/u/(\d{1})/#(\w+)/([A-Za-z0-9]+)$ f
+" unbindurl ^https://mail.google.com/mail/u/(\d{1})/#(\w+)/([A-Za-z0-9]+)$ a
+" unbindurl ^https://mail.google.com/mail/u/(\d{1})/#(\w+)/([A-Za-z0-9]+)$ r
+" unbindurl ^https://mail.google.com/mail f
+" unbindurl ^https://mail.google.com/mail a
+" unbindurl ^https://mail.google.com/mail r
+
+
+" vim: ft=vim:fdm=marker
