@@ -75,6 +75,8 @@ set pager_stop
 set menu_scroll
 # pad blank lines with ~
 set tilde
+# don't move to the next message after modifying a message
+unset resolve
 # don't add wrapped-line markers
 unset markers
 # hide headers except the obvious ones
