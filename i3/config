@@ -93,6 +93,8 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 # Need both play and pause because my headphones separate them
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioNext exec --no-startup-id playerctl next
 
 # Use printscr to capture with maim
 bindsym Print exec maim ~/Desktop/screenshot_$(date +%Y-%m-%d_%H%M%S).png
