@@ -11,6 +11,7 @@ Plug 'vim-airline/vim-airline' " Lightweight status bar
 " General Plugins
 Plug 'airblade/vim-gitgutter'                   " Show git line status in the gutter
 Plug 'editorconfig/editorconfig-vim'            " Enable editorconfig
+Plug 'frazrepo/vim-rainbow'                     " Use colours to match parens
 Plug 'junegunn/fzf'                             " Fuzzy finding via FZF
 Plug 'junegunn/fzf.vim'                         " Actual FZF vim plugin
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Autocompletion
@@ -139,7 +140,6 @@ let g:ale_fix_on_save=1
 
 " Plugin: COC (mostly stolen from the defaults -- must redo)
 " ----------------------------------------------------------
-" TODO: get this working properly with Haskell
 
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
@@ -275,6 +275,9 @@ nnoremap <C-P> :Files<CR>
 
 " Run neomake automatically on buffer write
 call neomake#configure#automake('w')
+
+" Use rainbox parens for Rust, Typescript, Javascript, Clojure, Haskell
+au FileType javascript,typescript,jsx,rust,haskell,clojure,zsh,bash,sh call rainbow#load()
 
 " ---------------------------------------------------------
 " Useful functions (use with :call <name>)
