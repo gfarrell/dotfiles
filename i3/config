@@ -112,7 +112,7 @@ bindsym $mod+space exec rofi -combi-modi drun#window -modi combi#drun#window#cal
 bindsym $mod+n exec --no-startup-id thunar
 
 # open firefox
-bindsym $mod+b exec --no-startup-id firefox
+bindsym $mod+b exec --no-startup-id firejail --apparmor firefox
 
 # ======================= #
 #     i3 Key Bindings     #
