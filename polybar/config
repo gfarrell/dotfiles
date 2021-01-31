@@ -4,7 +4,7 @@ foreground = #FFFFFF
 primary = #177E89
 secondary = #FFC857
 alert = #DB3A34
-gaps = 20
+gaps = 15
 gaps-top = 10
 
 [bar/top]
