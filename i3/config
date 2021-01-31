@@ -40,7 +40,7 @@ client.background       #F8F8F2
 
 # gaps
 gaps inner 15
-gaps outer 5
+gaps outer 0
 
 # new floats shouldn't have borders
 new_float normal 0
@@ -68,6 +68,8 @@ exec picom -CG
 # GeoClue agent
 # TODO: why is this in my i3 config?? Needs to be a systemd thing
 exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
+# Start polybar
+exec --no-startup-id /home/gideon/.config/polybar/launch.sh
 
 # bind mod shift esc to lock the screen
 bindsym $mod+Shift+Escape exec --no-startup-id xset s activate
@@ -106,7 +108,7 @@ bindsym $mod+Shift+Print exec maim -st 9999999 | xclip -selection clipboard -t i
 bindsym $mod+t exec i3-sensible-terminal
 
 # start rofi (programme launcher / window switcher)
-bindsym $mod+space exec rofi -combi-modi drun#window -modi combi#drun#window#calc#emoji#file-browser -show combi
+bindsym $mod+space exec rofi -combi-modi drun#window -modi combi#drun#window#calc#emoji#file-browser#contacts:/home/gideon/projects/rofi-khard/rofi_khard.sh -show combi
 
 # open thunar
 bindsym $mod+n exec --no-startup-id thunar
