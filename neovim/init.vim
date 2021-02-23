@@ -28,6 +28,8 @@ Plug 'wellle/targets.vim'                       " Useful target objects
 Plug 'HerringtonDarkholme/yats.vim' " Syntax: typescript
 Plug 'rust-lang/rust.vim'           " Syntax: rust
 Plug 'chrisbra/csv.vim'             " Syntax: csv
+Plug 'guns/vim-sexp'                " LISP expression manipulations
+Plug 'tpope/vim-sexp-mappings-for-regular-people' " Make sexp easier
 
 " Tmux compatibility
 Plug 'christoomey/vim-tmux-navigator'     " Navigation for vim / tmux splits
@@ -122,6 +124,7 @@ let g:ale_linters = {
 \ 'python':     ['flake8'],
 \ 'javascript': ['eslint'],
 \ 'typescript': ['eslint'],
+\ 'clojure':    ['clj-kondo'],
 \}
 
 " ALE fixers
