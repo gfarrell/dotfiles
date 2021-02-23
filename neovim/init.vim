@@ -154,7 +154,7 @@ let g:coc_global_extensions = [
 \ 'coc-emoji', 'coc-eslint', 'coc-prettier',
 \ 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin',
 \ 'coc-css', 'coc-json', 'coc-rls', 'coc-yaml',
-\ 'coc-texlab', 'coc-python'
+\ 'coc-texlab', 'coc-pyright'
 \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
