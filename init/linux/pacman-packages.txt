@@ -1,0 +1,6 @@
+# Shell environment
+
+## zsh is my primary shell
+zsh
+## kitty is my primary terminal emulator
+kitty
