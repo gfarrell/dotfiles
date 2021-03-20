@@ -3,8 +3,9 @@ background = #323031
 foreground = #FFFFFF
 primary = #177E89
 secondary = #FFC857
+inactive = #758789
 alert = #DB3A34
-gaps = 15
+gaps = 0
 gaps-top = 0
 
 [bar/top]
@@ -49,8 +50,8 @@ label-focused-background = ${theme.primary}
 label-focused-padding = 1
 label-visible = %index%
 label-visible-padding = 1
-label-visible-background = ${theme.secondary}
-label-visible-foreground = ${theme.background}
+label-visible-background = ${theme.inactive}
+label-visible-foreground = ${theme.foreground}
 label-unfocused = %index%
 label-unfocused-padding = 1
 label-urgent = %index%
