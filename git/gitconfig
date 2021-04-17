@@ -50,19 +50,10 @@
 
 [user]
     name = Gideon Farrell
-    email = gideon@converge.io
+    email = gideon@gtf.io
 
 [diff]
     tool = vimdiff
 
 [help]
     autocorrect = 1
-
-[url "git@github.com:"]
-    insteadOf = https://github.com/
-
-# Any GitHub repo with my username should be checked out r/w by default
-# http://rentzsch.tumblr.com/post/564806957/public-but-hackable-git-submodules
-[url "git@github.com:gfarrell/"]
-      insteadOf = "git://github.com/gfarrell/"
-
