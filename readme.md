@@ -41,9 +41,12 @@ version-control system.
 [i3](i3wm.org/) (Linux only): I use `i3-gaps` as my window manager (for
 X) on Linux.
 
-init: DEPRECATED
-
-iterm2: DEPRECATED
+init: contains initialisation scripts for a new machine. This includes
+package installation scripts which are maintained with the list of
+packages I keep installed on my system (inspired by Brewfiles, which
+I use for macOS via [homebrew](https://brew.sh/)). For example, to
+initialise a linux system run `./init/linux/init-linux.sh`. These
+scripts have a "dry-run" option `-d`.
 
 [jrnl](https://jrnl.sh/): CLI journal application which I use to
 occasionally journal and record dreams.
@@ -66,8 +69,8 @@ completely configurable using a single file.
 don't really use gestures anymore, so this is unused. DEPRECATING.
 
 linux-scripts: various linux scripts go in here, including things which
-liare more ke systemd services which run continuously (like backups),
-liand things I run discretely.
+are more ke systemd services which run continuously (like backups), and
+things I run discretely.
 
 [(neo)mutt](https://neomutt.org/): I use neomutt instead of mutt as my
 mail client. Not *all* the configuration is yet in here as I need to
@@ -119,10 +122,3 @@ has a simple config file.
 zsh: various bits of shell and environment config. The two files in here
 which are sourced *by* zsh itself are zshrc and zshenv, the rest are
 sourced by my zshrc file.
-
-Brewfile: this is a list of applications and utilities installed by
-[homebrew](https://brew.sh) on macOS.
-
-editorconfig: generic editor configuration supported by many editors.
-
-eslintrc: not sure what this is doing here!
