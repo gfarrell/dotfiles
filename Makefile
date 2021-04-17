@@ -50,9 +50,10 @@ systemd: linux-scripts
 	ln -nsf $(DIR)/systemd/duplicity.service ~/.config/systemd/user/duplicity.service
 	ln -nsf $(DIR)/systemd/duplicity.timer ~/.config/systemd/user/duplicity.timer
 	ln -nsf $(DIR)/systemd/redshift.service ~/.config/systemd/user/redshift.service
+	ln -nsf $(DIR)/systemd/playerctld.service ~/.config/systemd/user/playerctld.service
 	systemctl --user daemon-reload
-	systemctl --user enable mbsync.timer vdirsyncer.timer duplicity.timer geoclue2.timer redshift.service
-	systemctl --user start mbsync.timer vdirsyncer.timer duplicity.timer geoclue2.timer redshift.service
+	systemctl --user enable mbsync.timer vdirsyncer.timer duplicity.timer geoclue2.timer playerctld.service
+	systemctl --user start mbsync.timer vdirsyncer.timer duplicity.timer geoclue2.timer playerctld.service
 
 brew:
 	command -v brew > /dev/null 2>&1 || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
