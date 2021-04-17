@@ -11,6 +11,7 @@ set mailcap_path = "~/.config/mutt/mailcap"
 set tmpdir = "~/.tmp/mutt"
 set folder = "~/mail"
 set mbox_type = Maildir
+set attach_save_dir = "~/Downloads/mutt"
 # }}}
 
 # Basic Options {{{
