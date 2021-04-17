@@ -1,0 +1,10 @@
+[Unit]
+Description=Local backup timer
+
+[Timer]
+OnCalendar=*-*-* 3:00:00
+Persistent=true
+Unit=backup-snapshots.service
+
+[Install]
+WantedBy=timers.target

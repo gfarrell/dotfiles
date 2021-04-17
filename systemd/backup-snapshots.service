@@ -1,0 +1,6 @@
+[Unit]
+Description=Local backup snapshots
+
+[Service]
+Type=oneshot
+ExecStart=/home/gideon/.local/bin/take-snapshot
