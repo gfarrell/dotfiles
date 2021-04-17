@@ -1,0 +1,74 @@
+# vim: foldmethod=marker
+#!/bin/zsh
+
+# Snapshot backup script
+
+# TODO: checksums on files + verification?
+
+set -e
+
+MAX_BACKUPS=4
+CONFIG_DIR="/etc/backups"
+ERR_MISSING_CONF=101
+ERR_MISSING_DRIVE=102
+
+# Useful functions {{{
+function log {
+  echo "$1"
+}
+
+function err {
+  log "ERROR: $1" >&2
+  exit ${2:-1};
+}
+
+function require {
+  f="${CONFIG_DIR}/$1"
+  if [ ! -e "$f" ]; then
+    err "Missing required file $f, aborting..." $ERR_MISSING_CONF
+  fi
+}
+## }}}
+
+# Initialisation {{{
+require "target.conf"
+require "files.list"
+require "exclude.list"
+DRIVE_UUID=$(cat "${CONFIG_DIR}/target.conf" | awk -F': ' '/UUID/ { print $2 }')
+DRIVE_KEYFILE=$(cat "${CONFIG_DIR}/target.conf" | awk -F': ' '/KEYFILE/ { print $2 }')
+DEV="/dev/disk/by-uuid/${DRIVE_UUID}"
+ID="backup-$(cat /dev/urandom | tr -dc '0-9a-zA-Z' | head -c24)"
+DRIVE_MOUNT="/run/media/$ID"
+FOLDER="$DRIVE_MOUNT/$(hostname)-backups/$(date +%Y%m)"
+## }}}
+
+if [ ! -e "$DEV" ]; then
+  err "Missing drive ${DRIVE_UUID}, aborting..." $ERR_MISSING_DRIVE
+fi
+
+log "Unlocking drive $DEV and mapping to $ID"
+cryptsetup open "$DEV" "$ID" --key-file="$DRIVE_KEYFILE"
+log "Mounting at $DRIVE_MOUNT"
+mkdir -p "$DRIVE_MOUNT"
+mount "/dev/mapper/$ID" "$DRIVE_MOUNT"
+log "Taking snapshots of pacman"
+pacman -Qqen > "/home/gideon/packages.native.list"
+pacman -Qqem > "/home/gideon/packages.foreign.list"
+log "Backing up"
+mkdir -p "$FOLDER"
+rsync -arAXH --exclude-from="$CONFIG_DIR/exclude.list" --files-from="$CONFIG_DIR/files.list" / "$FOLDER"
+log "Backup complete"
+
+# Cleanup {{{
+fcount=$(ls -1 "${DRIVE_MOUNT}/$(hostname)-backups" | wc -l)
+if [ $fcount -gt $MAX_BACKUPS ]; then
+  cull=$(ls -1 "${DRIVE_MOUNT}/$(hostname)-backups" | head --lines=-$MAX_BACKUPS)
+  log "Removing old backups $cull"
+  (cd "$DRIVE_MOUNT/$(hostname)-backups" && echo "$cull" | xargs rm -r)
+fi
+log "Unmounting drive"
+umount "$DRIVE_MOUNT"
+rmdir "$DRIVE_MOUNT"
+cryptsetup close "$ID"
+log "Finished!"
+## }}}
