@@ -39,6 +39,8 @@ endif
 linux-scripts:
 	mkdir -p ~/.local/bin
 	ln -nsf $(DIR)/linux-scripts/run-backup ~/.local/bin/run-backup
+	ln -nsf $(DIR)/linux-scripts/restore-files ~/.local/bin/restore-files
+	ln -nsf $(DIR)/linux-scripts/take-snapshot ~/.local/bin/take-snapshot
 
 systemd: linux-scripts
 	ln -nsf $(DIR)/systemd/geoclue2.service ~/.config/systemd/user/geoclue2.service
