@@ -162,3 +162,8 @@ function 1p {
       ;;
   esac
 }
+
+# Set the active window title in X
+function setwindowname {
+  xdotool set_window --name "$*" `xdotool getactivewindow`
+}
