@@ -3,7 +3,7 @@ Description=Local backup timer
 
 [Timer]
 OnCalendar=*-*-* 3:00:00
-Persistent=true
+Persistent=false
 Unit=backup-snapshots.service
 
 [Install]

@@ -1,5 +1,4 @@
-# vim: foldmethod=marker
-#!/bin/zsh
+#!/usr/bin/zsh
 
 # Snapshot backup script
 
@@ -72,3 +71,4 @@ rmdir "$DRIVE_MOUNT"
 cryptsetup close "$ID"
 log "Finished!"
 ## }}}
+# vim: foldmethod=marker

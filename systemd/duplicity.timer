@@ -2,8 +2,9 @@
 Description=Duplicity Backup Timer
 
 [Timer]
-OnBootSec=10m
-OnUnitActiveSec=120m
+OnCalendar=*-*-* 0,6,12,18:00:00
+Persistent=true
+RandomizedDelaySec=10m
 Unit=duplicity.service
 
 [Install]
