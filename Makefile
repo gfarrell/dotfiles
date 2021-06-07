@@ -25,6 +25,7 @@ symlinks:
 	ln -nsf $(DIR)/tmux/tmux.conf ~/.tmux.conf
 	ln -nsf $(DIR)/khard ~/.config/khard
 	ln -nsf $(DIR)/khal ~/.config/khal
+	ln -nsf $(DIR)/haskell/ghci.conf ~/.ghc/ghci.conf
 ifeq ($(SYS), Linux)
 	ln -sf $(DIR)/libinput-gestures/libinput-gestures.conf ~/.config/libinput-gestures.conf
 	ln -sf $(DIR)/xorg/xprofile ~/.xprofile
