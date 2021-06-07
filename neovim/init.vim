@@ -152,7 +152,7 @@ set signcolumn=yes
 
 let g:coc_global_extensions = [
 \ 'coc-emoji', 'coc-eslint', 'coc-prettier',
-\ 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin',
+\ 'coc-tsserver', 'coc-tslint', 'coc-tslint-plugin', "coc-prettier",
 \ 'coc-css', 'coc-json', 'coc-rls', 'coc-yaml',
 \ 'coc-texlab', 'coc-pyright'
 \ ]
