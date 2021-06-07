@@ -38,6 +38,9 @@ major vulnerability in my system.
 [Git](https://git-scm.com/): contains config and shortcuts for the git
 version-control system.
 
+haskell: contains the config for ghci (basically just customises the Haskell
+repl).
+
 [i3](i3wm.org/) (Linux only): I use `i3-gaps` as my window manager (for
 X) on Linux.
 
