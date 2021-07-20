@@ -50,22 +50,30 @@ function converge() {
 }
 
 function converge_db() {
-    if [[ $1 == "store" ]]; then
-        (
-            . ~/converge/secrets/db-ro.production.env && \
-            echo "--- Connecting to $STORE_PORT_5432_TCP_ADDR as $STORE_POSTGRES_USER ---" && \
-            PGPASSWORD=$STORE_POSTGRES_PASSWORD psql -h $STORE_PORT_5432_TCP_ADDR -p $STORE_PORT_5432_TCP_PORT -U $STORE_POSTGRES_USER -d $STORE_POSTGRES_DATABASE
-        )
-    elif [[ $1 == "persist" ]]; then
-        (
-            . ~/converge/secrets/db-ro.production.env && \
-            echo "--- Connecting to $PERSIST_PORT_5432_TCP_ADDR as $PERSIST_POSTGRES_USER ---" && \
-            PGPASSWORD=$PERSIST_POSTGRES_PASSWORD psql -h $PERSIST_PORT_5432_TCP_ADDR -p $PERSIST_PORT_5432_TCP_PORT -U $PERSIST_POSTGRES_USER -d $PERSIST_POSTGRES_DATABASE
-        )
-    else
-        echo "Unknown database $1";
-        return 100;
+    ENV="staging"
+    if [[ $1 == "production" || $1 == "staging" ]]; then
+      ENV=$1
+      shift
     fi
+    DB=$1
+    shift
+
+    if [[ ! ($ENV == "production" || $ENV == "staging") ]]; then
+      echo "Unknown environment $ENV"
+      return 101
+    fi
+
+    CONFIG="/home/gideon/converge/secrets/db-ro.${ENV}.${DB}.env"
+    if [[ ! -e "$CONFIG" ]]; then
+      echo "No such config file ${CONFIG}!"
+      return 102
+    fi
+    (
+      echo "Loading configuration from ${CONFIG}..."
+      . ${CONFIG}
+      echo "--- Connecting to ${DB}.${ENV} at ${USER}@${ADDR}:${PORT} ---"
+      PGPASSWORD=$PASS psql -h $ADDR -p $PORT -U $USER -d $DATABASE $@
+    )
 }
 
 function urlencode() {
