@@ -16,8 +16,9 @@ set attach_save_dir = "~/Downloads/mutt"
 
 # Basic Options {{{
 # -------------
-# View HTML when possible (using w3m) but prefer plaintext
+# Auto view html
 auto_view text/html
+# Prefer plaintext
 alternative_order text/plain text/enriched text/html
 # Purge deleted messages automatically
 set delete
