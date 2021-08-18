@@ -110,8 +110,8 @@ bindsym $mod+t exec i3-sensible-terminal
 # start rofi (programme launcher / window switcher)
 bindsym $mod+space exec rofi -combi-modi drun#window -modi combi#drun#window#calc#file-browser -show combi
 
-# open thunar
-bindsym $mod+n exec --no-startup-id thunar
+# open
+bindsym $mod+n exec --no-startup-id i3-sensible-terminal ranger
 
 # open firefox
 bindsym $mod+b exec --no-startup-id firejail --apparmor firefox
