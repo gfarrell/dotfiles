@@ -59,19 +59,19 @@ function converge_db() {
     shift
 
     if [[ ! ($ENV == "production" || $ENV == "staging") ]]; then
-      echo "Unknown environment $ENV"
+      echo "Unknown environment $ENV" >&2
       return 101
     fi
 
     CONFIG="/home/gideon/converge/secrets/db-ro.${ENV}.${DB}.env"
     if [[ ! -e "$CONFIG" ]]; then
-      echo "No such config file ${CONFIG}!"
+      echo "No such config file ${CONFIG}!" >&2
       return 102
     fi
     (
-      echo "Loading configuration from ${CONFIG}..."
+      echo "Loading configuration from ${CONFIG}..." >&2
       . ${CONFIG}
-      echo "--- Connecting to ${DB}.${ENV} at ${USER}@${ADDR}:${PORT} ---"
+      echo "--- Connecting to ${DB}.${ENV} at ${USER}@${ADDR}:${PORT} ---" >&2
       PGPASSWORD=$PASS psql -h $ADDR -p $PORT -U $USER -d $DATABASE $@
     )
 }
