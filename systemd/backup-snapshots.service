@@ -4,3 +4,6 @@ Description=Local backup snapshots
 [Service]
 Type=oneshot
 ExecStart=/usr/local/bin/take-snapshot
+
+[Install]
+WantedBy=timers.target
