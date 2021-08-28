@@ -14,9 +14,9 @@ if [ ! -z ${BT_SINK} ]; then
   case ${current_profile} in
     "<a2dp_sink>")
       icon=""
-      next_profile="headset_head_unit"
+      next_profile="handsfree_head_unit"
       ;;
-    "<headset_head_unit>")
+    "<handsfree_head_unit>")
       icon=""
       next_profile="a2dp_sink"
       ;;
