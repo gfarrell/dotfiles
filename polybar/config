@@ -26,7 +26,7 @@ line-color = #f00
 background = ${theme.background}
 foreground = ${theme.foreground}
 font-0 = "Hasklig:style=Regular:size=12;2"
-font-1 = "JoyPixels:size=11;2"
+font-1 = "JoyPixels:scale=10;2"
 font-2 = "Font Awesome 5 Free Regular:style=Regular:pixelsize=11;2"
 font-3 = "Font Awesome 5 Free Solid:style=Sold:pixelsize=11;2"
 tray-position = ${env:TRAY_POSITION:right}
