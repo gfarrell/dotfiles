@@ -1,6 +1,6 @@
 # NVM is really slow to load, so let's only get it when we need it
 function nvm() {
-    . `brew --prefix nvm`/nvm.sh;
+    source /usr/share/nvm/init-nvm.sh
     nvm "$@";
 }
 
@@ -174,4 +174,20 @@ function 1p {
 # Set the active window title in X
 function setwindowname {
   xdotool set_window --name "$*" `xdotool getactivewindow`
+}
+
+# Compress PDF files easily using ghostscript
+function compress_pdf {
+  input=$1;
+  output=$2;
+  resn=${3:=256};
+  if [ ! -f $input ]; then echo "input file $input does not exist!"; return 10; fi
+  if [ -f $output ]; then echo "output file $output already exists!"; return 20; fi
+  echo "Compressing $input -> $output at image resolution $resn";
+  gs -dNOPAUSE -dBATCH -dSAFER -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen \
+     -dEmbedAllFonts=true -dSubsetFonts=true \
+     -dColorImageDownsampleType=/Bicubic -dColorImageResolution=$resn \
+     -dGrayImageDownsampleType=/Bicubic -dGrayImageResolution=$resn \
+     -dMonoImageDownsampleType=/Bicubic -dMonoImageResolution=$resn \
+     -sOutputFile=$output $input;
 }
