@@ -1,0 +1,6 @@
+[Unit]
+Description=Nextcloud Synchronisation Service
+
+[Service]
+Type=oneshot
+ExecStart=/home/gideon/.local/bin/nextcloud-sync

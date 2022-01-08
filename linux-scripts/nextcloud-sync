@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+set -e;
+
+USER="gideon"
+PASS="$(secret-tool lookup app nextcloud)"
+NC_URL="https://org.gtf.io";
+
+function sync {
+  echo "Synchronising $1 -> ${NC_URL}$2"
+  nextcloudcmd -u $USER \
+               -p $PASS \
+               --non-interactive \
+               --path "$2" \
+               "${HOME}/$1" "${NC_URL}"
+}
+
+## Sync notes
+sync "notes" "/Notes";
+
+## Sync photos
+## TODO
+
+## Sync screenshots
+## TODO

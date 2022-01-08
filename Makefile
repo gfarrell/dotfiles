@@ -26,6 +26,7 @@ symlinks:
 	ln -nsf $(DIR)/khard ~/.config/khard
 	ln -nsf $(DIR)/khal ~/.config/khal
 	ln -nsf $(DIR)/haskell/ghci.conf ~/.ghc/ghci.conf
+	ln -nsf $(DIR)/emacs ~/.emacs.d
 ifeq ($(SYS), Linux)
 	ln -sf $(DIR)/libinput-gestures/libinput-gestures.conf ~/.config/libinput-gestures.conf
 	ln -sf $(DIR)/xorg/xprofile ~/.xprofile
@@ -42,6 +43,7 @@ linux-scripts:
 	ln -nsf $(DIR)/linux-scripts/run-backup ~/.local/bin/run-backup
 	ln -nsf $(DIR)/linux-scripts/restore-files ~/.local/bin/restore-files
 	ln -nsf $(DIR)/linux-scripts/take-snapshot ~/.local/bin/take-snapshot
+	ln -nsf $(DIR)/linux-scripts/nextcloud-sync ~/.local/bin/nextcloud-sync
 
 systemd: linux-scripts
 	ln -nsf $(DIR)/systemd/geoclue2.service ~/.config/systemd/user/geoclue2.service
@@ -50,13 +52,15 @@ systemd: linux-scripts
 	ln -nsf $(DIR)/systemd/mbsync.timer ~/.config/systemd/user/mbsync.timer
 	ln -nsf $(DIR)/systemd/vdirsyncer.service ~/.config/systemd/user/vdirsyncer.service
 	ln -nsf $(DIR)/systemd/vdirsyncer.timer ~/.config/systemd/user/vdirsyncer.timer
+	ln -nsf $(DIR)/systemd/nextcloud-sync.service ~/.config/systemd/user/nextcloud-sync.service
+	ln -nsf $(DIR)/systemd/nextcloud-sync.timer ~/.config/systemd/user/nextcloud-sync.timer
 	ln -nsf $(DIR)/systemd/duplicity.service ~/.config/systemd/user/duplicity.service
 	ln -nsf $(DIR)/systemd/duplicity.timer ~/.config/systemd/user/duplicity.timer
 	ln -nsf $(DIR)/systemd/redshift.service ~/.config/systemd/user/redshift.service
 	ln -nsf $(DIR)/systemd/playerctld.service ~/.config/systemd/user/playerctld.service
 	systemctl --user daemon-reload
-	systemctl --user enable mbsync.timer vdirsyncer.timer duplicity.timer geoclue2.timer playerctld.service
-	systemctl --user start mbsync.timer vdirsyncer.timer duplicity.timer geoclue2.timer playerctld.service
+	systemctl --user enable mbsync.timer vdirsyncer.timer nextcloud-sync.timer duplicity.timer geoclue2.timer playerctld.service
+	systemctl --user start mbsync.timer vdirsyncer.timer nextcloud-sync.timer duplicity.timer geoclue2.timer playerctld.service
 
 brew:
 	command -v brew > /dev/null 2>&1 || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"

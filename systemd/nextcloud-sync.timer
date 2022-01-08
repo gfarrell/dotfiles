@@ -1,0 +1,10 @@
+[Unit]
+Description=Nextcloud Synchronisation Timer
+
+[Timer]
+OnBootSec=5m
+OnUnitActiveSec=5m
+Unit=nextcloud-sync.service
+
+[Install]
+WantedBy=timers.target
