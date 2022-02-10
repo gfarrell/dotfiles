@@ -54,6 +54,7 @@ for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 for_window [class="activity-monitor"] floating enable
 for_window [title="^zoom$"] floating enable
+for_window [class="^Pianoteq"] floating enable
 
 # =================== #
 #    Startup Utils    #
