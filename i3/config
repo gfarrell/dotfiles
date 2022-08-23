@@ -101,10 +101,10 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 
 # Use printscr to capture with maim
-bindsym Print exec maim ~/Desktop/screenshot_$(date +%Y-%m-%d_%H%M%S).png
-bindsym Shift+Print exec maim -st 9999999 ~/Desktop/screenshot_$(date +%Y-%m-%d_%H%M%S).png
-bindsym $mod+Print exec maim | xclip -selection clipboard -t image/png
-bindsym $mod+Shift+Print exec maim -st 9999999 | xclip -selection clipboard -t image/png
+bindsym Print exec maim -i $(xdotool getactivewindow) ~/Desktop/screenshot_$(date +%Y-%m-%d_%H%M%S).png
+bindsym Shift+Print exec maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Print exec maim -s ~/Desktop/screenshot_$(date +%Y-%m-%d_%H%M%S).png
+bindsym Ctrl+Shift+Print exec maim -s | xclip -selection clipboard -t image/png
 
 # start a terminal
 bindsym $mod+t exec i3-sensible-terminal
