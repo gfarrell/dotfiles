@@ -37,7 +37,11 @@
     untracked = cyan
 
 [merge]
-    log = true
+  log = true
+  tool = nvim
+
+[mergetool "nvim"]
+  cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
 
 [push]
     default = simple
