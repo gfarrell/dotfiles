@@ -1,0 +1,14 @@
+#!/bin/env zsh
+
+# enable set -x for debugging
+# set -x
+
+set -euo pipefail
+
+TOP_OUTPUT=$(xrandr | awk '/eDP1/ { next; } /connected/ { print $1 }' | head -n1);
+xrandr --output "${TOP_OUTPUT}" \
+       --above eDP1 \
+       --auto \
+       --primary \
+
+~/.config/autorandr/postswitch

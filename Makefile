@@ -44,6 +44,7 @@ linux-scripts:
 	ln -nsf $(DIR)/linux-scripts/restore-files ~/.local/bin/restore-files
 	ln -nsf $(DIR)/linux-scripts/take-snapshot ~/.local/bin/take-snapshot
 	ln -nsf $(DIR)/linux-scripts/nextcloud-sync ~/.local/bin/nextcloud-sync
+	ln -nsf $(DIR)/linux-scripts/new-screen-setup ~/.local/bin/new-screen-setup
 
 systemd: linux-scripts
 	ln -nsf $(DIR)/systemd/geoclue2.service ~/.config/systemd/user/geoclue2.service
