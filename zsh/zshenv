@@ -43,8 +43,12 @@ export PAGER="less"
 # Keep man pages on screen after quitting
 export MANPAGER="less -X"
 
+# Get GHCUP to use XDG dirs
+export GHCUP_USE_XDG_DIRS=1
+
 # Linux Specific
 # ============================
+
 if [[ `uname -s` == Linux ]]; then
   # So that we can use the keyring
   if [[ -e /run/user/1000/keyring/ssh ]]; then
