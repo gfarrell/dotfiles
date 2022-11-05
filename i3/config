@@ -60,18 +60,15 @@ for_window [class="^Pianoteq"] floating enable
 #    Startup Utils    #
 # =================== #
 
-# Little netctl-auto tray icon for easy access to networking
-exec --no-startup-id netctl-tray-auto
-# MullvadVPN tray icon
-exec --no-startup-id mullvad-vpn
+# Start polybar
+exec --no-startup-id "$HOME/.config/polybar/launch.sh"
+
 # Picom is a compositor for X11
 # Config file in dotfiles/picom/picom.conf
 exec picom -CG
 # GeoClue agent
 # TODO: why is this in my i3 config?? Needs to be a systemd thing
 exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
-# Start polybar
-exec --no-startup-id /home/gideon/.config/polybar/launch.sh
 
 # bind mod shift esc to lock the screen
 bindsym $mod+Shift+Escape exec --no-startup-id xset s activate
