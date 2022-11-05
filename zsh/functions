@@ -191,3 +191,8 @@ function compress_pdf {
      -dMonoImageDownsampleType=/Bicubic -dMonoImageResolution=$resn \
      -sOutputFile=$output $input;
 }
+
+# View HTTP traffic
+function sniff {
+  sudo ngrep -d $1 -t '^(GET|POST|PUT|DELETE|PATCH|OPTIONS) ' 'tcp and (port 80 or port 443)'
+}
