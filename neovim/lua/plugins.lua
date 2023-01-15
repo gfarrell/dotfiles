@@ -17,6 +17,7 @@ return require('packer').startup(function(use)
   use 'junegunn/fzf.vim'             -- FZF vim plugin (need both)
   use 'tpope/vim-fugitive'           -- Git plugin
   use 'airblade/vim-gitgutter'       -- Show git status in margins
+  use 'Pocco81/true-zen.nvim'        -- Zen mode to remove distractions
 
   -- Text objects and movements
   use 'tpope/vim-commentary'         -- Make it easier to comment things out
@@ -25,6 +26,12 @@ return require('packer').startup(function(use)
 
   -- Language utilities
   use 'neovim/nvim-lspconfig'        -- Sane LSP configurations
+  use 'hrsh7th/vim-vsnip'            -- Snippets
+  use 'hrsh7th/cmp-vsnip'            -- Autcomplete snippets 
+  use 'hrsh7th/cmp-nvim-lsp'         -- Autocompletion from LSP
+  use 'hrsh7th/cmp-buffer'           -- Autocomplete buffers
+  use 'hrsh7th/cmp-path'             -- Autocomplete paths
+  use 'hrsh7th/nvim-cmp'             -- Autocompleter
 
   -- Language-specific plugins
   use 'guns/vim-sexp'
@@ -32,4 +39,5 @@ return require('packer').startup(function(use)
   use 'chrisbra/csv.vim'
   use 'rust-lang/rust.vim'
   use 'HerringtonDarkholme/yats.vim'
+  use 'vimwiki/vimwiki'
 end)
