@@ -3,7 +3,7 @@
 set -e;
 
 USER="gideon"
-PASS="$(secret-tool lookup app nextcloud)"
+PASS="$(secret-tool lookup Path nextcloud-appkey)"
 NC_URL="https://org.gtf.io";
 
 function sync {
@@ -17,6 +17,10 @@ function sync {
 
 ## Sync notes
 sync "notes" "/Notes";
+
+## Sync articles, papers, and other PDFs
+sync "Documents/Papers" "/Papers"
+sync "Documents/Books" "/Books"
 
 ## Sync photos
 ## TODO

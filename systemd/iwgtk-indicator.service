@@ -1,0 +1,5 @@
+[Unit]
+Description=IWD Tray Indicator
+
+[Service]
+ExecStart=iwgtk -i

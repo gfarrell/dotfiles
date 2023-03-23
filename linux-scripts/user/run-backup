@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-set -e
+set -eo pipefail
 
 #####################
 ### CONFIGURATION ###
@@ -11,9 +11,10 @@ MAX_AGE="90D" # how old should files get to?
 FULL_FREQ="30D" # how often should we do a full backup
 
 # Get Backblaze B2 credentials and variables
-B2_ACCOUNT=$(secret-tool lookup backblaze app-key-id)
-B2_KEY=$(secret-tool lookup backblaze app-key)
-B2_BUCKET=$(secret-tool lookup backblaze backup-bucket)
+# We use `jq` to url-encode the keys
+B2_ACCOUNT=$(secret-tool lookup Path backblaze-b2-keyid | jq -sRr @uri)
+B2_KEY=$(secret-tool lookup Path backblaze-b2-appkey | jq -sRr @uri)
+B2_BUCKET=$(secret-tool lookup Path backblaze-b2-bucket-name)
 B2_DIR="backups/home"
 
 # Backup my home folder
@@ -22,14 +23,18 @@ BACKUP_DIR="/home/gideon"
 # Use an allowlist rather than a blocklist
 # This is because there can be so much accumulated crap that I only want
 # to backup the good stuff.
-FILES=(archives calendars .config contacts converge Desktop Documents dotfiles .local/share/fonts mail movies notes pictures projects sandbox .ssh)
+INCLUDES_FILE="${HOME}/.config/duplicity/backups-include.txt"
+if [[ ! -e ${INCLUDES_FILE} ]]; then
+  echo "[!] inclusion list ${INCLUDES_FILE} not found! Exiting!"
+  exit 110
+fi
 
 # GPG Key for Encryption and Signing
 # Public key IDs (last eight characters)
-ENC_KEY_ID=$(secret-tool lookup key backup-encryption-key-id)
-SGN_KEY_ID=$(secret-tool lookup key backup-signing-key-id)
-export PASSPHRASE=$(secret-tool lookup key backup-encryption-key-passphrase)
-export SIGN_PASSPHRASE=$(secret-tool lookup key backup-signing-key-passphrase)
+ENC_KEY_ID=$(secret-tool lookup Path backup-encryption-key-id)
+SGN_KEY_ID=$(secret-tool lookup Path backup-signing-key-id)
+export PASSPHRASE=$(secret-tool lookup Path backup-encryption-key-passphrase)
+export SIGN_PASSPHRASE=$(secret-tool lookup Path backup-signing-key-passphrase)
 
 ###############
 ### SCRIPT  ###
@@ -39,8 +44,15 @@ function log() {
   echo "[info] $1";
 }
 
+function cleanup() {
+  log "Cleaning up failures"
+  duplicity \
+    cleanup --force \
+    --sign-key ${SGN_KEY_ID} --encrypt-key ${ENC_KEY_ID} \
+    ${B2_URL}
+}
+
 B2_URL="b2://${B2_ACCOUNT}:${B2_KEY}@${B2_BUCKET}/${B2_DIR}"
-INCLUDES_LIST=$(for f in $FILES; do echo -ne " --include \"${HOME}/${f}\""; done)
 
 log "--- BACKING UP ${BACKUP_DIR} ---"
 log "Including ${FILES}"
@@ -59,10 +71,14 @@ if [[ -v 1 && $1 == "--full" ]]; then
   log "Performing full backup (--full is set)"
   eval "duplicity full \
     --progress \
-    ${INCLUDES_LIST} \
+    --include-filelist ${INCLUDES_FILE} \
     --exclude '**' \
     --sign-key ${SGN_KEY_ID} --encrypt-key ${ENC_KEY_ID} \
     ${BACKUP_DIR} ${B2_URL}"
+
+  cleanup
+elif [[ -v 1 && $1 == "--clean" ]]; then
+  cleanup;
 else
   if [[ -v 1 && $1 == "--progress" ]]; then
     SHOW_PROGRESS="--progress";
@@ -71,19 +87,14 @@ else
   fi
   log "Performing backup (full if older than ${FULL_FREQ})"
   eval "duplicity ${SHOW_PROGRESS} \
-    ${INCLUDES_LIST} \
+    --include-filelist ${INCLUDES_FILE} \
     --exclude '**' \
     --sign-key ${SGN_KEY_ID} --encrypt-key ${ENC_KEY_ID} \
     --full-if-older-than ${FULL_FREQ} \
     ${BACKUP_DIR} ${B2_URL}"
-fi
 
-# Cleanup failures
-log "Cleaning up failures"
-duplicity \
-  cleanup --force \
-  --sign-key ${SGN_KEY_ID} --encrypt-key ${ENC_KEY_ID} \
-  ${B2_URL}
+  cleanup
+fi
 
 # Show collection-status
 log "Showing collection status"

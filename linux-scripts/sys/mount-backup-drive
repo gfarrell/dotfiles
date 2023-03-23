@@ -1,0 +1,63 @@
+#!/bin/zsh
+
+CONFIG_DIR=/etc/backups
+ACTION=${1:-"mount"}
+
+function log {
+  echo "$1"
+}
+
+function err {
+  log "ERROR: $1" >&2
+  exit ${2:-1};
+}
+
+function require {
+  f="${CONFIG_DIR}/$1"
+  if [ ! -e "$f" ]; then
+    err "Missing required file $f, aborting..." 101
+  fi
+}
+
+require "target.conf"
+
+DRIVE_UUID=$(cat "${CONFIG_DIR}/target.conf" | awk -F': ' '/UUID/ { print $2 }')
+DRIVE_KEYFILE=$(cat "${CONFIG_DIR}/target.conf" | awk -F': ' '/KEYFILE/ { print $2 }')
+DEV="/dev/disk/by-uuid/${DRIVE_UUID}"
+ID="backup-$(cat /dev/urandom | tr -dc '0-9a-zA-Z' | head -c24)"
+DRIVE_MOUNT="/run/media/$ID"
+
+if [ ! -e "$DEV" ]; then
+  err "Missing drive ${DRIVE_UUID}, aborting..." 102
+fi
+
+case $ACTION in
+	mount)
+		log "Unlocking drive $DEV and mapping to $ID"
+		cryptsetup open "$DEV" "$ID" --key-file="$DRIVE_KEYFILE"
+		log "Mounting at $DRIVE_MOUNT"
+		mkdir -p "$DRIVE_MOUNT"
+		mount "/dev/mapper/$ID" "$DRIVE_MOUNT"
+		log "Drive mounted at $DRIVE_MOUNT"
+		;;
+	unmount)
+		log "Unmounting drive $DEV"
+		lines=$(cat /etc/mtab | grep '/dev/mapper/backup-' | wc -l)
+		if [[ $lines -gt 1 ]]; then
+			err "$lines candidates found in /etc/mtab ... aborting ..." 103
+		fi
+		if [[ $lines -lt 1 ]]; then
+			err "no candidates found in /etc/mtab. Are you sure the drive is mounted?" 104
+		fi
+		drive=$(cat /etc/mtab | awk '/\/dev\/mapper\/backup-/ {print $1}')
+		log "Unmounting $drive"
+		umount $drive
+		log "Closing mapping"
+		cryptsetup close $drive
+		log "Done"
+		;;
+	*)
+		err "Unknown command $ACTION" 100
+		;;
+esac
+

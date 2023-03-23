@@ -1,11 +1,13 @@
 DIR=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 SYS=$(shell uname -a | cut -d ' ' -f 1)
+CONFIG_HOME := ~/.config
+LOCAL_BIN := ~/.local/bin
+SYS_BIN := /usr/local/bin
+USER_SYSTEMD := $(CONFIG_HOME)/systemd/user
 
-.PHONY: macos linux symlinks brew apt linux-scripts systemd
+.PHONY: linux symlinks linux-scripts systemd
 
-macos: symlinks brew
-
-linux: symlinks apt
+linux: symlinks systemd
 
 symlinks:
 	ln -nsf $(DIR)/zsh/zsh ~/.zsh
@@ -39,37 +41,46 @@ ifeq ($(SYS), Linux)
 	ln -nsf ${DIR}/firejail ~/.config/firejail
 endif
 
-linux-scripts:
-	mkdir -p ~/.local/bin
-	ln -nsf $(DIR)/linux-scripts/run-backup ~/.local/bin/run-backup
-	ln -nsf $(DIR)/linux-scripts/restore-files ~/.local/bin/restore-files
-	ln -nsf $(DIR)/linux-scripts/take-snapshot ~/.local/bin/take-snapshot
-	ln -nsf $(DIR)/linux-scripts/nextcloud-sync ~/.local/bin/nextcloud-sync
-	ln -nsf $(DIR)/linux-scripts/new-screen-setup ~/.local/bin/new-screen-setup
+$(USER_SYSTEMD):
+	mkdir -p $@
 
-systemd: linux-scripts
-	ln -nsf $(DIR)/systemd/geoclue2.service ~/.config/systemd/user/geoclue2.service
-	ln -nsf $(DIR)/systemd/geoclue2.timer ~/.config/systemd/user/geoclue2.timer
-	ln -nsf $(DIR)/systemd/mbsync.service ~/.config/systemd/user/mbsync.service
-	ln -nsf $(DIR)/systemd/mbsync.timer ~/.config/systemd/user/mbsync.timer
-	ln -nsf $(DIR)/systemd/vdirsyncer.service ~/.config/systemd/user/vdirsyncer.service
-	ln -nsf $(DIR)/systemd/vdirsyncer.timer ~/.config/systemd/user/vdirsyncer.timer
-	ln -nsf $(DIR)/systemd/nextcloud-sync.service ~/.config/systemd/user/nextcloud-sync.service
-	ln -nsf $(DIR)/systemd/nextcloud-sync.timer ~/.config/systemd/user/nextcloud-sync.timer
-	ln -nsf $(DIR)/systemd/duplicity.service ~/.config/systemd/user/duplicity.service
-	ln -nsf $(DIR)/systemd/duplicity.timer ~/.config/systemd/user/duplicity.timer
-	ln -nsf $(DIR)/systemd/redshift.service ~/.config/systemd/user/redshift.service
-	ln -nsf $(DIR)/systemd/playerctld.service ~/.config/systemd/user/playerctld.service
+$(USER_SYSTEMD)/%: $(USER_SYSTEMD) $(DIR)/systemd/$(*)
+	ln -nsf $(DIR)/systemd/$(*) $(CONFIG_HOME)/systemd/user/$(*)
+
+$(LOCAL_BIN):
+	mkdir -p $@
+
+$(LOCAL_BIN)/%: $(LOCAL_BIN) $(DIR)/linux-scripts/user/$(*)
+	ln -nsf $(DIR)/linux-scripts/user/$(*) $(LOCAL_BIN)/$(*)
+
+$(SYS_BIN):
+	sudo mkdir -p $@
+
+$(SYS_BIN)/%: $(SYS_BIN) $(DIR)/linux-scripts/sys/$(*)
+	sudo ln -nsf $(DIR)/linux-scripts/sys/$(*) $(SYS_BIN)/$(*)
+
+linux-scripts: $(LOCAL_BIN)/run-backup $(LOCAL_BIN)/restore-files $(LOCAL_BIN)/nextcloud-sync $(LOCAL_BIN)/new-screen-setup $(SYS_BIN)/take-snapshot $(SYS_BIN)/mount-backup-drive
+
+# x11-autostart target is started by i3 automatically -- replaces the
+# xdg-autostart applications from the FreeDesktop specification.
+$(USER_SYSTEMD)/x11-autostart.target.wants/%: linux-scripts $(USER_SYSTEMD) $(USER_SYSTEMD)/x11-autostart.target
+	systemctl --user add-wants x11-autostart.target $(DIR)/systemd/$(*)
+
+# systemd user services are linked into the USER_SYSTEMD directory via systemctl
+$(USER_SYSTEMD)/%: $(USER_SYSTEMD) $(DIR)/systemd/$(*)
+	systemctl --user enable $(DIR)/systemd/$(*)
+
+systemd: linux-scripts $(USER_SYSTEMD)/geoclue2.service $(USER_SYSTEMD)/geoclue2.timer $(USER_SYSTEMD)/mbsync.service $(USER_SYSTEMD)/mbsync.timer $(USER_SYSTEMD)/vdirsyncer.service $(USER_SYSTEMD)/vdirsyncer.timer $(USER_SYSTEMD)/nextcloud-sync.service $(USER_SYSTEMD)/nextcloud-sync.timer $(USER_SYSTEMD)/duplicity.service $(USER_SYSTEMD)/duplicity.timer $(USER_SYSTEMD)/redshift-gtk.service $(USER_SYSTEMD)/playerctld.service $(USER_SYSTEMD)/ssh-agent.service $(USER_SYSTEMD)/dropbox.service $(USER_SYSTEMD)/keepassxc.service $(USER_SYSTEMD)/mullvad-vpn.service $(USER_SYSTEMD)/iwgtk-indicator.service $(USER_SYSTEMD)/x11-autostart.target
 	systemctl --user daemon-reload
-	systemctl --user enable mbsync.timer vdirsyncer.timer nextcloud-sync.timer duplicity.timer geoclue2.timer playerctld.service
-	systemctl --user start mbsync.timer vdirsyncer.timer nextcloud-sync.timer duplicity.timer geoclue2.timer playerctld.service
-
-brew:
-	command -v brew > /dev/null 2>&1 || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	brew update
-	brew tap homebrew/bundle || echo ''
-	brew upgrade
-	brew bundle -v
-
-apt:
-	sh $(DIR)/init/linux.sh
+	systemctl --user add-wants x11-autostart.target dropbox.service
+	systemctl --user add-wants x11-autostart.target redshift-gtk.service
+	systemctl --user add-wants x11-autostart.target keepassxc.service
+	systemctl --user add-wants x11-autostart.target mullvad-vpn.service
+	systemctl --user add-wants x11-autostart.target iwgtk-indicator.service
+	systemctl --user enable mbsync.timer vdirsyncer.timer nextcloud-sync.timer duplicity.timer geoclue2.timer playerctld.service ssh-agent.service
+	systemctl --user start mbsync.timer vdirsyncer.timer nextcloud-sync.timer duplicity.timer geoclue2.timer playerctld.service ssh-agent.service
+	sudo systemctl enable $(DIR)/systemd/backup-snapshots.service $(DIR)/systemd/backup-snapshots.timer
+	sudo systemctl enable $(DIR)/systemd/freshclam.service $(DIR)/systemd/freshclam.timer
+	sudo systemctl add-wants timers.target freshclam.timer
+	sudo systemctl add-wants timers.target backup-snapshots.timer
+	sudo systemctl start timers.target

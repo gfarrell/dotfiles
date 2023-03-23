@@ -2,7 +2,7 @@
 Description=Duplicity Backup Timer
 
 [Timer]
-OnCalendar=*-*-* 0,6,12,18:00:00
+OnCalendar=*-*-* 4:00:00
 Persistent=true
 RandomizedDelaySec=10m
 Unit=duplicity.service

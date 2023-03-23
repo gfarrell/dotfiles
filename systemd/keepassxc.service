@@ -1,0 +1,5 @@
+[Unit]
+Description=KeepassXC keyring manager
+
+[Service]
+ExecStart=/usr/bin/keepassxc

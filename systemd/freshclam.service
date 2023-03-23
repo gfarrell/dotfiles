@@ -1,0 +1,6 @@
+[Unit]
+Description=Virus database update
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/freshclam

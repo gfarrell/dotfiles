@@ -15,17 +15,17 @@ TARGET_PATH=$2
 #####################
 
 # Get Backblaze B2 credentials and variables
-B2_ACCOUNT=$(secret-tool lookup backblaze app-key-id)
-B2_KEY=$(secret-tool lookup backblaze app-key)
-B2_BUCKET=$(secret-tool lookup backblaze backup-bucket)
+B2_ACCOUNT=$(secret-tool lookup Path backblaze-b2-keyid)
+B2_KEY=$(secret-tool lookup Path backblaze-b2-appkey)
+B2_BUCKET=$(secret-tool lookup Path backblaze-b2-bucket-name)
 B2_DIR="backups/home"
 
 # GPG Key for Encryption and Signing
 # Public key IDs (last eight characters)
-ENC_KEY_ID=$(secret-tool lookup key backup-encryption-key-id)
-SGN_KEY_ID=$(secret-tool lookup key backup-signing-key-id)
-export PASSPHRASE=$(secret-tool lookup key backup-encryption-key-passphrase)
-export SIGN_PASSPHRASE=$(secret-tool lookup key backup-signing-key-passphrase)
+ENC_KEY_ID=$(secret-tool lookup Path backup-encryption-key-id)
+SGN_KEY_ID=$(secret-tool lookup Path backup-signing-key-id)
+export PASSPHRASE=$(secret-tool lookup Path backup-encryption-key-passphrase)
+export SIGN_PASSPHRASE=$(secret-tool lookup Path backup-signing-key-passphrase)
 
 #####################
 ###    SCRIPT     ###
