@@ -3,4 +3,4 @@ Description=Calendar Synchronisation Service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/vdirsyncer sync
+ExecStart=/usr/bin/vdirsyncer -v ERROR sync

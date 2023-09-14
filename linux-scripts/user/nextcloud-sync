@@ -12,6 +12,7 @@ function sync {
                -p $PASS \
                --non-interactive \
                --path "$2" \
+               --silent \
                "${HOME}/$1" "${NC_URL}"
 }
 
