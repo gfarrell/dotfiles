@@ -2,6 +2,7 @@
 DIR=$(dirname $0)
 CMD=$1
 
+
 # Get the first bluetooth device info
 # This comes as a CSV
 BT_SINK=$(pacmd list-cards | $DIR/bt_dev_info.awk | grep "bluez" | head -n 1)
@@ -25,12 +26,21 @@ if [ ! -z ${BT_SINK} ]; then
       next_profile=""
       ;;
   esac
+
+  # Read battery as a percentage, upower needs to be installed and
+  # experimental bluetooth features need to be enabled, see
+  # https://wiki.archlinux.org/title/bluetooth#Enabling_experimental_features
+  mac_address=$(echo ${BT_SINK} | cut -d "," -f 5)
+  battery=$(upower -d | $DIR/read_battery.awk | grep ${mac_address} | head -n 1 | cut -d "," -f 3)
+
   case $CMD in
     "toggle_profile")
       pacmd set-card-profile ${id} ${next_profile}
       ;;
     *)
-      echo "${icon} "
+      icon+=" "
+      [ ! -z "$battery" ] && icon+=" ~ ${battery} 🔋"
+      echo "${icon}"
       ;;
   esac
 else
