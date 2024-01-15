@@ -25,12 +25,25 @@ if [ ! -z ${BT_SINK} ]; then
       next_profile=""
       ;;
   esac
+  # Read battery as a percentage, upower needs to be installed and
+  # experimental bluetooth features need to be enabled, see
+  # https://wiki.archlinux.org/title/bluetooth#Enabling_experimental_features
+  mac_address=$(echo ${BT_SINK} | cut -d "," -f 5)
+  battery=$(upower -d | $DIR/read_battery.awk | grep ${mac_address} | head -n 1 | cut -d "," -f 3 | tr -d "%")
   case $CMD in
     "toggle_profile")
       pacmd set-card-profile ${id} ${next_profile}
       ;;
     *)
-      echo "${icon} "
+      batI=""
+      if [ ! -z "$battery" ]; then
+        batI=""
+        (( $battery > 10 )) && batI=""
+        (( $battery > 50 )) && batI=""
+        (( $battery > 75 )) && batI=""
+        (( $battery > 90 )) && batI=""
+      fi
+      echo "| ${icon} ${batI} |"
       ;;
   esac
 else
