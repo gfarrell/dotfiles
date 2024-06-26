@@ -1,6 +1,0 @@
-[Unit]
-Description=Geoclue2 Location Updater
-
-[Service]
-Type=oneshot
-ExecStart=/usr/local/bin/geoclue2-location-updater.sh
