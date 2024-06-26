@@ -32,6 +32,18 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-buffer'           -- Autocomplete buffers
   use 'hrsh7th/cmp-path'             -- Autocomplete paths
   use 'hrsh7th/nvim-cmp'             -- Autocompleter
+  use {                              -- Treesitter utils
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
+    }
+  use {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    after = "nvim-treesitter",
+    requires = "nvim-treesitter/nvim-treesitter"
+  }
 
   -- Language-specific plugins
   use 'guns/vim-sexp'

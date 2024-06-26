@@ -7,6 +7,7 @@ set termguicolors
 
 lua require("editor")
 lua require('lsp')
+lua require('treesitter')
 lua require("misc")
 
 " ---------------------------------------------------------
