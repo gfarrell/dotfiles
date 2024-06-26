@@ -22,7 +22,7 @@ symlinks:
 	ln -nsf $(DIR)/karabiner ~/.config/karabiner
 	ln -nsf $(DIR)/jrnl ~/.config/jrnl
 	ln -nsf $(DIR)/kitty ~/.config/kitty
-        ln -nsf $(DIR)/alacritty ~/.config/alacritty
+	ln -nsf $(DIR)/alacritty ~/.config/alacritty
 	ln -nsf $(DIR)/neovim ~/.config/nvim
 	ln -nsf $(DIR)/tmux ~/.tmux
 	ln -nsf $(DIR)/tmux/tmux.conf ~/.tmux.conf
@@ -30,7 +30,7 @@ symlinks:
 	ln -nsf $(DIR)/khal ~/.config/khal
 	ln -nsf $(DIR)/haskell/ghci.conf ~/.ghc/ghci.conf
 	ln -nsf $(DIR)/emacs ~/.emacs.d
-        ln -nsf $(DIR)/helix ~/.config/helix
+	ln -nsf $(DIR)/helix ~/.config/helix
 ifeq ($(SYS), Linux)
 	ln -sf $(DIR)/libinput-gestures/libinput-gestures.conf ~/.config/libinput-gestures.conf
 	ln -sf $(DIR)/xorg/xprofile ~/.xprofile
@@ -72,17 +72,19 @@ $(USER_SYSTEMD)/x11-autostart.target.wants/%: linux-scripts $(USER_SYSTEMD) $(US
 $(USER_SYSTEMD)/%: $(USER_SYSTEMD) $(DIR)/systemd/$(*)
 	systemctl --user enable $(DIR)/systemd/$(*)
 
-systemd: linux-scripts $(USER_SYSTEMD)/geoclue2.service $(USER_SYSTEMD)/geoclue2.timer $(USER_SYSTEMD)/mbsync.service $(USER_SYSTEMD)/mbsync.timer $(USER_SYSTEMD)/vdirsyncer.service $(USER_SYSTEMD)/vdirsyncer.timer $(USER_SYSTEMD)/nextcloud-sync.service $(USER_SYSTEMD)/nextcloud-sync.timer $(USER_SYSTEMD)/duplicity.service $(USER_SYSTEMD)/duplicity.timer $(USER_SYSTEMD)/redshift-gtk.service $(USER_SYSTEMD)/playerctld.service $(USER_SYSTEMD)/ssh-agent.service $(USER_SYSTEMD)/dropbox.service $(USER_SYSTEMD)/keepassxc.service $(USER_SYSTEMD)/mullvad-vpn.service $(USER_SYSTEMD)/iwgtk-indicator.service $(USER_SYSTEMD)/x11-autostart.target
+systemd: linux-scripts $(USER_SYSTEMD)/mbsync.service $(USER_SYSTEMD)/mbsync.timer $(USER_SYSTEMD)/vdirsyncer.service $(USER_SYSTEMD)/vdirsyncer.timer $(USER_SYSTEMD)/nextcloud-sync.service $(USER_SYSTEMD)/nextcloud-sync.timer $(USER_SYSTEMD)/duplicity.service $(USER_SYSTEMD)/duplicity.timer $(USER_SYSTEMD)/redshift-gtk.service $(USER_SYSTEMD)/playerctld.service $(USER_SYSTEMD)/ssh-agent.service $(USER_SYSTEMD)/keepassxc.service $(USER_SYSTEMD)/mullvad-vpn.service $(USER_SYSTEMD)/iwgtk-indicator.service $(USER_SYSTEMD)/x11-autostart.target
 	systemctl --user daemon-reload
-	systemctl --user add-wants x11-autostart.target dropbox.service
 	systemctl --user add-wants x11-autostart.target redshift-gtk.service
 	systemctl --user add-wants x11-autostart.target keepassxc.service
 	systemctl --user add-wants x11-autostart.target mullvad-vpn.service
 	systemctl --user add-wants x11-autostart.target iwgtk-indicator.service
-	systemctl --user enable mbsync.timer vdirsyncer.timer nextcloud-sync.timer duplicity.timer geoclue2.timer playerctld.service ssh-agent.service
-	systemctl --user start mbsync.timer vdirsyncer.timer nextcloud-sync.timer duplicity.timer geoclue2.timer playerctld.service ssh-agent.service
-	sudo systemctl enable $(DIR)/systemd/backup-snapshots.service $(DIR)/systemd/backup-snapshots.timer
-	sudo systemctl enable $(DIR)/systemd/freshclam.service $(DIR)/systemd/freshclam.timer
+	systemctl --user enable mbsync.timer vdirsyncer.timer nextcloud-sync.timer duplicity.timer playerctld.service ssh-agent.service
+	systemctl --user start mbsync.timer vdirsyncer.timer nextcloud-sync.timer duplicity.timer playerctld.service ssh-agent.service
+	sudo cp $(DIR)/systemd/backup-snapshots.{service,timer} /etc/systemd/system/
+	sudo cp $(DIR)/systemd/freshclam.{service,timer} /etc/systemd/system/
+	sudo systemctl enable backup-snapshots.service backup-snapshots.timer
+	sudo systemctl enable freshclam.service freshclam.timer
 	sudo systemctl add-wants timers.target freshclam.timer
 	sudo systemctl add-wants timers.target backup-snapshots.timer
+	sudo systemctl daemon-reload
 	sudo systemctl start timers.target
