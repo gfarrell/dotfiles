@@ -1,0 +1,12 @@
+theme = "everforest_dark"
+
+[editor]
+mouse = false
+cursorline = true
+
+[editor.lsp]
+enable = true
+display-messages = false
+
+[editor.soft-wrap]
+enable = true

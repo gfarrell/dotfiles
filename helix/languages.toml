@@ -1,0 +1,33 @@
+[[language]]
+name = "haskell"
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+
+[[language]]
+name = "typst"
+scope = "source.typst"
+injection-regex = "typst"
+roots = []
+comment-token = "//"
+file-types = ["typ"]
+indent = { tab-width = 2, unit = " " }
+language-servers = [ "typst-lsp" ]
+text-width = 100
+rulers = [100]
+soft-wrap.wrap-at-text-width = true
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'$' = '$'
+'"' = '"'
+
+# [[grammar]]
+# name = "typst"
+# source = { path = "path/to/the/tree-sitter's/grammar" }
