@@ -17,6 +17,8 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 # Nix path
 export PATH="$HOME/.nix-profile/bin:$PATH"
+# Cabal
+export PATH="$HOME/.cabal/bin:$PATH"
 
 # Configuration for others
 # ============================
