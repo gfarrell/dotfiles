@@ -22,6 +22,7 @@ symlinks:
 	ln -nsf $(DIR)/karabiner ~/.config/karabiner
 	ln -nsf $(DIR)/jrnl ~/.config/jrnl
 	ln -nsf $(DIR)/kitty ~/.config/kitty
+        ln -nsf $(DIR)/alacritty ~/.config/alacritty
 	ln -nsf $(DIR)/neovim ~/.config/nvim
 	ln -nsf $(DIR)/tmux ~/.tmux
 	ln -nsf $(DIR)/tmux/tmux.conf ~/.tmux.conf

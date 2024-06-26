@@ -1,0 +1,15 @@
+[window]
+
+# I hide window chrome anyway with i3 so this just maintains consistency
+decorations = "None"
+
+[font]
+
+normal.family = "Hasklig"
+normal.style = "Regular"
+size = 14.0
+
+[selection]
+
+# This is standard behaviour in X
+save_to_clipboard = true
