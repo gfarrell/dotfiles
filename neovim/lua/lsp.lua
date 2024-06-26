@@ -21,7 +21,23 @@ cmp.setup({
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
     ['<CR>'] = cmp.mapping.confirm({ select = true })
-  })
+  }),
+
+  enabled = function()
+    local context = require'cmp.config.context'
+
+    -- disable completion in comments
+    if context.in_treesitter_capture("comment") or context.in_syntax_group("Comment") then
+      return false
+    end
+
+    -- disable completion in git commit messages, vimwiki, and markdown
+    if vim.bo.filetype == "gitcommit" or vim.bo.filetype == "vimwiki" or vim.bo.filetype == "markdown" then
+      return false
+    end
+
+    return true
+  end
 })
 
 -- General LSP Keymaps
