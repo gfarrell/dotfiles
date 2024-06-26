@@ -29,6 +29,9 @@
     disown
   done
 
+  snixembed >/var/tmp/snixembed.log 2>&1 &
+  disown
+
   # unlock
   flock -u 200
 ) 200>/var/tmp/polybar-launch.lock
