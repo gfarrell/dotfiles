@@ -46,6 +46,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- Enable LSP configurations
-require'lspconfig'.hls.setup{}
+require'lspconfig'.hls.setup{
+  cabalFormattingProvider = "cabalfmt",
+  formattingProvider = "ormolu"
+  -- custom HLS for testing
+  -- cmd = {"/home/gideon/projects/haskell-language-server/dist-newstyle/build/x86_64-linux/ghc-9.4.7/haskell-language-server-2.4.0.0/x/haskell-language-server/build/haskell-language-server/haskell-language-server", "--lsp"}
+}
 require'lspconfig'.sqlls.setup{}
-require'lspconfig'.elmls.setup{}
+require'lspconfig'.tsserver.setup{}
+require'lspconfig'.pylsp.setup{}
+require'lspconfig'.clojure_lsp.setup{}
+require'lspconfig'.nil_ls.setup{
+  ['nil'] = {
+    formatting = {
+      command = { "alejandra" },
+    },
+  },
+}
