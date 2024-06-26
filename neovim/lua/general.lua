@@ -14,3 +14,10 @@ vim.g.mapleader = ","          -- Use , as the leader
 -- I prefer below, right than above, left for new splits
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+
+-- Some keybindings
+--
+
+-- Change tabs quickly
+vim.keymap.set("n", "<Leader>tn", "<cmd>tabn<cr>")
+vim.keymap.set("n", "<Leader>tp", "<cmd>tabp<cr>")
