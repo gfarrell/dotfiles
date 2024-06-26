@@ -1,5 +1,6 @@
 [Unit]
 Description=Local backup timer
+After=local-fs.target
 
 [Timer]
 OnCalendar=*-*-* 3:00:00

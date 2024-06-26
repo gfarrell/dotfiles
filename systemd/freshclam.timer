@@ -1,5 +1,6 @@
 [Unit]
 Description=Virus database update schedule
+After=local-fs.target
 
 [Timer]
 OnCalendar=*-*-* 05:00:00
