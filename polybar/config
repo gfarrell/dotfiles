@@ -9,8 +9,8 @@ gaps = 0
 gaps-top = 0
 
 [bar/top]
-; Default monitor is eDP1 (laptop screen)
-monitor = ${env:MONITOR:eDP1}
+; Default monitor is eDP-1 (laptop screen)
+monitor = ${env:MONITOR:eDP-1}
 width = 100%
 height = 30
 ; Float with gaps
