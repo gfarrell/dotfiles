@@ -1,3 +1,5 @@
 dbus-update-activation-environment --all
 autorandr -cf
+xrdb -merge ~/.Xresources
+xrandr --dpi 92x92
 exec i3
