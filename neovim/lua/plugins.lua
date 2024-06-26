@@ -6,7 +6,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- Themes
-  use 'morhetz/gruvbox'              -- Gruvbox theme
+  use 'sainnhe/everforest'           -- Everforest theme
   use 'vim-airline/vim-airline'      -- Lightweight status bar
   use 'frazrepo/vim-rainbow'         -- Highlight matching parens
 
