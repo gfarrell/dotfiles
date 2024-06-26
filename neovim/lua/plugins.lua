@@ -18,6 +18,7 @@ return require('packer').startup(function(use)
   use 'tpope/vim-fugitive'           -- Git plugin
   use 'airblade/vim-gitgutter'       -- Show git status in margins
   use 'Pocco81/true-zen.nvim'        -- Zen mode to remove distractions
+  use 'mattn/calendar-vim'           -- Calendar plugin
 
   -- Text objects and movements
   use 'tpope/vim-commentary'         -- Make it easier to comment things out
