@@ -29,7 +29,7 @@ local kmopts = { noremap = true, silent = true }
 vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', '<Leader>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', '<Leader>q', vim.diagnostic.setqflist, opts)
 
 -- Buffer-specific LSP Keymaps
 vim.api.nvim_create_autocmd('LspAttach', {
