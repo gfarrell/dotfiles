@@ -1,13 +1,17 @@
 lua require("plugins")
 lua require("general")
 
-" lua require("theme")
-colorscheme gruvbox
+" lua require("theme") -- this doesn't work yet
 set termguicolors
+let g:everforest_better_performance = 1
+let g:everforest_background = 'soft'
+set background=dark
+colorscheme everforest
 
 lua require("editor")
 lua require('lsp')
 lua require('treesitter')
+lua require('filetypes')
 lua require("misc")
 
 " ---------------------------------------------------------
