@@ -55,6 +55,9 @@ for_window [window_type="menu"] floating enable
 for_window [class="activity-monitor"] floating enable
 for_window [title="^zoom$"] floating enable
 for_window [class="^Pianoteq"] floating enable
+for_window [class="Dicterm"] floating enable, resize set 800px 500px, move position center
+for_window [class="TaskManager"] floating enable, resize set 800px 500px, move position center
+for_window [title="^Huddle"] floating enable, resize set 800px 500px move position center
 
 # =================== #
 #    Startup Utils    #
