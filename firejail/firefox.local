@@ -1,1 +1,11 @@
+# Allow access to emails from neomutt to view as HTML
 whitelist ${HOME}/.tmp/mutt
+
+# Give access to some binaries
+private-bin bash,dbus-launch,dbus-send,env,firefox,sh,which,zoom
+
+# Allow firefox to inhibit screensavers
+dbus-user.talk org.freedesktop.ScreenSaver
+
+# Give firefox access to common programmes/addons/plugins
+include firefox-common-addons.profile
