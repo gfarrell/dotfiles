@@ -51,3 +51,10 @@ function! AgQF(term)
   cexpr system("ag " . shellescape(a:term))
   copen
 endfunction
+
+" Find all TODOs
+" --------------
+function! TODO()
+  cexpr system("ag TODO")
+  copen
+endfunction
