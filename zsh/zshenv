@@ -54,9 +54,8 @@ export GHCUP_USE_XDG_DIRS=1
 # ============================
 
 if [[ `uname -s` == Linux ]]; then
-  # So that we can use the keyring
-  if [[ -e /run/user/1000/keyring/ssh ]]; then
-    export SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+  if [[ -e "$XDG_RUNTIME_DIR/ssh-agent.socket" ]]; then
+    export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
   fi
 fi
 
