@@ -41,6 +41,9 @@ export VIRTUAL_ENV_DISABLE_PROMPT="yes"
 # Use nvim as the default editor
 export EDITOR="nvim"
 
+# Use alacritty as the terminal
+export TERMINAL=alacritty
+
 # Use less as the default pager
 export PAGER="less"
 
