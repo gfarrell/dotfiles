@@ -21,3 +21,7 @@ vim.opt.swapfile = false
 
 -- Use Ctrl+P to open FZF :Files
 vim.keymap.set("n", "<C-P>", ":Files<CR>")
+
+-- Find/Replace tweaks
+vim.opt.ignorecase = true -- mostly we don't care about the case
+vim.opt.smartcase = true -- but we do if I bother capitalising _something_
