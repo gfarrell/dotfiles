@@ -2,7 +2,7 @@
 whitelist ${HOME}/.tmp/mutt
 
 # Give access to some binaries
-private-bin bash,dbus-launch,dbus-send,env,firefox,sh,which,zoom
+private-bin bash,dbus-launch,dbus-send,env,firefox,sh,which,zoom,xdg-open,grep,sed
 
 # Allow firefox to inhibit screensavers
 dbus-user.talk org.freedesktop.ScreenSaver
