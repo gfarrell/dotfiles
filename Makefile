@@ -18,7 +18,6 @@ symlinks:
 	ln -sf $(DIR)/editorconfig ~/.editorconfig
 	ln -sf $(DIR)/eslintrc ~/.eslintrc
 	ln -sf $(DIR)/task/taskrc ~/.taskrc
-	ln -nsf $(DIR)/karabiner ~/.config/karabiner
 	ln -nsf $(DIR)/jrnl ~/.config/jrnl
 	ln -nsf $(DIR)/kitty ~/.config/kitty
 	ln -nsf $(DIR)/alacritty ~/.config/alacritty
