@@ -10,9 +10,8 @@ USER_SYSTEMD := $(CONFIG_HOME)/systemd/user
 linux: symlinks systemd
 
 symlinks:
-	ln -nsf $(DIR)/zsh/zsh ~/.zsh
+	ln -nsf $(DIR)/zsh ~/.config/zsh
 	ln -sf $(DIR)/zsh/zshenv ~/.zshenv
-	ln -sf $(DIR)/zsh/zshrc ~/.zshrc
 	ln -sf $(DIR)/git/gitconfig ~/.gitconfig
 	ln -sf $(DIR)/git/gitignore_globals ~/.gitignore_globals
 	ln -sf $(DIR)/psql/psqlrc ~/.psqlrc

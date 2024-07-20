@@ -1,4 +1,4 @@
-zsh_dotfile_path=$(dirname $(readlink $HOME/.zshrc))
+zsh_dotfile_path=$HOME/.config/zsh
 fpath=($zsh_dotfile_path/zsh/completion $fpath)
 
 # waiting dots

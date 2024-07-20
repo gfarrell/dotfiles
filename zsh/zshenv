@@ -2,6 +2,9 @@
 # ZSH Environment Configuration
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+# Set the ZDOTDIR first, so we can put everything in the right place
+export ZDOTDIR="$HOME/.config/zsh"
+
 # PATH
 # =============================
 
