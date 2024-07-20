@@ -1,3 +1,7 @@
+# import = [
+#   "~/.config/alacritty/themes/everforest_dark.toml"
+# ]
+
 [window]
 
 # I hide window chrome anyway with i3 so this just maintains consistency
