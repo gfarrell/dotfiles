@@ -4,13 +4,8 @@ data.location=~/.task
 # Configure Tasks.next report
 report.next.labels=ID,Project,Description,Tags
 report.next.columns=id,project,description,tags
-context.work.read=+converge
-context.work.write=+converge
 news.version=2.6.0
 context.personal.read=-converge
-context.personal.write=+personal
-context.rcteam.read=+converge +realitycapture +team
-context.rcteam.write=+converge +realitycapture +team
+context.personal.write=
 context.converge.read=+converge
 context.converge.write=+converge
-context=rcteam
