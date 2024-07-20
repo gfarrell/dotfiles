@@ -51,11 +51,6 @@ source $zsh_dotfile_path/functions
 source $zsh_dotfile_path/prompt
 source $zsh_dotfile_path/secrets
 
-# on linux I want snaps to work, so have to source some bash stuff
-if [[ `uname -s` == "Linux" && -f "/etc/profile.d/apps-bin-path.sh" ]]; then
-  emulate sh -c 'source /etc/profile.d/apps-bin-path.sh'
-fi
-
 # Z
 if command -v brew >/dev/null; then
   ZSH_PATH=`brew --prefix`/etc/profile.d/z.sh;
