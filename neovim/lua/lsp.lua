@@ -69,7 +69,7 @@ require'lspconfig'.hls.setup{
   -- cmd = {"/home/gideon/projects/haskell-language-server/dist-newstyle/build/x86_64-linux/ghc-9.4.7/haskell-language-server-2.4.0.0/x/haskell-language-server/build/haskell-language-server/haskell-language-server", "--lsp"}
 }
 require'lspconfig'.sqlls.setup{}
-require'lspconfig'.tsserver.setup{}
+require'lspconfig'.ts_ls.setup{}
 require'lspconfig'.pylsp.setup{}
 require'lspconfig'.clojure_lsp.setup{}
 require'lspconfig'.nil_ls.setup{

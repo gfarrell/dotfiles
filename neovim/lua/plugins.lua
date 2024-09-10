@@ -1,56 +1,46 @@
 -- Plugin configuration
 --
 
-return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-
+return {
   -- Themes
-  use 'sainnhe/everforest'           -- Everforest theme
-  use 'vim-airline/vim-airline'      -- Lightweight status bar
-  use 'frazrepo/vim-rainbow'         -- Highlight matching parens
+  'sainnhe/everforest',           -- Everforest theme
+  'vim-airline/vim-airline',      -- Lightweight status bar
+  'frazrepo/vim-rainbow',         -- Highlight matching parens
 
   -- Nice utilities
-  use 'scrooloose/nerdtree'          -- File tree view
-  use 'terryma/vim-multiple-cursors' -- Super useful multi-cursor support
-  use 'junegunn/fzf'                 -- Fuzzy finding with FZF
-  use 'junegunn/fzf.vim'             -- FZF vim plugin (need both)
-  use 'tpope/vim-fugitive'           -- Git plugin
-  use 'airblade/vim-gitgutter'       -- Show git status in margins
-  use 'Pocco81/true-zen.nvim'        -- Zen mode to remove distractions
-  use 'mattn/calendar-vim'           -- Calendar plugin
+  'scrooloose/nerdtree',          -- File tree view
+  'terryma/vim-multiple-cursors', -- Super useful multi-cursor support
+  'junegunn/fzf',                 -- Fuzzy finding with FZF
+  'junegunn/fzf.vim',             -- FZF vim plugin (need both)
+  'tpope/vim-fugitive',           -- Git plugin
+  'airblade/vim-gitgutter',       -- Show git status in margins
+  'Pocco81/true-zen.nvim',        -- Zen mode to remove distractions
+  'mattn/calendar-vim',           -- Calendar plugin
 
   -- Text objects and movements
-  use 'tpope/vim-commentary'         -- Make it easier to comment things out
-  use 'tpope/vim-surround'           -- "Surrounding" objects
-  use 'wellle/targets.vim'           -- Useful extra targets
+  'tpope/vim-commentary',         -- Make it easier to comment things out
+  'tpope/vim-surround',           -- "Surrounding" objects
+  'wellle/targets.vim',           -- Useful extra targets
 
   -- Language utilities
-  use 'neovim/nvim-lspconfig'        -- Sane LSP configurations
-  use 'hrsh7th/vim-vsnip'            -- Snippets
-  use 'hrsh7th/cmp-vsnip'            -- Autcomplete snippets 
-  use 'hrsh7th/cmp-nvim-lsp'         -- Autocompletion from LSP
-  use 'hrsh7th/cmp-buffer'           -- Autocomplete buffers
-  use 'hrsh7th/cmp-path'             -- Autocomplete paths
-  use 'hrsh7th/nvim-cmp'             -- Autocompleter
-  use {                              -- Treesitter utils
-        'nvim-treesitter/nvim-treesitter',
-        run = function()
-            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-            ts_update()
-        end,
-    }
-  use {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    after = "nvim-treesitter",
-    requires = "nvim-treesitter/nvim-treesitter"
-  }
+  'neovim/nvim-lspconfig',        -- Sane LSP configurations
+  'hrsh7th/vim-vsnip',            -- Snippets
+  'hrsh7th/cmp-vsnip',            -- Autcomplete snippets 
+  'hrsh7th/cmp-nvim-lsp',         -- Autocompletion from LSP
+  'hrsh7th/cmp-buffer',           -- Autocomplete buffers
+  'hrsh7th/cmp-path',             -- Autocomplete paths
+  'hrsh7th/nvim-cmp',             -- Autocompleter
+  {                              -- Treesitter utils
+    'nvim-treesitter/nvim-treesitter',
+    build = ":TSUpdate"
+  },
+  'nvim-treesitter/nvim-treesitter-textobjects',
 
   -- Language-specific plugins
-  use 'guns/vim-sexp'
-  use 'tpope/vim-sexp-mappings-for-regular-people'
-  use 'chrisbra/csv.vim'
-  use 'rust-lang/rust.vim'
-  use 'HerringtonDarkholme/yats.vim'
-  use 'vimwiki/vimwiki'
-end)
+  'guns/vim-sexp',
+  'tpope/vim-sexp-mappings-for-regular-people',
+  'chrisbra/csv.vim',
+  'rust-lang/rust.vim',
+  'HerringtonDarkholme/yats.vim',
+  'vimwiki/vimwiki'
+}
