@@ -2,10 +2,11 @@
 Description=Redshift display colour temperature adjustment (GUI)
 Documentation=http://jonls.dk/redshift/
 After=display-manager.service
+BindsTo=graphical-session.target
 
 [Service]
 ExecStart=/usr/bin/redshift-gtk
 Restart=always
 
 [Install]
-WantedBy=default.target
+WantedBy=graphical-session.target
