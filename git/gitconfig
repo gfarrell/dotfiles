@@ -64,6 +64,6 @@
     autocorrect = 1
 
 [init]
-    defaultbranch = trunk
+	defaultbranch = main
 [commit]
 	gpgsign = true
