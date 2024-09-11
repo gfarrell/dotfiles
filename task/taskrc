@@ -9,3 +9,6 @@ context.personal.read=-converge
 context.personal.write=
 context.converge.read=+converge
 context.converge.write=+converge
+context=gtf
+context.gtf.io.read=proj:gtf.io and +personal
+context.gtf.io.write=proj:gtf.io and +personal
