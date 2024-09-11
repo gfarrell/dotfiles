@@ -1,2 +1,0 @@
-# 1Password for managing passwords and secrets
-1Password
