@@ -39,6 +39,7 @@ ifeq ($(SYS), Linux)
 	ln -nsf $(DIR)/mutt ~/.config/mutt
 	ln -nsf $(DIR)/picom ~/.config/picom
 	ln -nsf ${DIR}/firejail ~/.config/firejail
+	ln -nsf ${DIR}/fontconfig ~/.config/fontconfig
 endif
 
 $(USER_SYSTEMD):
