@@ -1,6 +1,6 @@
-# import = [
-#   "~/.config/alacritty/themes/everforest_dark.toml"
-# ]
+import = [
+  "~/.config/alacritty/themes/everforest_dark.toml"
+]
 
 [window]
 
@@ -11,7 +11,7 @@ decorations = "None"
 
 normal.family = "Hasklig"
 normal.style = "Regular"
-size = 14.0
+size = 12.0
 
 [selection]
 
