@@ -29,6 +29,7 @@ symlinks:
 	ln -nsf $(DIR)/haskell/ghci.conf ~/.ghc/ghci.conf
 	ln -nsf $(DIR)/emacs ~/.emacs.d
 	ln -nsf $(DIR)/helix ~/.config/helix
+	ln -nsf $(DIR)/ranger ~/.config/ranger
 ifeq ($(SYS), Linux)
 	ln -sf $(DIR)/libinput-gestures/libinput-gestures.conf ~/.config/libinput-gestures.conf
 	ln -sf $(DIR)/xorg/xprofile ~/.xprofile
