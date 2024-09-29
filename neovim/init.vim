@@ -12,7 +12,6 @@ lua require("editor")
 lua require("lsp")
 lua require("treesitter")
 lua require("filetypes")
-lua require("misc")
 
 " ---------------------------------------------------------
 " Useful functions (use with :call <name>)

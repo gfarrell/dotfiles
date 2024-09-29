@@ -42,5 +42,17 @@ return {
   'chrisbra/csv.vim',
   'rust-lang/rust.vim',
   'HerringtonDarkholme/yats.vim',
-  'vimwiki/vimwiki'
+  {
+    'vimwiki/vimwiki',
+    init = function()
+      vim.g.vimwiki_list = {
+        {
+          name = "GTF KB",
+          path = "~/notes/gtf-kb",
+          path_html = "~/notes/gtf-kb.html"
+        },
+      }
+      vim.g.vimwiki_auto_chdir = 1
+    end,
+  }
 }
