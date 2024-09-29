@@ -113,7 +113,7 @@ bindsym $mod+t exec i3-sensible-terminal
 bindsym $mod+space exec rofi -combi-modi drun#window -modi combi#drun#window#calc#filebrowser -show combi
 
 # open
-bindsym $mod+n exec --no-startup-id i3-sensible-terminal ranger
+bindsym $mod+n exec --no-startup-id i3-sensible-terminal -e ranger
 
 # open firefox
 bindsym $mod+b exec --no-startup-id firejail --apparmor firefox
