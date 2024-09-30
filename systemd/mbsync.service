@@ -3,4 +3,4 @@ Description=Mailbox Syncronisation Service
 
 [Service]
 Type=oneshot
-ExecStart=/home/gideon/.local/bin/email-sync
+ExecStart=/home/gideon/.local/bin/email-sync sync_remote

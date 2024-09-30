@@ -1,0 +1,2 @@
+#!/bin/env zsh
+notmuch --config ~/.config/notmuch/config new

@@ -1,6 +1,84 @@
-#!/bin/zsh
+#!/bin/env zsh
 
 set -e
 
-mbsync -c ~/.config/mbsyncrc -qqa
-notmuch --config ~/.config/notmuch/config new 
+setopt extended_glob
+
+export NOTMUCH_CONFIG=$HOME/.config/notmuch/config
+
+typeset -A tag_folders
+tag_folders=(
+  archived "Archives"
+  deleted "Trash"
+  draft "Drafts"
+  inbox "Inbox"
+  sent "Sent"
+  spam "Spam"
+)
+
+sync_remote() {
+  tags_to_folders
+  echo "Synchronising with remote server"
+  mbsync -c ~/.config/mbsyncrc -qqa
+  notmuch new
+  folders_to_tags
+}
+
+# Tags messages based on the folder they are in. N.B. that this
+# might overwrite any tag assignments, so make sure you run the
+# tags_to_folders function first.
+folders_to_tags() {
+  # Things in the archive are no longer in the inbox nor are they deleted nor spam
+  notmuch tag +archived -inbox -deleted -spam -- folder:personal/Archives
+  # Things in trash are no longer in the inbox nor archived, but could be spam
+  notmuch tag +deleted -inbox -archived -- folder:personal/Trash
+  # Drafts are just drafts
+  notmuch tag +draft -- folder:personal/Draft
+  # Things in the inbox cannot be archived or deleted or spam
+  notmuch tag +inbox -archived -deleted -spam -- folder:personal/Inbox
+  # Things in sent are sent, that's all
+  notmuch tag +sent -- folder:personal/Sent
+  # Things in spam are spam, not archived nor in the inbox, but could be deleted
+  notmuch tag +spam -inbox -archived -- folder:personal/Spam
+}
+
+# Moves messages into folders based on the tags they have. This effectively
+# "persists" the notmuch database to the maildir
+tags_to_folders() {
+  for tag folder in ${(kv)tag_folders}; do
+    move_messages "$tag" "personal/$folder"
+  done
+}
+
+safe_move() {
+    # get the filename from the path
+    local s=${1:t}
+    # remove everything after the comma
+    s=${s%%,*}
+    # now move the file
+    mv -f -- "$1" "$2/$s"
+}
+
+move_messages() {
+  local tag=$1
+  local folder=$2
+  count=$(notmuch count --output=files --exclude=false tag:$tag and not folder:$folder)
+  echo "Moving $count messages to $folder"
+  notmuch search --output=files --exclude=false tag:$tag and not folder:$folder | while read -r file; do
+  safe_move "$file" "$HOME/mail/$folder/cur"
+  done
+}
+
+case "$1" in
+    sync_remote)
+      sync_remote
+      ;;
+    sync_local)
+      notmuch new
+      tags_to_folders
+      ;;
+    *)
+      echo "Usage: $0 {sync_remote|sync_local}"
+      exit 1
+      ;;
+esac

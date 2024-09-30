@@ -1,0 +1,7 @@
+Inbox = tag:inbox
+Drafts = tag:draft
+Flagged = tag:flagged
+Sent = tag:sent
+Archive = tag:archived
+Spam = tag:spam
+Trash = tag:deleted
