@@ -1,0 +1,27 @@
+include "%L"
+
+# Maths / logic
+<Multi_key> <equal> <greater> : "⇒"
+<Multi_key> <equal> <less> : "⇐"
+<Multi_key> <less> <equal> <greater> : "⇔"
+<Multi_key> <E> <E> : "∃"
+<Multi_key> <A> <A> : "∀"
+<Multi_key> <s> <m> : "∈"
+<Multi_key> <l> <n> : "∧"
+<Multi_key> <l> <u> : "∨"
+# Greek Letters lower case
+<Multi_key> <g> <a> : "α" U03B1
+<Multi_key> <g> <b> : "β" U03B2
+<Multi_key> <g> <g> : "γ" U03B3
+<Multi_key> <g> <d> : "δ" U03B4
+<Multi_key> <g> <e> : "ε" U03B5
+<Multi_key> <g> <l> : "λ" U03BB
+<Multi_key> <g> <s> : "σ" U03C3
+# Greek Letters upper case
+<Multi_key> <g> <A> : "Α" U0391
+<Multi_key> <g> <B> : "Β" U0392
+<Multi_key> <g> <G> : "Γ" U0393
+<Multi_key> <g> <D> : "Δ" U0394
+<Multi_key> <g> <E> : "Ε" U0395
+<Multi_key> <g> <L> : "Λ" U039B
+<Multi_key> <g> <S> : "Σ" U03A3
