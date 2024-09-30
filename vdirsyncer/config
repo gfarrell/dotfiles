@@ -1,0 +1,54 @@
+[general]
+status_path = "~/.local/share/vdirsyncer"
+
+# Contacts
+# ========
+
+[pair contacts_runbox_sync]
+a = "contacts_local"
+b = "contacts_runbox"
+conflict_resolution = "a wins"
+collections = [["allcontacts", "card", "contacts"]]
+
+[pair contacts_hades_sync]
+a = "contacts_local"
+b = "contacts_hades"
+conflict_resolution = "a wins"
+collections = [["allcontacts", "card", "contacts"]]
+
+[storage contacts_local]
+type = "filesystem"
+path = "~/contacts"
+fileext = ".vcf"
+
+[storage contacts_runbox]
+type = "carddav"
+url.fetch = ["command", "secret-tool", "lookup", "Path", "cloud.runbox.dav.url"]
+username = "gideon.farrell"
+password.fetch = ["command", "secret-tool", "lookup", "Path", "cloud.runbox.key"]
+
+[storage contacts_hades]
+type = "carddav"
+url.fetch = ["command", "secret-tool", "lookup", "Path", "cloud.nextcloud.dav.url"]
+username = "gideon"
+password.fetch = ["command", "secret-tool", "lookup", "Path", "cloud.nextcloud.key"]
+
+# Calendars
+# =========
+
+[pair calendar_hades_sync]
+a = "calendar_local"
+b = "calendar_hades"
+conflict_resolution = "a wins"
+collections = ["home"]
+
+[storage calendar_local]
+type = "filesystem"
+path = "~/calendars"
+fileext = ".ics"
+
+[storage calendar_hades]
+type = "caldav"
+url.fetch = ["command", "secret-tool", "lookup", "Path", "cloud.nextcloud.dav.url"]
+username = "gideon"
+password.fetch = ["command", "secret-tool", "lookup", "Path", "cloud.nextcloud.key"]
