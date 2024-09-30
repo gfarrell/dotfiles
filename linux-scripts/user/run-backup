@@ -12,9 +12,9 @@ FULL_FREQ="30D" # how often should we do a full backup
 
 # Get Backblaze B2 credentials and variables
 # We use `jq` to url-encode the keys
-B2_ACCOUNT=$(secret-tool lookup Path backblaze-b2-keyid | jq -sRr @uri)
-B2_KEY=$(secret-tool lookup Path backblaze-b2-appkey | jq -sRr @uri)
-B2_BUCKET=$(secret-tool lookup Path backblaze-b2-bucket-name)
+B2_ACCOUNT=$(secret-tool lookup Path cloud.backblaze.id | jq -sRr @uri)
+B2_KEY=$(secret-tool lookup Path cloud.backblaze.key | jq -sRr @uri)
+B2_BUCKET=$(secret-tool lookup Path cloud.backblaze.bucket)
 B2_DIR="backups/home"
 
 # Backup my home folder
