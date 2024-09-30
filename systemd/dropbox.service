@@ -2,4 +2,8 @@
 Description=Dropbox file synchronisation app
 
 [Service]
-ExecStart=/usr/bin/dropbox
+Type=simple
+ExecStart=/usr/bin/env "%h/.dropbox-dist/dropboxd"
+ExecReload=/bin/kill $MAINPID
+KillMode=process
+Restart=no
