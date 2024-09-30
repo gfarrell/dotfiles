@@ -3,5 +3,4 @@ Description=Mailbox Syncronisation Service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/mbsync -qq -c "/home/gideon/.config/isync/mbsyncrc" -a
-ExecStartPost=/usr/bin/notmuch new
+ExecStart=/home/gideon/.local/bin/email-sync

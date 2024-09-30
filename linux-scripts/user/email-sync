@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+set -e
+
+mbsync -c ~/.config/mbsyncrc -qqa
+notmuch --config ~/.config/notmuch/config new 
