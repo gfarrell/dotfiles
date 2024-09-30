@@ -1,5 +1,5 @@
 [Unit]
-Description=Calendar Synchronisation Service
+Description=DAV Synchronisation Service (Calendar and Contacts)
 
 [Service]
 Type=oneshot
