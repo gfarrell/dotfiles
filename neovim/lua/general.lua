@@ -15,6 +15,12 @@ vim.g.mapleader = ","          -- Use , as the leader
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
+-- Codefence configuration
+--
+vim.g.markdown_fenced_languages = {
+  "ts=typescript" -- needed for denols configuration
+}
+
 -- Some keybindings
 --
 

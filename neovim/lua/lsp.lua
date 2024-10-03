@@ -69,7 +69,6 @@ require'lspconfig'.hls.setup{
   -- cmd = {"/home/gideon/projects/haskell-language-server/dist-newstyle/build/x86_64-linux/ghc-9.4.7/haskell-language-server-2.4.0.0/x/haskell-language-server/build/haskell-language-server/haskell-language-server", "--lsp"}
 }
 require'lspconfig'.sqlls.setup{}
-require'lspconfig'.ts_ls.setup{}
 require'lspconfig'.pylsp.setup{}
 require'lspconfig'.clojure_lsp.setup{}
 require'lspconfig'.nil_ls.setup{
@@ -79,3 +78,34 @@ require'lspconfig'.nil_ls.setup{
     },
   },
 }
+
+-- Enable LSP switching for typescript / deno projects
+local function select_typescript_server(root_dir)
+  -- since we're mostly using nix for projects, we check which executable is
+  -- available and use that. If both are available, we do some more checking.
+  local deno_a = vim.fn.executable("deno")
+  local tsls_a = vim.fn.executable("typescript-language-server")
+  if deno_a == 1 and tsls_a == 1 then
+    -- ok, we can't use this to decide, let's check what kind of project it is
+    if vim.fn.filereadable(root_dir .. "/deno.json")
+      or vim.fn.filereadable(root_dir .. "/deno.jsonc") then
+      return "denols"
+    end
+  end
+  if deno_a == 1 and tsls_a == 0 then
+    return "denols"
+  end
+  if deno_a == 0 and tsls_a == 1 then
+    return "ts_ls"
+  end
+  -- as a default, we return ts_ls
+  return "ts_ls"
+end
+
+local ts_server = select_typescript_server(vim.fn.getcwd())
+
+if ts_server == "ts_ls" then
+  require'lspconfig'.ts_ls.setup{}
+elseif ts_server == "denols" then
+  require'lspconfig'.denols.setup{}
+end
