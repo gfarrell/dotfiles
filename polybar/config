@@ -1,10 +1,31 @@
+[colours]
+; Everforest Dark
+bg_dim = 1e2326
+bg0 = 272e33
+bg1 = 2e383c
+bg2 = 374145
+bg3 = 414b50
+bg4 = 495156
+bg5 = 4f5b58
+fg = d3c6aa
+red = e67e80
+orange = e69875
+yellow = dbbc7f
+green = a7c080
+aqua = 83c092
+blue = 7fbbb3
+purple = d699b6
+grey0 = 7a8478
+grey1 = 859289
+grey2 = 9da9a0
+
 [theme]
-background = #323031
-foreground = #FFFFFF
-primary = #177E89
-secondary = #FFC857
-inactive = #758789
-alert = #DB3A34
+background = ${colours.bg_dim}
+foreground = ${colours.fg}
+primary = ${colours.green}
+secondary = ${colours.yellow}
+inactive = ${colours.grey0}
+alert = ${colours.red}
 gaps = 0
 gaps-top = 0
 
@@ -47,6 +68,7 @@ label-mode-background = ${theme.secondary}
 label-mode-foreground = ${theme.background}
 label-focused = %index%
 label-focused-background = ${theme.primary}
+label-focused-foreground = ${theme.background}
 label-focused-padding = 1
 label-visible = %index%
 label-visible-padding = 1

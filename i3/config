@@ -29,14 +29,37 @@ exec --no-startup-id feh --no-fehbg --bg-fill --randomize ~/.wallpaper/*
 # windows without titlebars pls
 for_window [class=".*"] border pixel 1
 
-# Dracula Theme (thanks to github.com/TechieAndroid/arch-dotfiles
-# class                 border  bground text    indicator child_border
-client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-client.unfocused        #44475A #44475A #F8F8F2 #44475A   #44475A
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-client.background       #F8F8F2
+# Everforest Dark colours
+set $bg_dim #1e2326
+set $bg0 #272e33
+set $bg1 #2e383c
+set $bg2 #374145
+set $bg3 #414b50
+set $bg4 #495156
+set $bg5 #4f5b58
+set $bg_red #4C3743
+set $bg_visual #493B40
+set $bg_yellow #45443C
+set $bg_green #3C4841
+set $bg_blue #384B55
+set $fg #d3c6aa
+set $red #e67e80
+set $orange #e69875
+set $yellow #dbbc7f
+set $green #a7c080
+set $aqua #83c092
+set $blue #7fbbb3
+set $purple #d699b6
+set $grey0 #7a8478
+set $grey1 #859289
+set $grey2 #9da9a0
+
+# class                 border  bground   text   indicator  child_border
+client.focused          $green  $green    $bg0   $blue
+client.focused_inactive $bg1    $bg1      $fg    $bg_visual
+client.unfocused        $bg1    $bg0      $grey1 $bg_visual
+client.urgent           $red    $red      $bg0   $red
+client.background       $bg0
 
 # gaps
 gaps inner 0
