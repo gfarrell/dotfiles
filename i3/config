@@ -91,7 +91,7 @@ exec --no-startup-id "$HOME/.config/polybar/launch.sh"
 
 # Picom is a compositor for X11
 # Config file in dotfiles/picom/picom.conf
-exec --no-startup-id picom -CG
+exec --no-startup-id picom --config "$HOME/.config/picom/picom.conf"
 
 # Autostart applications
 exec --no-startup-id systemctl --user start x11-autostart.target
