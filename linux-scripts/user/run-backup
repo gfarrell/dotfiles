@@ -2,6 +2,9 @@
 
 set -eo pipefail
 
+### WORKAROUND with current issues https://gitlab.com/duplicity/duplicity/-/issues/844
+source /home/gideon/sandbox/duplicity/env/bin/activate
+
 #####################
 ### CONFIGURATION ###
 #####################
@@ -31,10 +34,8 @@ fi
 
 # GPG Key for Encryption and Signing
 # Public key IDs (last eight characters)
-ENC_KEY_ID=$(secret-tool lookup Path backup-encryption-key-id)
-SGN_KEY_ID=$(secret-tool lookup Path backup-signing-key-id)
-export PASSPHRASE=$(secret-tool lookup Path backup-encryption-key-passphrase)
-export SIGN_PASSPHRASE=$(secret-tool lookup Path backup-signing-key-passphrase)
+KEY_ID=$(secret-tool lookup Path keys.gtf.id)
+export PASSPHRASE=$(secret-tool lookup Path keys.gtf.passphrase)
 
 ###############
 ### SCRIPT  ###
@@ -48,7 +49,7 @@ function cleanup() {
   log "Cleaning up failures"
   duplicity \
     cleanup --force \
-    --sign-key ${SGN_KEY_ID} --encrypt-key ${ENC_KEY_ID} \
+    --encrypt-sign-key ${KEY_ID} \
     ${B2_URL}
 }
 
@@ -56,13 +57,12 @@ B2_URL="b2://${B2_ACCOUNT}:${B2_KEY}@${B2_BUCKET}/${B2_DIR}"
 
 log "--- BACKING UP ${BACKUP_DIR} ---"
 log "Including ${FILES}"
-log "Encrypting with ${ENC_KEY_ID}"
-log "Signing with ${SGN_KEY_ID}"
+log "Encrypting and signing with ${KEY_ID}"
 
 # Remove files older than 90 days
 log "Removing files older than ${MAX_AGE}"
 duplicity \
-  --sign-key ${SGN_KEY_ID} --encrypt-key ${ENC_KEY_ID} \
+  --encrypt-sign-key ${KEY_ID} \
   remove-older-than ${MAX_AGE} --force \
   ${B2_URL}
 
@@ -73,7 +73,7 @@ if [[ -v 1 && $1 == "--full" ]]; then
     --progress \
     --include-filelist ${INCLUDES_FILE} \
     --exclude '**' \
-    --sign-key ${SGN_KEY_ID} --encrypt-key ${ENC_KEY_ID} \
+    --encrypt-sign-key ${KEY_ID} \
     ${BACKUP_DIR} ${B2_URL}"
 
   cleanup
@@ -89,7 +89,7 @@ else
   eval "duplicity ${SHOW_PROGRESS} \
     --include-filelist ${INCLUDES_FILE} \
     --exclude '**' \
-    --sign-key ${SGN_KEY_ID} --encrypt-key ${ENC_KEY_ID} \
+    --encrypt-sign-key ${KEY_ID} \
     --full-if-older-than ${FULL_FREQ} \
     ${BACKUP_DIR} ${B2_URL}"
 
@@ -98,18 +98,16 @@ fi
 
 # Show collection-status
 log "Showing collection status"
-duplicity collection-status \
-  --sign-key ${SGN_KEY_ID} --encrypt-key ${ENC_KEY_ID} \
-  ${B2_URL}
+duplicity collection-status --encrypt-sign-key ${KEY_ID} ${B2_URL}
 
 # Cleanup variables
 unset B2_ACCOUNT
 unset B2_KEY
 unset B2_BUCKET
-unset ENC_KEY_ID
-unset SGN_KEY_ID
+unset B2_URL
+unset B2_DIR
+unset KEY_ID
 unset PASSPHRASE
-unset SIGN_PASSPHRASE
 
 # Done!
 log "--- BACKUP OF ${BACKUP_DIR} COMPLETE ---"
