@@ -16,6 +16,10 @@ return {
   'airblade/vim-gitgutter',       -- Show git status in margins
   'Pocco81/true-zen.nvim',        -- Zen mode to remove distractions
   'mattn/calendar-vim',           -- Calendar plugin
+  { 
+    'folke/which-key.nvim',
+    event = 'VeryLazy'
+  },
 
   -- Text objects and movements
   'tpope/vim-commentary',         -- Make it easier to comment things out
