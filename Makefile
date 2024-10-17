@@ -46,6 +46,7 @@ ifeq ($(SYS), Linux)
 	ln -nsf $(DIR)/ranger ~/.config/ranger
 	ln -nsf $(DIR)/aerc ~/.config/aerc
 	ln -nsf $(DIR)/vdirsyncer ~/.config/vdirsyncer
+	ln -nsf $(DIR)/dunst ~/.config/dunst
 endif
 
 $(USER_SYSTEMD):

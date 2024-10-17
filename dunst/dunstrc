@@ -1,0 +1,33 @@
+[global]
+
+monitor = 0
+follow = none
+
+width = 300
+height = 150
+
+origin = top-right
+offset = 10x50
+
+gap_size = 2
+
+frame_width = 1
+
+font = "Departure Mono 12"
+
+separator_color = frame
+
+[urgency_low]
+frame_color = "#272e33"
+background = "#2e383c"
+foreground = "#d3c6aa"
+
+[urgency_normal]
+frame_color = "#a7c080"
+background = "#3c4841"
+foreground = "#d3c6aa"
+
+[urgency_critical]
+frame_color = "#e67e80"
+background = "#4c3743"
+foreground = "#d3c6aa"
