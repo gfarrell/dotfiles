@@ -54,7 +54,7 @@ module-margin = 1
 padding = 1
 ; Modules
 modules-left = i3 title
-modules-center =
+modules-center = mpris
 modules-right = btaudio vol battery tray date 
 
 [module/tray]
@@ -125,3 +125,9 @@ type = custom/script
 exec = ~/.config/polybar/scripts/bluetooth_headphones_status.sh
 interval = 2
 click-left = ~/.config/polybar/scripts/bluetooth_headphones_status.sh toggle_profile
+
+[module/mpris]
+type = custom/script
+interval = 2
+exec = ~/.config/polybar/scripts/mpris.sh
+click-left = playerctl play-pause
