@@ -57,6 +57,15 @@ return {
         },
       }
       vim.g.vimwiki_auto_chdir = 1
+      -- disable tables in vimwiki because we'll use another plugin for those
+      vim.g.vimwiki_table_mappings = 0
+      vim.g.vimwiki_table_autofmt = 0
     end,
-  }
+  },
+  {
+    'dhruvasagar/vim-table-mode',
+    init = function()
+      vim.g.table_mode_corner = "|"
+    end,
+  },
 }
