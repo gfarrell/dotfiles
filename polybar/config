@@ -54,8 +54,8 @@ module-margin = 1
 padding = 1
 ; Modules
 modules-left = i3 title
-modules-center = mpris
-modules-right = btaudio vol battery tray date 
+modules-center = 
+modules-right = mpris btaudio vol battery tray date 
 
 [module/tray]
 type = internal/tray
