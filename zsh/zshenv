@@ -34,6 +34,9 @@ export NVM_DIR=~/.nvm
 # Scratchpad
 export NOTES_SP_DIR=~/Dropbox/Notes/scratchpad
 
+# Nix
+export NIX_PATH="nixpkgs=flake:nixpkgs"
+
 # Misc.
 # ============================
 
