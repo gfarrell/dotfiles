@@ -20,12 +20,12 @@
   for m in $outputs; do
     export MONITOR=$m
     if [[ $m == $tray ]]; then
-      export TRAY_POSITION="right"
+      BAR="primary-top"
     else
-      export TRAY_POSITION="none"
+      BAR="secondary-top"
     fi
 
-    polybar --reload top </dev/null >/var/tmp/polybar-$m.log 2>&1 &
+    polybar --reload "$BAR" </dev/null >/var/tmp/polybar-$m.log 2>&1 &
     disown
   done
 
