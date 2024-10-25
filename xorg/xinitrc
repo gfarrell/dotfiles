@@ -3,4 +3,5 @@ autorandr -cf
 xrdb -merge ~/.Xresources
 xrandr --dpi 92x92
 feh --bg-fill -z ~/.wallpaper
-exec i3
+mkdir -p ~/.local/share/i3
+exec i3 -V >> ~/.local/share/i3/log 2>&1
