@@ -102,7 +102,7 @@ bindsym $mod+Shift+Escape exec --no-startup-id xset s activate
 
 # setup screen locking
 exec --no-startup-id xset s 300 5
-exec --no-startup-id xss-lock -- physlock -ms -p "gideon@$(hostname)"
+exec --no-startup-id xss-lock -n /usr/lib/xsecurelock/dimmer -l -- physlock -msd -p "gideon@$(hostname)"
 
 # ===================== #
 #   Keyboard Bindings   #
