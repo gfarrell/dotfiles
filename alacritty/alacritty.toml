@@ -1,7 +1,3 @@
-import = [
-  "~/.config/alacritty/themes/everforest_dark.toml"
-]
-
 [window]
 
 # I hide window chrome anyway with i3 so this just maintains consistency
@@ -17,3 +13,8 @@ size = 12.0
 
 # This is standard behaviour in X
 save_to_clipboard = true
+
+[general]
+import = [
+  "~/.config/alacritty/themes/everforest_dark.toml"
+]
