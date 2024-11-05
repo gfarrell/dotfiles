@@ -55,7 +55,7 @@
 [user]
     name = Gideon Farrell
     email = gideon@gtf.io
-	signingkey = 63BB888422176CA4
+    signingkey = 63BB888422176CA4
 
 [diff]
     tool = vimdiff
