@@ -1,5 +1,5 @@
 dbus-update-activation-environment --all
-autorandr -cf
+[[ -x $(which autorandr) ]] && autorandr -cf
 xrdb -merge ~/.Xresources
 xrandr --dpi 92x92
 feh --bg-fill -z ~/.wallpaper
