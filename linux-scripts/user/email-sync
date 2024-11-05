@@ -77,8 +77,12 @@ case "$1" in
       notmuch new
       tags_to_folders
       ;;
+    reindex_tags)
+      notmuch new
+      folders_to_tags
+      ;;
     *)
-      echo "Usage: $0 {sync_remote|sync_local}"
+      echo "Usage: $0 {sync_remote|sync_local|reindex_tags}"
       exit 1
       ;;
 esac
