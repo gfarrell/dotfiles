@@ -31,7 +31,6 @@ symlinks:
 	ln -nsf $(DIR)/emacs ~/.emacs.d
 	ln -nsf $(DIR)/helix ~/.config/helix
 ifeq ($(SYS), Linux)
-	ln -sf $(DIR)/libinput-gestures/libinput-gestures.conf ~/.config/libinput-gestures.conf
 	ln -sf $(DIR)/xorg/xprofile ~/.xprofile
 	ln -sf $(DIR)/xorg/xinitrc ~/.xinitrc
 	ln -sf $(DIR)/xorg/XCompose ~/.XCompose
@@ -39,7 +38,6 @@ ifeq ($(SYS), Linux)
 	ln -nsf $(DIR)/i3 ~/.config/i3
 	ln -nsf $(DIR)/polybar ~/.config/polybar
 	ln -nsf $(DIR)/rofi ~/.config/rofi
-	ln -nsf $(DIR)/mutt ~/.config/mutt
 	ln -nsf $(DIR)/picom ~/.config/picom
 	ln -nsf ${DIR}/firejail ~/.config/firejail
 	ln -nsf ${DIR}/fontconfig ~/.config/fontconfig

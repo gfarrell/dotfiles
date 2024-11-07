@@ -68,17 +68,9 @@ all address book configuration is in here. Contacts are stored in
 [kitty](https://sw.kovidgoyal.net/kitty/): this is my terminal emulator,
 completely configurable using a single file.
 
-[libinput-gestures](https://github.com/bulletmark/libinput-gestures): I
-don't really use gestures anymore, so this is unused. DEPRECATING.
-
 linux-scripts: various linux scripts go in here, including things which
 are more ke systemd services which run continuously (like backups), and
 things I run discretely.
-
-[(neo)mutt](https://neomutt.org/): I use neomutt instead of mutt as my
-mail client. Not *all* the configuration is yet in here as I need to
-remove some private data from some of it, but it's mostly here (accounts
-and signatures are gitignored but this is probably unnecessary).
 
 [neovim](https://neovim.io/): 💖 I love (neo)vim 💖 -- my editor of
 choice, contains all my configuration, including the currently used
