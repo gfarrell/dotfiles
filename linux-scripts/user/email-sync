@@ -16,14 +16,6 @@ tag_folders=(
   spam "Spam"
 )
 
-sync_remote() {
-  tags_to_folders
-  echo "Synchronising with remote server"
-  mbsync -c ~/.config/mbsyncrc -qqa
-  notmuch new
-  folders_to_tags
-}
-
 # Tags messages based on the folder they are in. N.B. that this
 # might overwrite any tag assignments, so make sure you run the
 # tags_to_folders function first.
@@ -71,7 +63,11 @@ move_messages() {
 
 case "$1" in
     sync_remote)
-      sync_remote
+      notmuch new
+      tags_to_folders
+      mbsync -c ~/.config/mbsyncrc -qqa
+      notmuch new
+      folders_to_tags
       ;;
     sync_local)
       notmuch new
