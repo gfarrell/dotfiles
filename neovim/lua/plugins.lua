@@ -10,8 +10,8 @@ return {
   -- Nice utilities
   'scrooloose/nerdtree',          -- File tree view
   'terryma/vim-multiple-cursors', -- Super useful multi-cursor support
-  'junegunn/fzf',                 -- Fuzzy finding with FZF
-  'junegunn/fzf.vim',             -- FZF vim plugin (need both)
+  {'junegunn/fzf', tag="v0.55.0"},             -- Fuzzy finding with FZF
+  {'junegunn/fzf.vim', commit="ec75ffbfd50630bf2b8d444d89487e149bacf7f3"},             -- FZF vim plugin (need both)
   'tpope/vim-fugitive',           -- Git plugin
   'airblade/vim-gitgutter',       -- Show git status in margins
   'Pocco81/true-zen.nvim',        -- Zen mode to remove distractions
