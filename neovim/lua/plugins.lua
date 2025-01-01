@@ -20,6 +20,7 @@ return {
     'folke/which-key.nvim',
     event = 'VeryLazy'
   },
+  '3rd/image.nvim',               -- Rendering images in nvim
 
   -- Text objects and movements
   'tpope/vim-commentary',         -- Make it easier to comment things out
