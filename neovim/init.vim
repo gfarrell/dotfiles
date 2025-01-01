@@ -2,14 +2,7 @@ lua require("general")
 
 lua require("config.lazy")
 
-set termguicolors
-let g:everforest_better_performance = 1
-let g:everforest_background = 'soft'
-set background=dark
-colorscheme everforest
-
 lua require("editor")
-lua require("lsp")
 lua require("treesitter")
 lua require("filetypes")
 lua require("calculate")
