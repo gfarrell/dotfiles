@@ -99,6 +99,7 @@ user-systemd-all: linux-scripts \
 		  $(USER_SYSTEMD)/iwgtk-indicator.service \
 		  $(USER_SYSTEMD)/x11-autostart.target
 	systemctl --user add-wants x11-autostart.target redshift-gtk.service
+	systemctl --user add-wants x11-autostart.target dropbox.service
 	systemctl --user add-wants x11-autostart.target keepassxc.service
 	systemctl --user add-wants x11-autostart.target mullvad-vpn.service
 	systemctl --user add-wants x11-autostart.target iwgtk-indicator.service
