@@ -34,6 +34,11 @@ return {
             config = {
               workspace = "kb"
             }
+          },
+          ["core.export"] = {
+            config = {
+              extensions = "all"
+            }
           }
         }
       }
