@@ -11,6 +11,7 @@ return {
             config = {
               workspaces = {
                 kb = "~/notes/gtf-kb",
+                converge = "~/notes/converge"
               },
               index = "index.norg",
               default_workspace = "kb"
