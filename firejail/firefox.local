@@ -1,8 +1,10 @@
-# Allow access to emails from neomutt to view as HTML
-whitelist ${HOME}/.tmp/mutt
+# Whitelist aerc HTML emails aerc
+whitelist /tmp/aerc-*
+# Whitelist public folder
+whitelist ${HOME}/public
 
 # Give access to some binaries
-private-bin bash,dbus-launch,dbus-send,env,firefox,sh,which,zoom,xdg-open,grep,sed
+private-bin bash,dbus-launch,dbus-send,env,firefox,sh,which,zoom,xdg-open,grep,sed,slack,aerc,ffmpeg
 
 # Allow firefox to inhibit screensavers
 dbus-user.talk org.freedesktop.ScreenSaver
