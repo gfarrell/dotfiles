@@ -31,7 +31,6 @@ symlinks:
 	ln -nsf $(DIR)/emacs ~/.emacs.d
 	ln -nsf $(DIR)/helix ~/.config/helix
 ifeq ($(SYS), Linux)
-	ln -sf $(DIR)/xorg/xprofile ~/.xprofile
 	ln -sf $(DIR)/xorg/xinitrc ~/.xinitrc
 	ln -sf $(DIR)/xorg/XCompose ~/.XCompose
 	ln -sf $(DIR)/xorg/Xresources ~/.Xresources
