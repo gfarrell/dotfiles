@@ -42,10 +42,22 @@ return {
           }
         }
       }
-      vim.keymap.set("n", "<C-k>", "<Plug>(neorg.text-objects.item-up)", {})
-      vim.keymap.set("n", "<C-j>", "<Plug>(neorg.text-objects.item-down)", {})
-      vim.keymap.set({ "o", "x" }, "iH", "<Plug>(neorg.text-objects.textobject.heading.inner)", {})
-      vim.keymap.set({ "o", "x" }, "aH", "<Plug>(neorg.text-objects.textobject.heading.outer)", {})
+      vim.api.nvim_create_autocmd({"BufEnter"}, {
+        pattern = "*.norg",
+        callback = function()
+          -- Set keymaps
+          vim.keymap.set("n", "<C-k>", "<Plug>(neorg.text-objects.item-up)", {})
+          vim.keymap.set("n", "<C-j>", "<Plug>(neorg.text-objects.item-down)", {})
+          vim.keymap.set({ "o", "x" }, "iH", "<Plug>(neorg.text-objects.textobject.heading.inner)", {})
+          vim.keymap.set({ "o", "x" }, "aH", "<Plug>(neorg.text-objects.textobject.heading.outer)", {})
+        end
+      })
+      vim.api.nvim_create_autocmd({"BufRead"}, {
+        pattern = "*.norg",
+        callback = function()
+          vim.opt_local.foldlevel=1
+        end
+      })
     end
   }
 }
