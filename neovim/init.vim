@@ -3,7 +3,6 @@ lua require("general")
 lua require("config.lazy")
 
 lua require("editor")
-lua require("treesitter")
 lua require("filetypes")
 lua require("calculate")
 
