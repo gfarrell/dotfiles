@@ -2,9 +2,6 @@
 
 set -eo pipefail
 
-### WORKAROUND with current issues https://gitlab.com/duplicity/duplicity/-/issues/844
-source /home/gideon/sandbox/duplicity/env/bin/activate
-
 #####################
 ### CONFIGURATION ###
 #####################
