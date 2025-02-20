@@ -15,4 +15,10 @@ return {
   -- Displaying other things
   'mattn/calendar-vim',
   '3rd/image.nvim',
+
+  -- Github support (for reviewing PRs)
+  { 'pwntester/octo.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim', 'nvim-tree/nvim-web-devicons' },
+    config = true
+  },
 }
