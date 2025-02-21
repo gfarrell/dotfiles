@@ -1,5 +1,5 @@
 -- Wrapping and formatting
-vim.opt.textwidth = 80        -- Default wrap width
+vim.opt.textwidth = 0         -- Disable text-wrapping behaviour
 vim.opt.fo = "cqnj"           -- format w/ comments, gq, and numbered lists
 vim.opt.formatprg = "par r80" -- use par for formatting
 
