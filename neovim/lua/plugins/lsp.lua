@@ -1,24 +1,34 @@
+function extend(...)
+  local result = {}
+  for _, t in ipairs({...}) do
+    for k, v in pairs(t) do
+      result[k] = v
+    end
+  end
+  return result
+end
+
 return {
   {
     'neovim/nvim-lspconfig',
     config = function()
       local kmopts = { noremap = true, silent = true }
-      vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float, opts)
-      vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-      vim.keymap.set('n', '<Leader>q', vim.diagnostic.setqflist, opts)
+      vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float, extend(kmopts, { desc = "Show diagnostics" }))
+      vim.keymap.set('n', ']d', vim.diagnostic.goto_next, extend(kmopts, { desc = "Next diagnostic" }))
+      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, extend(kmopts, { desc = "Previous diagnostic" }))
+      vim.keymap.set('n', '<Leader>q', vim.diagnostic.setqflist, extend(kmopts, { desc = "Fill quickfix list with diagnostics" }))
 
       -- Buffer-specific LSP Keymaps
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
-          local bufopts = { buffer = args.buf, silent = true, noremap = true }
-          vim.keymap.set('n', '<Leader>f', vim.lsp.buf.format, bufopts)
+          local bufopts = extend(kmopts, { buffer = args.buf })
+          vim.keymap.set('n', '<Leader>gf', vim.lsp.buf.format, extend(bufopts, { desc = "Format buffer (LSP)" }))
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
           vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-          vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-          vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, bufopts)
-          vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, bufopts)
+          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, extend(bufopts, { desc = "Go to definition (LSP)" }))
+          vim.keymap.set('n', 'gr', vim.lsp.buf.references, extend(bufopts, { desc = "Show references (LSP)" }))
+          vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, extend(bufopts, { desc = "Rename symbol (LSP)" }))
+          vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, extend(bufopts, { desc = "Show code actions (LSP)" }))
         end,
       })
 
@@ -38,7 +48,8 @@ return {
           },
         },
       }
-      require'lspconfig'.ts_ls.setup{}
+      lsp.ts_ls.setup{}
+      lsp.lua_ls.setup{}
     end
   }
 }
