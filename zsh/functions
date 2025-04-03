@@ -14,14 +14,6 @@ function shaprint() {
     openssl x509 -in "$1" -noout -fingerprint -sha256 | cut -f2 -d= | sed s/://g | awk '{ print tolower }'
 }
 
-function slack() {
-    channel=$1;
-    message=$2;
-    http_status=$(curl -X POST https://slack.com/api/chat.postMessage -d token=$SLACK_TOKEN -d as_user=true -d channel="$channel" -d text="$message" -o /dev/null -s -w "${http_code}");
-
-    (test "$http_status" -lt 400) && echo "sent message to $channel 😎" || echo "failed to send message to $channel 😞";
-}
-
 function pywork() {
     env=$1
     if [ "$env" -eq "" ]; then env="env"; fi
