@@ -49,6 +49,7 @@ return {
         },
       }
       lsp.ts_ls.setup{}
+      lsp.tinymist.setup{} -- typst lsp
       lsp.lua_ls.setup{}
     end
   }
