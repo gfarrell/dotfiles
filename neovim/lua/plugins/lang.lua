@@ -1,6 +1,6 @@
 return {
   -- Language parsing with Treesitter
-  {                              
+  {
     'nvim-treesitter/nvim-treesitter',
     build = ":TSUpdate",
     dependencies = {
@@ -44,6 +44,7 @@ return {
           "toml",
           "tsx",
           "typescript",
+          "typst",
           "vim",
           "vimdoc",
           "xresources",
@@ -79,10 +80,10 @@ return {
   -- LISP
   'guns/vim-sexp',
   'tpope/vim-sexp-mappings-for-regular-people',
-  
+
   -- CSV
   'chrisbra/csv.vim',
-  
+
   -- Rust
   'rust-lang/rust.vim',
 
