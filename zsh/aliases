@@ -3,11 +3,8 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-alias ~="cd ~" # `cd` is probably faster to type though
+alias ~="cd ~"
 alias -- -="cd -"
-
-# be nice
-alias please=sudo
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -24,16 +21,6 @@ alias l="ls -l ${colorflag}"
 
 # List all files colorized in long format, including dot files
 alias la="ls -la ${colorflag}"
-
-# Always use color output for `ls`
-if [[ "$OSTYPE" =~ ^darwin ]]; then
-	alias ls="command ls -G"
-else
-	alias ls="command ls --color"
-fi
-
-# IP addresses
-alias localip="ipconfig getifaddr en1"
 
 # Shortcuts
 alias v="nvim"
@@ -79,10 +66,6 @@ alias gcurrbr="git status | head -n 1 | cut -d ' ' -f 3"
 # Taskwarrior stuff
 alias tl="task list"
 alias ta="task add"
-
-# Tmux
-alias tma="tmux attach -t"
-alias tmn="tmux new-session -s"
 
 # Add pbcopy and pbpaste on linux
 if ! (command -v pbcopy >/dev/null) && (command -v xclip >/dev/null); then
