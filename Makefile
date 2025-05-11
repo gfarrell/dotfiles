@@ -11,39 +11,40 @@ SYS_SYSTEMD := /etc/systemd/system
 linux: symlinks systemd
 
 symlinks:
+	ln -nsf $(DIR)/aerc ~/.config/aerc
+	ln -nsf $(DIR)/alacritty ~/.config/alacritty
+	ln -nsf $(DIR)/emacs ~/.emacs.d
+	ln -nsf $(DIR)/haskell/ghci.conf ~/.ghc/ghci.conf
+	ln -nsf $(DIR)/helix ~/.config/helix
+	ln -nsf $(DIR)/jrnl ~/.config/jrnl
+	ln -nsf $(DIR)/khal ~/.config/khal
+	ln -nsf $(DIR)/khard ~/.config/khard
+	ln -nsf $(DIR)/kitty ~/.config/kitty
+	ln -nsf $(DIR)/neovim ~/.config/nvim
+	ln -nsf $(DIR)/ranger ~/.config/ranger
+	ln -nsf $(DIR)/tmux ~/.tmux
+	ln -nsf $(DIR)/tmux/tmux.conf ~/.tmux.conf
+	ln -nsf $(DIR)/yazi ~/.config/yazi
 	ln -nsf $(DIR)/zsh ~/.config/zsh
-	ln -sf $(DIR)/zsh/zshenv ~/.zshenv
+	ln -sf $(DIR)/editorconfig ~/.editorconfig
+	ln -sf $(DIR)/eslintrc ~/.eslintrc
 	ln -sf $(DIR)/git/gitconfig ~/.gitconfig
 	ln -sf $(DIR)/git/gitignore_globals ~/.gitignore_globals
 	ln -sf $(DIR)/psql/psqlrc ~/.psqlrc
-	ln -sf $(DIR)/editorconfig ~/.editorconfig
-	ln -sf $(DIR)/eslintrc ~/.eslintrc
 	ln -sf $(DIR)/task/taskrc ~/.taskrc
-	ln -nsf $(DIR)/jrnl ~/.config/jrnl
-	ln -nsf $(DIR)/kitty ~/.config/kitty
-	ln -nsf $(DIR)/alacritty ~/.config/alacritty
-	ln -nsf $(DIR)/neovim ~/.config/nvim
-	ln -nsf $(DIR)/tmux ~/.tmux
-	ln -nsf $(DIR)/tmux/tmux.conf ~/.tmux.conf
-	ln -nsf $(DIR)/khard ~/.config/khard
-	ln -nsf $(DIR)/khal ~/.config/khal
-	ln -nsf $(DIR)/haskell/ghci.conf ~/.ghc/ghci.conf
-	ln -nsf $(DIR)/emacs ~/.emacs.d
-	ln -nsf $(DIR)/helix ~/.config/helix
+	ln -sf $(DIR)/zsh/zshenv ~/.zshenv
 ifeq ($(SYS), Linux)
-	ln -sf $(DIR)/xorg/xinitrc ~/.xinitrc
-	ln -sf $(DIR)/xorg/XCompose ~/.XCompose
-	ln -sf $(DIR)/xorg/Xresources ~/.Xresources
+	ln -nsf $(DIR)/dunst ~/.config/dunst
 	ln -nsf $(DIR)/i3 ~/.config/i3
+	ln -nsf $(DIR)/picom ~/.config/picom
 	ln -nsf $(DIR)/polybar ~/.config/polybar
 	ln -nsf $(DIR)/rofi ~/.config/rofi
-	ln -nsf $(DIR)/picom ~/.config/picom
+	ln -nsf $(DIR)/vdirsyncer ~/.config/vdirsyncer
 	ln -nsf ${DIR}/firejail ~/.config/firejail
 	ln -nsf ${DIR}/fontconfig ~/.config/fontconfig
-	ln -nsf $(DIR)/ranger ~/.config/ranger
-	ln -nsf $(DIR)/aerc ~/.config/aerc
-	ln -nsf $(DIR)/vdirsyncer ~/.config/vdirsyncer
-	ln -nsf $(DIR)/dunst ~/.config/dunst
+	ln -sf $(DIR)/xorg/XCompose ~/.XCompose
+	ln -sf $(DIR)/xorg/Xresources ~/.Xresources
+	ln -sf $(DIR)/xorg/xinitrc ~/.xinitrc
 endif
 
 $(USER_SYSTEMD):
