@@ -52,12 +52,19 @@ font-3 = "Font Awesome 6 Free Solid:style=Sold:pixelsize=11;2"
 module-margin = 1
 padding = 1
 
-[bar/primary-top]
+[bar/primary-top-leviathan]
 inherit = bar/base
 ; Modules
 modules-left = i3 title
 modules-center = 
 modules-right = mpris btaudio vol battery service-status tray date 
+
+[bar/primary-top-anaximander]
+inherit = bar/base
+; Modules
+modules-left = i3 title
+modules-center = 
+modules-right = mpris btaudio vol battery tray date 
 
 [bar/secondary-top]
 inherit = bar/base

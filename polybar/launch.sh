@@ -20,7 +20,7 @@
   for m in $outputs; do
     export MONITOR=$m
     if [[ $m == $tray ]]; then
-      BAR="primary-top"
+      BAR="primary-top-$(hostname)"
     else
       BAR="secondary-top"
     fi
