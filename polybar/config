@@ -57,7 +57,7 @@ inherit = bar/base
 ; Modules
 modules-left = i3 title
 modules-center = 
-modules-right = mpris btaudio vol battery tray date 
+modules-right = mpris btaudio vol battery service-status tray date 
 
 [bar/secondary-top]
 inherit = bar/base
@@ -140,3 +140,9 @@ type = custom/script
 interval = 2
 exec = ~/.config/polybar/scripts/mpris.sh
 click-left = playerctl play-pause
+
+[module/service-status]
+type = custom/script
+interval = 60
+exec = ~/.config/polybar/scripts/services_status.sh
+click-left = "~/.config/polybar/scripts/services_status.sh notify" 
