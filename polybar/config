@@ -57,7 +57,7 @@ inherit = bar/base
 ; Modules
 modules-left = i3 title
 modules-center = 
-modules-right = mpris btaudio vol battery service-status tray date 
+modules-right = mpris btaudio vol service-status tray date 
 
 [bar/primary-top-anaximander]
 inherit = bar/base
