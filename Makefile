@@ -14,6 +14,7 @@ symlinks:
 	ln -nsf $(DIR)/aerc ~/.config/aerc
 	ln -nsf $(DIR)/alacritty ~/.config/alacritty
 	ln -nsf $(DIR)/emacs ~/.emacs.d
+	ln -nsf $(DIR)/ghostty ~/.config/ghostty
 	ln -nsf $(DIR)/haskell/ghci.conf ~/.ghc/ghci.conf
 	ln -nsf $(DIR)/helix ~/.config/helix
 	ln -nsf $(DIR)/jrnl ~/.config/jrnl
