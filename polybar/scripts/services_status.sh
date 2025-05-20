@@ -23,7 +23,7 @@ BEGIN {
   if (match($0, /([0-9]+)h ago/, groups)) {
     timeAgo = groups[1]
   }
-  if (match($0, /active \(running\)/)) {
+  if (match($0, /active \(running\)/) || match($0, /activating/)) {
     isRunning = 1
   }
 }
