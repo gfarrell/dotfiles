@@ -1,4 +1,4 @@
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "O"
 run = "plugin open-with-cmd"
 desc = "Open with command"
