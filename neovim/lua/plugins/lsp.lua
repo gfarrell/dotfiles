@@ -29,15 +29,13 @@ return {
           vim.keymap.set('n', 'gr', vim.lsp.buf.references, extend(bufopts, { desc = "Show references (LSP)" }))
           vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, extend(bufopts, { desc = "Rename symbol (LSP)" }))
           vim.keymap.set('n', '<Leader>ca', vim.lsp.buf.code_action, extend(bufopts, { desc = "Show code actions (LSP)" }))
+          vim.keymap.set('n', '<Leader>cl', vim.lsp.codelens.run, extend(bufopts, { desc = "Run codelens (LSP)" }))
         end,
       })
 
       -- Configure different LSPs
+      -- With haskell-tools.nvim installed we don't setup HLS here!
       local lsp = require("lspconfig")
-      lsp.hls.setup{
-        cabalFormattingProvider = "cabalfmt",
-        formattingProvider = "ormolu"
-      }
       lsp.sqlls.setup{}
       lsp.pylsp.setup{}
       lsp.clojure_lsp.setup{}

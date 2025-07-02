@@ -87,6 +87,13 @@ return {
   -- Rust
   'rust-lang/rust.vim',
 
+  -- Haskell
+  {
+    'mrcjkb/haskell-tools.nvim',
+    version = "^6",
+    lazy = false,
+  },
+
   -- Typescript
   'HerringtonDarkholme/yats.vim',
 }
