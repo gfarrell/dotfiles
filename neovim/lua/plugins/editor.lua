@@ -30,4 +30,19 @@ return {
     cmd = "Octo",
     config = true
   },
+
+  -- Compile mode
+  {
+    "ej-shafran/compile-mode.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "m00qek/baleia.nvim",
+    },
+    config = function()
+      vim.g.compile_mode = {
+        baleia_setup = true,
+        bang_expansion = true
+      }
+    end
+  },
 }
