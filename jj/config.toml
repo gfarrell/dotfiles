@@ -13,6 +13,9 @@ email = "gideon@gtf.io"
 backend = "gpg"
 behavior = "own"
 
+[git]
+sign-on-push = true
+
 [aliases]
 l = ["log", "-r", "@ | ancestors(@, 20)"]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
