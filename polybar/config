@@ -55,7 +55,7 @@ padding = 1
 [bar/primary-top-leviathan]
 inherit = bar/base
 ; Modules
-modules-left = i3 title
+modules-left = ewmh title
 modules-center = 
 modules-right = mpris btaudio vol service-status tray date 
 
@@ -99,6 +99,32 @@ label-urgent = %index%
 label-urgent-background = ${theme.alert}
 label-urgent-foreground = ${theme.primary}
 label-urgent-padding = 1
+
+[module/ewmh]
+type = internal/xworkspaces
+pin-workspaces = true
+enable-click = true
+enable-scroll = false
+
+label-active = %name%
+label-active-padding = 1
+label-active-background = ${theme.primary}
+label-active-foreground = ${theme.background}
+
+label-occupied = %name%
+label-occupied-padding = 1
+label-occupied-background = ${theme.background}
+label-occupied-foreground = ${theme.primary}
+
+label-empty = %name%
+label-empty-padding = 1
+label-empty-background = ${theme.background}
+label-empty-foreground = ${theme.inactive}
+
+label-urgent = %name%
+label-urgent-padding = 1
+label-urgent-background = ${theme.alert}
+label-urgent-foreground = ${theme.primary}
 
 [module/title]
 type = internal/xwindow
