@@ -3,5 +3,22 @@ dbus-update-activation-environment --all
 xrdb -merge ~/.Xresources
 xrandr --dpi 92x92
 feh --bg-fill -z ~/.wallpaper
-mkdir -p ~/.local/share/i3
-exec i3 -V >> ~/.local/share/i3/log 2>&1
+
+# Default session to i3
+session=${1:-i3}
+
+start_i3() {
+  mkdir -p ~/.local/share/i3
+  exec i3 -V >> ~/.local/share/i3/log 2>&1
+}
+
+start_xmonad() {
+  exec ~/.local/bin/xmonad-x86_64-linux
+}
+
+case $session in
+  i3) start_i3;;
+  xmonad) start_xmonad;;
+  *) echo "unknown session type $session"; exit -1;;
+esac
+
