@@ -1,0 +1,24 @@
+[ui]
+pager = ":builtin"
+paginate = "auto"
+default-command = "st"
+# use difftastic for diffs
+diff-formatter = ["difft", "--color=always", "$left", "$right"]
+
+[user]
+name = "Gideon Farrell"
+email = "gideon@gtf.io"
+
+[signing]
+backend = "gpg"
+behavior = "own"
+
+[aliases]
+l = ["log", "-r", "@ | ancestors(@, 20)"]
+tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
+
+# When working in Converge repos, change my email address
+[[--scope]]
+--when.repositories = ["~/converge"]
+[--scope.user]
+email = "gideon@converge.io"

@@ -17,6 +17,7 @@ symlinks:
 	ln -nsf $(DIR)/ghostty ~/.config/ghostty
 	ln -nsf $(DIR)/haskell/ghci.conf ~/.ghc/ghci.conf
 	ln -nsf $(DIR)/helix ~/.config/helix
+	ln -nsf $(DIR)/jj ~/.config/jj
 	ln -nsf $(DIR)/jrnl ~/.config/jrnl
 	ln -nsf $(DIR)/khal ~/.config/khal
 	ln -nsf $(DIR)/khard ~/.config/khard
