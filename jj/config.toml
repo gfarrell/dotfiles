@@ -4,6 +4,8 @@ paginate = "auto"
 default-command = "st"
 # use difftastic for diffs
 diff-formatter = ["difft", "--color=always", "$left", "$right"]
+# use mergiraf for conflicts
+merge-editor = "mergiraf"
 
 [user]
 name = "Gideon Farrell"
