@@ -48,25 +48,20 @@ stty -ixon
 # source other things
 source $zsh_dotfile_path/aliases
 source $zsh_dotfile_path/functions
-source $zsh_dotfile_path/prompt
 source $zsh_dotfile_path/secrets
 
-# Z
-if command -v brew >/dev/null; then
-  ZSH_PATH=`brew --prefix`/etc/profile.d/z.sh;
-else
-  ZSH_PATH="/usr/share/zsh/plugins/zsh-z/zsh-z.plugin.zsh";
-fi
-[ -e $ZSH_PATH ] && . $ZSH_PATH;
+# simple prompt:
+# non-zero exit code (in red)
+# current directory (in magenta)
+# background jobs (in yellow)
+# `$` prompt
+PS1='%F{red}%(?..[%?] )%f%F{magenta}%~%f %F{yellow}%(1j. [%j] .)%f$ '
 
 # Use fzf for shell things too
-case "$(uname -s)" in
-  Linux*)
-    source /usr/share/fzf/key-bindings.zsh;
-    source /usr/share/fzf/completion.zsh;;
-  Darwin*)
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh;;
-esac
+if [[ -d /usr/share/fzf ]]; then
+  source /usr/share/fzf/key-bindings.zsh;
+  source /usr/share/fzf/completion.zsh;
+fi
 
 # Allow opening of command in $EDITOR
 # see http://unix.stackexchange.com/a/6622
