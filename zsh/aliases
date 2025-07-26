@@ -8,9 +8,7 @@ alias -- -="cd -"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
-	colorflag="--color"
-else # OS X `ls`
-	colorflag="-G"
+  colorflag="--color"
 fi
 
 # shortcut for finding files
@@ -26,7 +24,7 @@ alias la="ls -la ${colorflag}"
 alias v="nvim"
 
 # Scratchpad editor
-alias sp='nvim $NOTES_SP_DIR/scratchpad-$(date +"%Y-%m-%d").md'
+alias sp='nvim $NOTES_SP_DIR/scratchpad-$(date +"%Y-%m-%d").norg'
 
 # File size
 alias filesize="stat -f \"%z bytes\""
@@ -66,6 +64,9 @@ alias gcurrbr="git status | head -n 1 | cut -d ' ' -f 3"
 # Taskwarrior stuff
 alias tl="task list"
 alias ta="task add"
+
+# Tmux
+alias tma="tmux attach -t"
 
 # Add pbcopy and pbpaste on linux
 if ! (command -v pbcopy >/dev/null) && (command -v xclip >/dev/null); then
