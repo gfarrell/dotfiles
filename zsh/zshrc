@@ -1,5 +1,4 @@
 zsh_dotfile_path=$HOME/.config/zsh
-fpath=($zsh_dotfile_path/zsh/completion $fpath)
 
 # waiting dots
 COMPLETION_WAITING_DOTS="true"
@@ -11,6 +10,10 @@ export KEYTIMEOUT=1 # nb can cause problems with other scripts
 # autocompletes
 autoload -U compinit
 compinit
+
+## jj autocompletions
+source <(jj util completion zsh)
+source <(COMPLETE=zsh jj)
 
 # Glob-like autocomplete
 setopt glob_complete
