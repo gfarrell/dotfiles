@@ -7,3 +7,4 @@ vim/vim/spell
 .DS_Store
 zsh/secrets
 tags
+emacs/eln-cache
