@@ -46,8 +46,8 @@ return {
         pattern = "*.norg",
         callback = function()
           -- Set keymaps
-          vim.keymap.set("n", "<C-k>", "<Plug>(neorg.text-objects.item-up)", {})
-          vim.keymap.set("n", "<C-j>", "<Plug>(neorg.text-objects.item-down)", {})
+          vim.keymap.set("n", "\\k", "<Plug>(neorg.text-objects.item-up)", {})
+          vim.keymap.set("n", "\\j", "<Plug>(neorg.text-objects.item-down)", {})
           vim.keymap.set({ "o", "x" }, "iH", "<Plug>(neorg.text-objects.textobject.heading.inner)", {})
           vim.keymap.set({ "o", "x" }, "aH", "<Plug>(neorg.text-objects.textobject.heading.outer)", {})
         end
