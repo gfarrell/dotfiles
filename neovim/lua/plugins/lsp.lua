@@ -24,7 +24,6 @@ return {
           local bufopts = extend(kmopts, { buffer = args.buf })
           vim.keymap.set('n', '<Leader>gf', vim.lsp.buf.format, extend(bufopts, { desc = "Format buffer (LSP)" }))
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-          vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
           vim.keymap.set('n', 'gdd', vim.lsp.buf.definition, extend(bufopts, { desc = "Go to definition (LSP)" }))
           vim.keymap.set('n', 'gdv', function()
             vim.cmd('vsplit')
