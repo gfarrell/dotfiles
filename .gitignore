@@ -8,3 +8,4 @@ vim/vim/spell
 zsh/secrets
 tags
 emacs/eln-cache
+emacs/auto-save-list/**
