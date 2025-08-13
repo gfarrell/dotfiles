@@ -62,7 +62,7 @@ modules-right = mpris btaudio vol service-status tray date
 [bar/primary-top-anaximander]
 inherit = bar/base
 ; Modules
-modules-left = i3 title
+modules-left = ewmh title
 modules-center = 
 modules-right = mpris btaudio vol battery tray date 
 
@@ -76,29 +76,6 @@ modules-right =
 [module/tray]
 type = internal/tray
 tray-spacing = 5px
-
-[module/i3]
-type = internal/i3
-pin-workspaces = true
-strip-wsnumbers = true
-label-mode = %mode%
-label-mode-padding = 2
-label-mode-background = ${theme.secondary}
-label-mode-foreground = ${theme.background}
-label-focused = %index%
-label-focused-background = ${theme.primary}
-label-focused-foreground = ${theme.background}
-label-focused-padding = 1
-label-visible = %index%
-label-visible-padding = 1
-label-visible-background = ${theme.inactive}
-label-visible-foreground = ${theme.foreground}
-label-unfocused = %index%
-label-unfocused-padding = 1
-label-urgent = %index%
-label-urgent-background = ${theme.alert}
-label-urgent-foreground = ${theme.primary}
-label-urgent-padding = 1
 
 [module/ewmh]
 type = internal/xworkspaces
