@@ -69,7 +69,7 @@ modules-right = mpris btaudio vol battery tray date
 [bar/secondary-top]
 inherit = bar/base
 ; Modules
-modules-left = i3 title
+modules-left = ewmh title
 modules-center = 
 modules-right = 
 
