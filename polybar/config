@@ -64,7 +64,7 @@ inherit = bar/base
 ; Modules
 modules-left = ewmh title
 modules-center = 
-modules-right = mpris btaudio vol battery tray date 
+modules-right = mpris btaudio vol battery tray date-compact
 
 [bar/secondary-top]
 inherit = bar/base
@@ -110,6 +110,13 @@ label-maxlen = 50
 [module/date]
 type = internal/date
 date = %a %e %b %Y
+time = %H:%M
+format =  <label>
+label = %date% %time%
+
+[module/date-compact]
+type = internal/date
+date = %e/%m
 time = %H:%M
 format =  <label>
 label = %date% %time%
