@@ -22,6 +22,14 @@ sign-on-push = true
 l = ["log", "-r", "@ | ancestors(@, 20)"]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 
+[merge-tools.diffconflicts]
+program = "nvim"
+merge-args = [
+    "-c", "let g:jj_diffconflicts_marker_length=$marker_length",
+    "-c", "JJDiffConflicts!", "$output", "$base", "$left", "$right",
+]
+merge-tool-edits-conflict-markers = true
+
 # When working in Converge repos, change my email address
 [[--scope]]
 --when.repositories = ["~/converge"]
