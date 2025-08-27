@@ -19,7 +19,7 @@ behavior = "own"
 sign-on-push = true
 
 [aliases]
-l = ["log", "-r", "@ | ancestors(@, 20)"]
+l = ["log", "-r", "@ | ancestors(@, 10)"]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 
 [merge-tools.diffconflicts]
