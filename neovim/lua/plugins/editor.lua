@@ -1,6 +1,18 @@
 return {
   -- Highlight matching parens
   'frazrepo/vim-rainbow',
+  -- Various bits and pieces for improving the editor
+  {
+    'folke/snacks.nvim',
+    opts = {
+      indent = {
+        enabled = true,
+        scope = {
+          enabled = false
+        }
+      }
+    }
+  },
   -- Super useful multi-cursor support
   'terryma/vim-multiple-cursors',
   -- Show a helper for keybinds
