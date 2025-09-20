@@ -2,7 +2,7 @@
 include ~/.config/firejail/shared-communication.inc
 
 # Whitelist aerc HTML emails aerc
-whitelist /tmp/aerc-*
+whitelist /tmp/aerc*/*.htm
 
 # Whitelist public folder
 whitelist ${HOME}/public
