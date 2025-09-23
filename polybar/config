@@ -47,8 +47,8 @@ background = ${theme.background}
 foreground = ${theme.foreground}
 font-0 = "Departure Mono:style=Regular:size=12;2"
 font-1 = "JoyPixels:scale=10;2"
-font-2 = "Font Awesome 7 Free Regular:style=Regular:pixelsize=11;2"
-font-3 = "Font Awesome 7 Free Solid:style=Sold:pixelsize=11;2"
+font-2 = "Font Awesome 7 Free:style=Regular:pixelsize=11;2"
+font-3 = "Font Awesome 7 Free Solid:style=Solid:pixelsize=11;2"
 module-margin = 1
 padding = 1
 
