@@ -7,6 +7,15 @@ whitelist /tmp/aerc*/*.htm
 # Whitelist public folder
 whitelist ${HOME}/public
 
+# Prevent crashes due to https://github.com/netblue30/firejail/issues/6906
+whitelist /usr/share/glycin-loaders
+noblacklist /usr/bin/bwrap
+noblacklist /proc/sys/kernel/overflowuid
+noblacklist /proc/sys/kernel/overflowgid
+private-bin bwrap
+ignore seccomp !chroot
+seccomp !chroot,!mount,!pivot_root,!umount2
+
 # Allow firefox to inhibit screensavers
 dbus-user.talk org.freedesktop.ScreenSaver
 
