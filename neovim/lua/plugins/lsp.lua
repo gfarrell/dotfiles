@@ -41,7 +41,7 @@ return {
       -- With haskell-tools.nvim installed we don't setup HLS here!
       local lsp = require("lspconfig")
       lsp.sqlls.setup{}
-      lsp.pylsp.setup{}
+      lsp.basedpyright.setup{}
       lsp.clojure_lsp.setup{}
       lsp.nil_ls.setup{
         ['nil'] = {
