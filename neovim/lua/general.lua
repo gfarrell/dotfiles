@@ -27,3 +27,19 @@ vim.g.markdown_fenced_languages = {
 -- Change tabs quickly
 vim.keymap.set("n", "<Leader>tn", "<cmd>tabn<cr>")
 vim.keymap.set("n", "<Leader>tp", "<cmd>tabp<cr>")
+
+-- Open a scratchpad
+local openScratch = function(type)
+  local commands = {
+    vertical = "vnew",
+    horizontal = "new",
+    inplace = "enew"
+  }
+  vim.cmd(commands[type] or commands.inplace)
+  vim.bo.buftype = "nofile"
+  vim.bo.bufhidden = "hide"
+  vim.bo.swapfile = false
+end
+vim.keymap.set("n", "<Leader>sv", function() openScratch("vertical") end, { desc = "Open a scratch in a vertical split" });
+vim.keymap.set("n", "<Leader>sh", function() openScratch("horizontal") end, { desc = "Open a scratch in a horizontal split" });
+vim.keymap.set("n", "<Leader>sp", function() openScratch("inplace") end, { desc = "Open a scratch in this pane" });
