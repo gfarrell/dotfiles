@@ -39,20 +39,20 @@ return {
 
       -- Configure different LSPs
       -- With haskell-tools.nvim installed we don't setup HLS here!
-      local lsp = require("lspconfig")
-      lsp.sqlls.setup{}
-      lsp.basedpyright.setup{}
-      lsp.clojure_lsp.setup{}
-      lsp.nil_ls.setup{
+      vim.lsp.enable('sqlls')
+      vim.lsp.enable('basedpyright')
+      vim.lsp.enable('clojure_lsp')
+      vim.lsp.enable('nil_ls')
+      vim.lsp.config('nil_ls', {
         ['nil'] = {
           formatting = {
             command = { "alejandra" },
           },
         },
-      }
-      lsp.ts_ls.setup{}
-      lsp.tinymist.setup{} -- typst lsp
-      lsp.lua_ls.setup{}
+      })
+      vim.lsp.enable('ts_ls')
+      vim.lsp.enable('tinymist') -- typst lsp
+      vim.lsp.enable('lua_ls')
     end
   }
 }
