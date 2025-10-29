@@ -39,6 +39,8 @@ local openScratch = function(type)
   vim.bo.buftype = "nofile"
   vim.bo.bufhidden = "hide"
   vim.bo.swapfile = false
+  vim.bo.ft = "norg"
+  vim.wo.foldlevel = 99
 end
 vim.keymap.set("n", "<Leader>sv", function() openScratch("vertical") end, { desc = "Open a scratch in a vertical split" });
 vim.keymap.set("n", "<Leader>sh", function() openScratch("horizontal") end, { desc = "Open a scratch in a horizontal split" });
