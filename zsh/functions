@@ -1,9 +1,3 @@
-# NVM is really slow to load, so let's only get it when we need it
-function nvm() {
-    source /usr/share/nvm/init-nvm.sh
-    nvm "$@";
-}
-
 # Create a new directory and enter it
 function md() {
     mkdir -p "$@" && cd "$@"
