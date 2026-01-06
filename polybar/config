@@ -116,7 +116,7 @@ label = %date% %time%
 
 [module/date-compact]
 type = internal/date
-date = %e/%m
+date = %d/%m
 time = %H:%M
 format =  <label>
 label = %date% %time%
