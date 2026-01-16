@@ -4,8 +4,8 @@ xrdb -merge ~/.Xresources
 xrandr --dpi 92x92
 feh --bg-fill -z ~/.wallpaper
 
-# Default session to i3
-session=${1:-i3}
+# Default session to xmonad
+session=${1:-xmonad}
 
 start_i3() {
   mkdir -p ~/.local/share/i3
