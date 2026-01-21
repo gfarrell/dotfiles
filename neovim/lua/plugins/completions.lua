@@ -45,9 +45,7 @@ return {
           end
 
           -- disable completion in git commit messages, vimwiki, and markdown
-          if vim.bo.filetype == "gitcommit" 
-            or vim.bo.filetype == "vimwiki" 
-            or vim.bo.filetype == "markdown" then
+          if vim.bo.filetype == "gitcommit" or vim.bo.filetype == "markdown" then
             return false
           end
 
