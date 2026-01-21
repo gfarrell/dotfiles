@@ -24,6 +24,7 @@ symlinks:
 	ln -nsf $(DIR)/kitty ~/.config/kitty
 	ln -nsf $(DIR)/neovim ~/.config/nvim
 	ln -nsf $(DIR)/ranger ~/.config/ranger
+	ln -nsf $(DIR)/todoman ~/.config/todoman
 	ln -nsf $(DIR)/tmux ~/.tmux
 	ln -nsf $(DIR)/tmux/tmux.conf ~/.tmux.conf
 	ln -nsf $(DIR)/yazi ~/.config/yazi
