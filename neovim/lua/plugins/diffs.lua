@@ -1,3 +1,4 @@
 return {
-  'rafikdraoui/jj-diffconflicts'
+  'rafikdraoui/jj-diffconflicts',
+  'sindrets/diffview.nvim'
 }
