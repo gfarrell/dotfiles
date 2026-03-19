@@ -30,6 +30,7 @@ return {
             vim.lsp.buf.definition()
           end, extend(bufopts, { desc = "Go to definition in a vsplit (LSP)" }))
           vim.keymap.set('n', 'grt', vim.lsp.buf.type_definition, extend(bufopts, { desc = "Go to type definition (LSP)"}))
+          vim.keymap.set('n', 'gri', vim.lsp.buf.implementation, extend(bufopts, { desc = "Show instances (LSP)"}))
           vim.keymap.set('n', 'grr', vim.lsp.buf.references, extend(bufopts, { desc = "Show references (LSP)" }))
           vim.keymap.set('n', 'grn', vim.lsp.buf.rename, extend(bufopts, { desc = "Rename symbol (LSP)" }))
           vim.keymap.set('n', 'gra', vim.lsp.buf.code_action, extend(bufopts, { desc = "Show code actions (LSP)" }))
