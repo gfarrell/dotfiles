@@ -92,13 +92,33 @@ return {
     'mrcjkb/haskell-tools.nvim',
     version = "^6",
     lazy = false,
-    init = function ()
+    init = function()
       vim.g.haskell_tools = {
         hls = {
-          default_settings = {
-            haskell = {
-              formattingProvider = 'ormolu'
-            }
+          settings = {
+            cabalFormattingProvider = "cabal-fmt",
+            checkParents = "CheckOnSave",
+            checkProject = true,
+            formattingProvider = "ormolu",
+            maxCompletions = 40,
+            plugin = {
+              rename = {
+                config = {
+                  crossModule = false
+                },
+                globalOn = true
+              },
+              retrie = {
+                globalOn = true
+              },
+              splice = {
+                globalOn = true
+              },
+              stan = {
+                globalOn = false
+              }
+            },
+            sessionLoading = "singleComponent"
           }
         }
       }
