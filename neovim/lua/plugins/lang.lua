@@ -27,7 +27,6 @@ return {
         "markdown",
         "markdown_inline",
         "nix",
-        "norg",
         "purescript",
         "query",
         "rust",
