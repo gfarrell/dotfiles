@@ -24,6 +24,11 @@ return {
             }
           },
           ["core.integrations.nvim-cmp"] = {},
+          ["core.integrations.treesitter"] = {
+            config = {
+              configure_parsers = true,
+            },
+          },
           ["core.text-objects"] = {},
           ["core.qol.todo_items"] = {
             config = {
@@ -42,7 +47,7 @@ return {
           }
         }
       }
-      vim.api.nvim_create_autocmd({"BufEnter"}, {
+      vim.api.nvim_create_autocmd({ "BufEnter" }, {
         pattern = "*.norg",
         callback = function()
           -- Set keymaps
@@ -52,10 +57,10 @@ return {
           vim.keymap.set({ "o", "x" }, "aH", "<Plug>(neorg.text-objects.textobject.heading.outer)", {})
         end
       })
-      vim.api.nvim_create_autocmd({"BufRead"}, {
+      vim.api.nvim_create_autocmd({ "BufRead" }, {
         pattern = "*.norg",
         callback = function()
-          vim.opt_local.foldlevel=1
+          vim.opt_local.foldlevel = 1
         end
       })
     end
